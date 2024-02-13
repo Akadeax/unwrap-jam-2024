@@ -1,8 +1,31 @@
-[gd_scene load_steps=2 format=3 uid="uid://dl0kpmvq5vc50"]
+[gd_scene load_steps=6 format=3 uid="uid://dl0kpmvq5vc50"]
 
 [ext_resource type="Script" path="res://Utils/custom_camera.gd" id="1_k0xmf"]
+[ext_resource type="PackedScene" uid="uid://ccqpt0l87sunk" path="res://Player/player.tscn" id="2_6q1ic"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fblan"]
+size = Vector2(1748, 143)
+
+[sub_resource type="Gradient" id="Gradient_ijq7v"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_56rth"]
+gradient = SubResource("Gradient_ijq7v")
 
 [node name="Node2D" type="Node2D"]
 
 [node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.22, 0.22)
 script = ExtResource("1_k0xmf")
+
+[node name="player" parent="." instance=ExtResource("2_6q1ic")]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-1, -818)
+shape = SubResource("RectangleShape2D_fblan")
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
+position = Vector2(-2, -823)
+scale = Vector2(29.4124, 2.32)
+texture = SubResource("GradientTexture2D_56rth")
