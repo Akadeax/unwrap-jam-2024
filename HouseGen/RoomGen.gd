@@ -22,6 +22,12 @@ class RoomRect:
 		entrance = passed_entrance
 	func duplicate() -> RoomRect:
 		return RoomRect.new(grid_pos,size,doors.duplicate(),entrance)
+	func is_overlapping(other_room : RoomRect) ->bool:
+		var house_one_actual_size = (size.abs())*(size/size)
+		var house_two_actual_size = (other_room.size.abs())*(other_room.size/other_room.size) 
+		var my_rect = Rect2(grid_pos, house_one_actual_size)
+		var other_rect = Rect2(other_room.grid_pos, house_two_actual_size)
+		return my_rect.intersects(other_rect,true)
 		
 
 var tile_dict = { #dict for mapping the tiles to sensible names
@@ -44,30 +50,49 @@ var rooms: Array[RoomRect]
 var hallways: Array[RoomRect]
 
 func _ready():
-	var room_size : Vector2i = Vector2i(6,6)
-	var room_pos : Vector2i = Vector2i(0,0)
-	var entrance : Door = Door.new(Vector2i(2,5),Vector2i(0,1),room_pos)
+	generate_house()
+	for i in (rooms.size()):
+		square_room_draw(rooms[i],true)
+	for i in (hallways.size()):
+		square_room_draw(hallways[i],true)
+	
+
+func generate_house():
+	var check : bool = true
+	while check :
+		rooms.clear()
+		hallways.clear()
+		var room_size : Vector2i = Vector2i(6,6)
+		var room_pos : Vector2i = Vector2i(0,0)
+		var entrance : Door = Door.new(Vector2i(2,5),Vector2i(0,1),room_pos)
+			
+		var doors : Array[Door] = [
+			Door.new(Vector2i(0,2),Vector2i(-1,0),room_pos),
+			Door.new(Vector2i(5,2),Vector2i(1,0),room_pos),
+			Door.new(Vector2i(2,0),Vector2i(0,-1),room_pos),
+		] 
+		var room : RoomRect = RoomRect.new(room_pos,room_size,doors,entrance)
+		rooms.append(room)
 		
-	var doors : Array[Door] = [
-		Door.new(Vector2i(0,2),Vector2i(-1,0),room_pos),
-		Door.new(Vector2i(5,2),Vector2i(1,0),room_pos),
-		Door.new(Vector2i(2,0),Vector2i(0,-1),room_pos),
-	] 
-	var room : RoomRect = RoomRect.new(room_pos,room_size,doors,entrance)
-	rooms.append(room)
-	square_room_draw(room,true)
-	print(doors.size())
-	
-	for i in range(doors.size()):
-		var new_hallway = generate_hallway(room.doors[i])
-		square_room_draw(new_hallway,false)
-		hallways.append(new_hallway)
-	#for x in hallways.size():
-		#for i in range(hallways[x].doors.size()):
-			#var newroom = generate_room(hallways[x].doors[i])
-			#square_room_draw(newroom)
-			#rooms.append(newroom)
-	
+		for i in range(doors.size()):
+			var new_hallway = generate_hallway(room.doors[i])
+			hallways.append(new_hallway)
+		for x in hallways.size():
+			for i in range(hallways[x].doors.size()):
+				var newroom = generate_room(hallways[x].doors[i])
+				rooms.append(newroom)
+		check = false
+		for i in (rooms.size()):
+			for j in (rooms.size()):
+				if i != j:
+					var my_rect = Rect2(rooms[i].grid_pos, rooms[i].size)
+					var other_rect = Rect2(rooms[j].grid_pos, rooms[j].size)
+					if my_rect.intersects(other_rect,true) :
+						check = check || true
+					else :
+						check = check || false 
+
+
 func square_room_draw(room : RoomRect,wood : bool):
 	var doors : Array[Door] = room.doors.duplicate() 
 	doors.append(room.entrance)
@@ -119,29 +144,31 @@ func square_room_draw(room : RoomRect,wood : bool):
 func generate_room( prev_door : Door) -> RoomRect:
 	const max_size : int = 8
 	const min_size : int = 4
-	var size : Vector2i = Vector2i(	randi_range(min_size,max_size),
-									randi_range(min_size,max_size))
+	var size : Vector2i = Vector2i(	randi_range(min_size,max_size),randi_range(min_size,max_size))
 	var pos : Vector2i
 	var pos_correction : Vector2i
-	var entry_door : Door 
+	var entry_door : Door = Door.new(Vector2i(0,0),Vector2i(0,0),Vector2i(0,0)) 
 	if prev_door.dir.x == -1:
-		pos.x = prev_door.relative_grid_pos.x - size.x 
-		pos_correction = Vector2i(-1,0)
-		pos.y = prev_door.global_grid_pos.y - (size.y-3)
-	elif prev_door.dir.x == 1:
-		pos.x = prev_door.relative_grid_pos.x + 1
+		pos.x = prev_door.global_grid_pos.x + 1 
 		pos_correction = Vector2i(1,0)
-		pos.y = prev_door.global_grid_pos.y - (size.y-3)
+		pos.y = prev_door.global_grid_pos.y - 1
+	elif prev_door.dir.x == 1:
+		pos.x = prev_door.global_grid_pos.x - size.x
+		pos_correction = Vector2i(-1,0)
+		pos.y = prev_door.global_grid_pos.y - 1
 	elif prev_door.dir.y == -1:
-		pos.y = prev_door.relative_grid_pos.y - size.y
-		pos_correction = Vector2i(0,-1)
-		pos.x = prev_door.global_grid_pos.x - (size.x-3)
-	elif prev_door.dir.y == 1:
-		pos.y = prev_door.relative_grid_pos.y + 1
+		
+		pos.y = prev_door.global_grid_pos.y + 1
 		pos_correction = Vector2i(0,1)
-		pos.x = prev_door.global_grid_pos.x - (size.x-3)
-	entry_door.dir = prev_door.dir * -1
+		pos.x = prev_door.global_grid_pos.x - 1
+	elif prev_door.dir.y == 1:
+		
+		pos.y = prev_door.global_grid_pos.y - size.y
+		pos_correction = Vector2i(0,-1)
+		pos.x = prev_door.global_grid_pos.x - 1
+	entry_door.dir = prev_door.dir 
 	entry_door.relative_grid_pos = prev_door.global_grid_pos + pos_correction - pos
+	entry_door.global_grid_pos = pos + entry_door.relative_grid_pos
 
 	var room : RoomRect = RoomRect.new(pos,size,[],entry_door)
 	return room
@@ -160,44 +187,69 @@ func generate_hallway(prev_door : Door) -> RoomRect:
 	if prev_door.dir.x == -1:
 		wall_has_door[0] = true
 		size.y = 4
-		pos.x = prev_door.relative_grid_pos.x - size.x 
+		pos.x = prev_door.global_grid_pos.x - size.x 
 		pos_correction = Vector2i(-1,0)
 		pos.y = prev_door.global_grid_pos.y - 1
 	elif prev_door.dir.x == 1:
 		wall_has_door[1] = true
 		size.y = 4
-		pos.x = prev_door.relative_grid_pos.x + 1
+		pos.x = prev_door.global_grid_pos.x + 1
 		pos_correction = Vector2i(1,0)
 		pos.y = prev_door.global_grid_pos.y - 1
 	elif prev_door.dir.y == -1:
 		wall_has_door[2] = true
 		size.x = 4
-		pos.y = prev_door.relative_grid_pos.y - size.y
+		pos.y = prev_door.global_grid_pos.y - size.y
 		pos_correction = Vector2i(0,-1)
 		pos.x = prev_door.global_grid_pos.x - 1
 	elif prev_door.dir.y == 1:
 		wall_has_door[3] = true
 		size.x = 4
-		pos.y = prev_door.relative_grid_pos.y + 1
+		pos.y = prev_door.global_grid_pos.y + 1
 		pos_correction = Vector2i(0,1)
 		pos.x = prev_door.global_grid_pos.x - 1
 	entry_door.dir = prev_door.dir * -1
 	entry_door.relative_grid_pos = prev_door.global_grid_pos + pos_correction - pos
+	entry_door.global_grid_pos = pos + entry_door.relative_grid_pos
 	#make the doors in the hallway
-	var door_amnt : int = randi_range(1,3)
+	var door_amnt : int = randi_range(3,7)
 	var doors : Array[Door] 
 	for i in (door_amnt):
 		var door_dir = randi_range(0,3)
 		if wall_has_door[door_dir]:
 			continue
+		wall_has_door[door_dir] = true
 		var dir : Vector2i
+		var door_pos : Vector2i
 		if door_dir == 0:
-			dir = Vector2i(1,0)
-		elif door_dir == 1:
 			dir = Vector2i(-1,0)
+			door_pos.x = size.x-1
+			if size.y == 4:
+				door_pos.y = 1
+			else: 
+				door_pos.y = randi_range(1,size.y-4)
+		elif door_dir == 1:
+			dir = Vector2i(1,0)
+			door_pos.x = 0
+			if size.y == 4:
+				door_pos.y = 1
+			else: 
+				door_pos.y = randi_range(1,size.y-4)
 		elif door_dir == 2:
-			dir = Vector2i(0,1)
-		elif door_dir == 3:
 			dir = Vector2i(0,-1)
-	var room : RoomRect = RoomRect.new(pos,size,[],entry_door)
+			door_pos.y = size.y-1
+			if size.x == 4:
+				door_pos.x = 1
+			else: 
+				door_pos.x = randi_range(1,size.x-4)
+		elif door_dir == 3:
+			dir = Vector2i(0,1)
+			door_pos.y = 0
+			if size.x == 4:
+				door_pos.x = 1
+			else: 
+				door_pos.x = randi_range(1,size.x-4)
+		var new_door : Door = Door.new(door_pos,dir,pos)
+		doors.append(new_door)
+	var room : RoomRect = RoomRect.new(pos,size,doors,entry_door)
 	return room
