@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://vc5sgeq8koh1"]
+
+[ext_resource type="Script" path="res://PickupObjects/pickup_object.gd" id="1_my2ae"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uqtng"]
+
+[node name="PickupObject" type="RigidBody2D" groups=["pickup"]]
+gravity_scale = 0.0
+script = ExtResource("1_my2ae")
+base_score = 100.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(2, 2)
+shape = SubResource("RectangleShape2D_uqtng")
+disabled = true
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="tree_exiting" from="." to="." method="_on_tree_exiting"]
