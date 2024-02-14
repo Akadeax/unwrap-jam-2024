@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://dl0kpmvq5vc50"]
+[gd_scene load_steps=9 format=3 uid="uid://dl0kpmvq5vc50"]
 
 [ext_resource type="Script" path="res://Utils/custom_camera.gd" id="1_k0xmf"]
 [ext_resource type="PackedScene" uid="uid://burd7rvt3gne5" path="res://Player/player.tscn" id="2_6q1ic"]
 [ext_resource type="PackedScene" uid="uid://vc5sgeq8koh1" path="res://PickupObjects/pickup_object.tscn" id="3_u8sj1"]
 [ext_resource type="PackedScene" uid="uid://bw04633k6vv8p" path="res://PickupObjects/delivery_zone.tscn" id="4_eum7i"]
+[ext_resource type="PackedScene" uid="uid://b3wrvk8o3i6ho" path="res://PickupObjects/bed.tscn" id="5_0akoi"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fblan"]
 size = Vector2(1748, 143)
@@ -37,3 +38,6 @@ position = Vector2(-1997, 791)
 
 [node name="DeliveryZone" parent="." instance=ExtResource("4_eum7i")]
 position = Vector2(1731, 167)
+
+[node name="PickupObject2" parent="." instance=ExtResource("5_0akoi")]
+position = Vector2(-1291, 73)

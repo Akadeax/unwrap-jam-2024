@@ -8,7 +8,18 @@ signal deliver(health_procent, base_score)
 
 @export var destroyed_particles_scene : PackedScene
 
-enum Type{ CHAIR, BOX, TABLE, DRAWER, SOFA }
+enum Type{ 
+CHAIR, CHAIR2, ROLLING_CHAIR,
+SMALL_COUCH, 
+BOX, BOX2, 
+FRIDGE, STOVE,
+SINK, SINK2, KITCHEN_SINK,
+TOILET,
+TABLE, TABLE2, FISH_COFFEE_TABLE, 
+COMPUTER_DESK, TV_DESK, 
+DRAWER, OPEN_DRESSER,
+TUB,
+SOFA, BED }
 @export var type : Type
 
 var health : float
