@@ -12,11 +12,19 @@ func _process(delta):
 
 
 func _on_body_entered(body):
-	print(body)
 	if body.is_in_group("pickup"):
-		body.queue_free()
+		if (!body.is_held):
+			body.queue_free()
+		else :
+			body.in_delivery = true
 
 
 #func _on_area_entered(area):
 	#if area.is_in_group("pickup"):
 		#area.queue_free()
+
+
+func _on_body_exited(body):
+	
+	if body.is_in_group("pickup"):
+		body.in_delivery = true

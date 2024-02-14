@@ -17,8 +17,13 @@ var is_held = false;
 var shark;
 var immunity_time : float
 @export var max_immunity_time : float
+var immune : bool
+var in_delivery : bool
 
 var relative_rot : float
+
+var iteract_delay : float
+const max_interact_delay : float = 0.5
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -28,10 +33,19 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 
+
 	if is_held:
 		global_rotation = shark.global_rotation + relative_rot
 		global_position = shark.global_position + relative_pos.rotated(shark.global_rotation)
+	else:
+		if immune:
+			immunity_time -= delta
+			if immunity_time <= 0:
+				immune=false
+				set_collision_layer_value(1,1);
 
+		if in_delivery:
+			queue_free()
 
 func pickup( new_shark ):
 	shark = new_shark;
@@ -42,13 +56,15 @@ func pickup( new_shark ):
 func drop():
 	is_held = false;
 	linear_velocity = shark.velocity * 1.3
-	set_collision_layer_value(1,1);
+	immune = true
+	immunity_time = max_immunity_time
 
 
 func yeet():
 	is_held = false;
 	linear_velocity = shark.velocity * 3
-	set_collision_layer_value(1,1);
+	immune = true
+	immunity_time = max_immunity_time
 
 
 func damage_object():
@@ -64,10 +80,10 @@ func damage_object():
 		get_tree().root.add_child(part)
 		part.global_position = global_position
 		queue_free()
-		get_tree().get_first_node_in_group("cam").apply_shake(15, 50)
+		get_tree().get_first_node_in_group("cam").apply_shake(50, 50)
 	else:
 		$BonkParticles.emitting = true
-		get_tree().get_first_node_in_group("cam").apply_shake(35, 30)
+		get_tree().get_first_node_in_group("cam").apply_shake(20, 30)
 
 func _on_tree_exiting():
 	if health > 0:
