@@ -50,11 +50,17 @@ var rooms: Array[RoomRect]
 var hallways: Array[RoomRect]
 
 func _ready():
+	for i in 10:
+		if (i == 8):
+			i += 1
+			continue
+		print(i)
+	
 	generate_house()
 	for i in (rooms.size()):
-		square_room_draw(rooms[i],true)
+		square_room_draw(rooms[i],false)
 	for i in (hallways.size()):
-		square_room_draw(hallways[i],true)
+		square_room_draw(hallways[i],false)
 	
 
 func generate_house():
@@ -65,16 +71,26 @@ func generate_house():
 		var room_size : Vector2i = Vector2i(6,6)
 		var room_pos : Vector2i = Vector2i(0,0)
 		var entrance : Door = Door.new(Vector2i(2,5),Vector2i(0,1),room_pos)
-			
-		var doors : Array[Door] = [
-			Door.new(Vector2i(0,2),Vector2i(-1,0),room_pos),
-			Door.new(Vector2i(5,2),Vector2i(1,0),room_pos),
-			Door.new(Vector2i(2,0),Vector2i(0,-1),room_pos),
-		] 
-		var room : RoomRect = RoomRect.new(room_pos,room_size,doors,entrance)
+		var amnt_of_hallways : int = [2,2,3].pick_random()
+		var hallway_doors : Array[Door]
+		var has_door : Array[bool] = [false,false,false]
+		for i in range(amnt_of_hallways):
+			var rand_dir = randi_range(0,2)
+			if has_door[rand_dir]:
+				i -=1
+				continue
+			has_door[rand_dir] = true
+			if rand_dir == 0 :
+				hallway_doors.append(Door.new(Vector2i(0,2),Vector2i(-1,0),room_pos))
+			elif rand_dir == 1 :
+				hallway_doors.append(Door.new(Vector2i(0,2),Vector2i(-1,0),room_pos))
+			elif rand_dir == 2 :
+				hallway_doors.append(Door.new(Vector2i(2,0),Vector2i(0,-1),room_pos))
+		
+		var room : RoomRect = RoomRect.new(room_pos,room_size,hallway_doors,entrance)
 		rooms.append(room)
 		
-		for i in range(doors.size()):
+		for i in range(hallway_doors.size()):
 			var new_hallway = generate_hallway(room.doors[i])
 			hallways.append(new_hallway)
 		for x in hallways.size():
@@ -212,11 +228,12 @@ func generate_hallway(prev_door : Door) -> RoomRect:
 	entry_door.relative_grid_pos = prev_door.global_grid_pos + pos_correction - pos
 	entry_door.global_grid_pos = pos + entry_door.relative_grid_pos
 	#make the doors in the hallway
-	var door_amnt : int = randi_range(3,7)
+	var door_amnt : int = [1,2,2,2,3].pick_random()
 	var doors : Array[Door] 
 	for i in (door_amnt):
 		var door_dir = randi_range(0,3)
 		if wall_has_door[door_dir]:
+			i -=1
 			continue
 		wall_has_door[door_dir] = true
 		var dir : Vector2i
