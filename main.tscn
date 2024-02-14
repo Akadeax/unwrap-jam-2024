@@ -1,10 +1,12 @@
-[gd_scene load_steps=9 format=3 uid="uid://dl0kpmvq5vc50"]
+[gd_scene load_steps=16 format=3 uid="uid://dl0kpmvq5vc50"]
 
 [ext_resource type="Script" path="res://Utils/custom_camera.gd" id="1_k0xmf"]
 [ext_resource type="PackedScene" uid="uid://ccqpt0l87sunk" path="res://Player/player.tscn" id="2_6q1ic"]
 [ext_resource type="AudioStream" uid="uid://dkyuewt7amyft" path="res://Sound/Streams/Environment/Ambience.wav" id="3_nfvv7"]
-[ext_resource type="Script" path="res://AmbienceStream.gd" id="4_yefoq"]
-[ext_resource type="AudioStream" uid="uid://cph1xxhndsm6q" path="res://Sound/Streams/Interactables/Damage/RandomCeramicDamage.tres" id="5_mptr0"]
+[ext_resource type="AudioStream" uid="uid://3ytgfcvsfacm" path="res://Sound/Streams/Music/GameLoopstems/MusicIntensity1.mp3" id="4_st5k5"]
+[ext_resource type="AudioStream" uid="uid://cyn0cp3lyrkhf" path="res://Sound/Streams/Music/GameLoopstems/MusicIntensity2.mp3" id="5_bylwc"]
+[ext_resource type="AudioStream" uid="uid://eapccgnk4xy1" path="res://Sound/Streams/Music/GameLoopstems/MusicIntensity3.mp3" id="6_byote"]
+[ext_resource type="AudioStream" uid="uid://b83jxe75gx720" path="res://Sound/Streams/Music/GameLoopstems/MusicIntensity4.mp3" id="7_jbbot"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fblan"]
 size = Vector2(1748, 143)
@@ -13,6 +15,76 @@ size = Vector2(1748, 143)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_56rth"]
 gradient = SubResource("Gradient_ijq7v")
+
+[sub_resource type="GDScript" id="GDScript_2urc8"]
+script/source = "extends AudioStreamPlayer
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+"
+
+[sub_resource type="GDScript" id="GDScript_4gypi"]
+script/source = "extends AudioStreamPlayer
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+"
+
+[sub_resource type="GDScript" id="GDScript_ve6ld"]
+script/source = "extends AudioStreamPlayer
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+"
+
+[sub_resource type="GDScript" id="GDScript_dftlv"]
+script/source = "extends AudioStreamPlayer
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+"
+
+[sub_resource type="GDScript" id="GDScript_w4u1m"]
+script/source = "extends AudioStreamPlayer
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():	
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+"
 
 [node name="Node2D" type="Node2D"]
 
@@ -33,10 +105,32 @@ position = Vector2(-2, -823)
 scale = Vector2(29.4124, 2.32)
 texture = SubResource("GradientTexture2D_56rth")
 
-[node name="AmbienceStream" type="AudioStreamPlayer" parent="."]
+[node name="AmbiencePlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_nfvv7")
+autoplay = true
 bus = &"Ambience"
-script = ExtResource("4_yefoq")
+script = SubResource("GDScript_2urc8")
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("5_mptr0")
+[node name="MusicPlayer1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_st5k5")
+autoplay = true
+bus = &"Music"
+script = SubResource("GDScript_4gypi")
+
+[node name="MusicPlayer2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_bylwc")
+autoplay = true
+bus = &"Music"
+script = SubResource("GDScript_ve6ld")
+
+[node name="MusicPlayer3" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_byote")
+autoplay = true
+bus = &"Music"
+script = SubResource("GDScript_dftlv")
+
+[node name="MusicPlayer4" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_jbbot")
+autoplay = true
+bus = &"Music"
+script = SubResource("GDScript_w4u1m")
