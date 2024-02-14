@@ -20,6 +20,7 @@ fragility = 20.0
 max_health = 100.0
 destruction_frames = 3.0
 destroyed_particles_scene = ExtResource("2_5eg1c")
+type = 21
 max_immunity_time = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

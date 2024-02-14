@@ -25,6 +25,7 @@ extends Node
 @export var box_1 : PackedScene
 @export var box_2 : PackedScene
 @export var chair : PackedScene
+@export var lamp : PackedScene
 
 
 class SpawnInfo:

@@ -1,10 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://d1si4l6mk6txa"]
+[gd_scene load_steps=5 format=3 uid="uid://d1si4l6mk6txa"]
 
 [ext_resource type="Script" path="res://PickupObjects/pickup_object.gd" id="1_4vony"]
-[ext_resource type="Texture2D" uid="uid://c3crvc7na1t6r" path="res://Sprites/dresser1.png" id="2_e6bl4"]
+[ext_resource type="Texture2D" uid="uid://c8ulk2ut5qc6" path="res://Sprites/cupboard.png" id="2_bmbls"]
+[ext_resource type="PackedScene" uid="uid://c35jijc0e1sau" path="res://VFX/destroy_particles.tscn" id="2_gprm8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uqtng"]
-size = Vector2(538.455, 274.86)
+size = Vector2(482.79, 203.395)
 
 [node name="PickupObject" type="RigidBody2D" groups=["pickup"]]
 collision_layer = 3
@@ -17,7 +18,9 @@ linear_damp = 1.0
 script = ExtResource("1_4vony")
 fragility = 20.0
 max_health = 100.0
-destruction_frames = 1.0
+destruction_frames = 3.0
+destroyed_particles_scene = ExtResource("2_gprm8")
+type = 17
 max_immunity_time = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -31,8 +34,9 @@ collision_mask = 3
 shape = SubResource("RectangleShape2D_uqtng")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.8, 0.8)
-texture = ExtResource("2_e6bl4")
+scale = Vector2(2, 2)
+texture = ExtResource("2_bmbls")
+hframes = 3
 
 [connection signal="tree_exiting" from="." to="." method="_on_tree_exiting"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
