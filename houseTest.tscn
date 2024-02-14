@@ -15,7 +15,7 @@ scale = Vector2(2.5, 2.5)
 position = Vector2(285, 530)
 
 [node name="Camera2D" type="Camera2D" parent="player"]
-zoom = Vector2(0.365, 0.365)
+zoom = Vector2(0.245, 0.245)
 script = ExtResource("3_7dhxg")
 
 [node name="PickupObject" parent="." instance=ExtResource("4_hm4fg")]
