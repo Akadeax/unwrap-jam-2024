@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=3 uid="uid://ccqpt0l87sunk"]
+[gd_scene load_steps=57 format=3 uid="uid://ccqpt0l87sunk"]
 
 [ext_resource type="Script" path="res://Player/player_controller.gd" id="1_b7tfx"]
 [ext_resource type="Texture2D" uid="uid://ba57d3xtvlmta" path="res://Player/Sprites/body.png" id="3_k7lte"]
@@ -50,6 +50,7 @@
 [ext_resource type="Texture2D" uid="uid://kv3qeha61jf5" path="res://Player/Sprites/body/head22.png" id="48_kgysa"]
 [ext_resource type="Texture2D" uid="uid://b5a4s8r7hkcp3" path="res://Player/Sprites/body/head23.png" id="49_i3vwb"]
 [ext_resource type="Texture2D" uid="uid://cwb124y0lqs2w" path="res://Player/Sprites/body/head24.png" id="50_t426j"]
+[ext_resource type="AudioStream" uid="uid://bfx8vx0brvcts" path="res://Sound/Streams/Shark/randomBumps.tres" id="51_dxkvr"]
 
 [sub_resource type="Curve" id="Curve_7kcpw"]
 max_value = 3.0
@@ -263,3 +264,9 @@ sprite_frames = SubResource("SpriteFrames_ogjw7")
 autoplay = "default"
 frame_progress = 0.517591
 offset = Vector2(-23.635, 0)
+
+[node name="BumpStream" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("51_dxkvr")
+attenuation = 1.07177
+panning_strength = 0.78
+bus = &"Shark"

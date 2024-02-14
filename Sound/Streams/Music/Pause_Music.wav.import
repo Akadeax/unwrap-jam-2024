@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://b7a1xm4pdxb3p"
-path="res://.godot/imported/Pause_Music.wav-3436b9b7fdadf46a0ed0ec74131c6e4f.sample"
+path="res://.godot/imported/Pause_Music.wav-26ca086b8041e06661fc6f309d1e2bf3.sample"
 
 [deps]
 
-source_file="res://Menu/Pause_Music.wav"
-dest_files=["res://.godot/imported/Pause_Music.wav-3436b9b7fdadf46a0ed0ec74131c6e4f.sample"]
+source_file="res://Sound/Streams/Music/Pause_Music.wav"
+dest_files=["res://.godot/imported/Pause_Music.wav-26ca086b8041e06661fc6f309d1e2bf3.sample"]
 
 [params]
 

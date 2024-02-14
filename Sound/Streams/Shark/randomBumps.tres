@@ -6,7 +6,7 @@
 [ext_resource type="AudioStream" uid="uid://ccdu3ei4ghbgx" path="res://Sound/Streams/Shark/Bumps/Bonk_04.wav" id="4_3lp2u"]
 
 [resource]
-random_pitch = 4.65
+random_pitch = 1.68
 random_volume_offset_db = 3.96
 streams_count = 4
 stream_0/stream = ExtResource("1_h45rn")
