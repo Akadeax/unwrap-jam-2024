@@ -12,9 +12,9 @@ collision_mask = 3
 gravity_scale = 0.0
 can_sleep = false
 continuous_cd = 2
+linear_damp = 96.76
 script = ExtResource("1_my2ae")
-base_score = 100.0
-max_health = 3.0
+max_health = 100.0
 max_immunity_time = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

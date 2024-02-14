@@ -1,7 +1,7 @@
 extends RigidBody2D
 signal deliver(health_procent, base_score)
 
-@export var base_score : float
+@export var fragility : float
 @export var max_health : float
 
 enum Type{ CHAIR, SOFA, DRAWER, RUG, TABLE, BOX }
@@ -14,6 +14,8 @@ var shark;
 var immunity_time : float
 @export var max_immunity_time : float
 
+var relative_rot : float
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	health = max_health
@@ -23,17 +25,18 @@ func _ready():
 func _process(delta):
 
 	if is_held:
-		global_rotation = shark.rotation
-		global_position = shark.position + relative_pos.rotated(shark.rotation)
+		global_rotation = shark.global_rotation + relative_rot
+		global_position = shark.global_position + relative_pos.rotated(shark.global_rotation)
 
 
 func pickup( new_shark ):
 	shark = new_shark;
 	is_held = true;
+	relative_rot = angle_difference(shark.rotation, global_rotation)
 
 func drop():
 	is_held = false;
-	linear_velocity = shark.velocity
+	linear_velocity = shark.velocity * 1.3
 
 
 func damage_object():
@@ -46,7 +49,7 @@ func damage_object():
 	#update sprite
 
 func _on_tree_exiting():
-	deliver.emit(float(health/max_health), base_score)
+	deliver.emit(float(health/max_health), fragility)
 
 func _on_area_2d_body_entered(body):
 	print("damage wall")
