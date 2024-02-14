@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://fvkd031ternh" path="res://Sprites/chair_pog.png" id="1_r3g0f"]
 
 [node name="Testsquare" type="Node2D"]
+z_index = 5
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_r3g0f")

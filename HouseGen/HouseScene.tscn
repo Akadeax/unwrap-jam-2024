@@ -1,9 +1,8 @@
-[gd_scene load_steps=31 format=3 uid="uid://yt5vihcqbymr"]
+[gd_scene load_steps=30 format=3 uid="uid://yt5vihcqbymr"]
 
 [ext_resource type="PackedScene" uid="uid://dct3au1qighsa" path="res://PickupObjects/objectScenes/testsquare.tscn" id="2_clrqx"]
 [ext_resource type="Script" path="res://HouseGen/RoomGen.gd" id="2_drh6b"]
 [ext_resource type="Texture2D" uid="uid://cqge4jikww8yh" path="res://Sprites/spriteSheets/HouseSpriteSheet.jpg" id="2_je1np"]
-[ext_resource type="PackedScene" path="res://PickupObjects/table.tscn" id="2_rmag1"]
 [ext_resource type="PackedScene" path="res://PickupObjects/chair.tscn" id="2_xt2rg"]
 [ext_resource type="PackedScene" path="res://PickupObjects/table2.tscn" id="3_ggiwn"]
 [ext_resource type="PackedScene" path="res://PickupObjects/bed.tscn" id="3_ug3qd"]
@@ -236,7 +235,7 @@ sources/0 = SubResource("TileSetAtlasSource_7843c")
 script = ExtResource("2_drh6b")
 tilemap = NodePath("../TileMap")
 sand_tilemap = NodePath("../TileMap2")
-big_table_1 = ExtResource("2_rmag1")
+big_table_1 = ExtResource("2_clrqx")
 big_table_2 = ExtResource("3_ggiwn")
 bed = ExtResource("3_ug3qd")
 computer_desk = ExtResource("4_62jyh")
