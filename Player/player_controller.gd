@@ -7,11 +7,11 @@ class_name PlayerController
 var current_move_angle : float = -90
 
 @export_group("body")
-@export var body_holder : Sprite2D
+@export var body_holder : Node2D
 
 
 @export_group("fin")
-@export var fin_holder : Sprite2D
+@export var fin_holder : Node2D
 
 var current_fin_angle : float = -90
 
