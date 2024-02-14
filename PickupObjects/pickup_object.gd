@@ -38,7 +38,7 @@ func drop():
 
 func damage_object():
 	health -= 1
-
+	$Sprite2D.frame += 1
 	if health < 0:
 		# call reduce score
 		print("I die")
@@ -50,12 +50,8 @@ func _on_tree_exiting():
 
 func _on_area_2d_body_entered(body):
 	print("damage wall")
-	if (body is TileMap or body.is_in_group("pickup")) and is_held:
-		shark.knockback(Vector2(0, 200).rotated(shark.rotation) , 0.2)
+	if ((body is TileMap  and is_held ) or body.is_in_group("pickup") ) and (body as Node2D) != self:
+		if (is_held):
+			shark.knockback(Vector2(0, 200).rotated(shark.rotation) , 0.2)
 		damage_object()
 
-func _on_area_2d_area_entered(area):
-	if ((shark as Node2D) != area):
-		#shark.linear_velocity *= -1
-		damage_object()
-		print("damage")

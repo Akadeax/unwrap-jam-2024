@@ -326,6 +326,7 @@ animations = [{
 }]
 
 [node name="player" type="CharacterBody2D" node_paths=PackedStringArray("body_holder", "fin_holder")]
+z_index = 2
 motion_mode = 1
 script = ExtResource("1_b7tfx")
 forward_speed = 500.0
