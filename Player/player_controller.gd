@@ -26,6 +26,10 @@ var moving_back : bool = false
 var objects = []
 var held_object
 
+var knockback_dir : Vector2
+var knockback_time_left : float
+
+
 func _physics_process(delta):
 
 	#region handle movement and animation
@@ -61,10 +65,17 @@ func _physics_process(delta):
 
 		current_fin_angle = move_toward(current_fin_angle, current_move_angle, follow_speed)
 		fin_holder.rotation =  deg_to_rad(current_fin_angle + 90) - deg_to_rad(move_body_angle)
-		#endregion
+	#endregion
+
+	knockback_time_left -= delta
+	if knockback_time_left > 0:
+		velocity = knockback_dir * 150 * knockback_time_left
 
 	move_and_slide()
 
+func knockback(dir : Vector2, time : float):
+	knockback_dir = dir
+	knockback_time_left = time
 
 func _on_pickup_area_body_entered(body):
 	if body.is_in_group("pickup"):
