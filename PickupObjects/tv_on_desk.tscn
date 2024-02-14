@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://c6eqft55jnibs"]
+[gd_scene load_steps=6 format=3 uid="uid://bbku8ex8qbe5w"]
 
 [ext_resource type="Script" path="res://PickupObjects/pickup_object.gd" id="1_eg62h"]
 [ext_resource type="PackedScene" uid="uid://c35jijc0e1sau" path="res://VFX/destroy_particles.tscn" id="2_pxe16"]

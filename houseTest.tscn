@@ -38,8 +38,8 @@ zoom_modifier_curve = SubResource("Curve_383s0")
 position = Vector2(613, 3334)
 
 [node name="player2" parent="." instance=ExtResource("2_e6g4e")]
-modulate = Color(1, 0.317647, 0.611765, 1)
-position = Vector2(1134, 3334)
+modulate = Color(1, 0.294118, 0.67451, 1)
+position = Vector2(1184, 3334)
 left_input = "left2"
 right_input = "right2"
 back_input = "back2"

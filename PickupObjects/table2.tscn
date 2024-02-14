@@ -1,7 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://buj2r3pprjmoa"]
+[gd_scene load_steps=6 format=3 uid="uid://buj2r3pprjmoa"]
 
 [ext_resource type="Script" path="res://PickupObjects/pickup_object.gd" id="1_4xnp7"]
+[ext_resource type="PackedScene" uid="uid://c35jijc0e1sau" path="res://VFX/destroy_particles.tscn" id="2_e6vfk"]
 [ext_resource type="Texture2D" uid="uid://da2uxl7m3ikfk" path="res://Sprites/table1.png" id="2_tiblo"]
+[ext_resource type="PackedScene" uid="uid://bohcapsbcsl7o" path="res://VFX/bonk_particles.tscn" id="4_471ax"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8jvv0"]
 radius = 179.95
@@ -17,6 +19,7 @@ script = ExtResource("1_4xnp7")
 fragility = 25.0
 max_health = 100.0
 destruction_frames = 1.0
+destroyed_particles_scene = ExtResource("2_e6vfk")
 max_immunity_time = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -32,6 +35,8 @@ shape = SubResource("CircleShape2D_8jvv0")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.6, 0.6)
 texture = ExtResource("2_tiblo")
+
+[node name="BonkParticles" parent="." instance=ExtResource("4_471ax")]
 
 [connection signal="tree_exiting" from="." to="." method="_on_tree_exiting"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
