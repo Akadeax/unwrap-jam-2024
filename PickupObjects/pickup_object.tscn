@@ -3,22 +3,40 @@
 [ext_resource type="Script" path="res://PickupObjects/pickup_object.gd" id="1_my2ae"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uqtng"]
+size = Vector2(500, 500)
 
 [node name="PickupObject" type="RigidBody2D" groups=["pickup"]]
+collision_layer = 2
+collision_mask = 3
 gravity_scale = 0.0
+can_sleep = false
+continuous_cd = 2
 script = ExtResource("1_my2ae")
 base_score = 100.0
+max_health = 3.0
+max_immunity_time = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-scale = Vector2(2, 2)
 shape = SubResource("RectangleShape2D_uqtng")
-disabled = true
 
 [node name="TextureRect" type="TextureRect" parent="."]
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
+custom_minimum_size = Vector2(500, 500)
+offset_left = -250.0
+offset_top = -250.0
+offset_right = 250.0
+offset_bottom = 250.0
 
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[node name="ColorRect" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(500, 500)
+offset_left = -250.0
+offset_top = -250.0
+offset_right = 250.0
+offset_bottom = 250.0
+
+[node name="Area2D" type="Area2D" parent="." groups=["pickup"]]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_uqtng")
+
 [connection signal="tree_exiting" from="." to="." method="_on_tree_exiting"]
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

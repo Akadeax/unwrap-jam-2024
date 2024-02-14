@@ -3,19 +3,23 @@
 [ext_resource type="Script" path="res://PickupObjects/delivery_zone.gd" id="1_t1xew"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a4kjd"]
+size = Vector2(500, 500)
 
-[node name="DeliveryZone" type="Area2D"]
+[node name="DeliveryZone" type="Area2D" groups=["delivery"]]
+collision_layer = 2
+collision_mask = 2
+priority = 5
 script = ExtResource("1_t1xew")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-scale = Vector2(3, 3)
 shape = SubResource("RectangleShape2D_a4kjd")
 
 [node name="ColorRect" type="ColorRect" parent="."]
-offset_left = -31.0
-offset_top = -30.0
-offset_right = 31.0
-offset_bottom = 30.0
+offset_left = -250.0
+offset_top = -250.0
+offset_right = 250.0
+offset_bottom = 250.0
 color = Color(0, 0.733333, 0, 1)
 
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

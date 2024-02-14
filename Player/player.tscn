@@ -34,7 +34,12 @@ texture = ExtResource("3_k7lte")
 offset = Vector2(-1.88, -23.48)
 
 [node name="PickupArea" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="PickupArea"]
 scale = Vector2(1.965, 4.325)
 polygon = PackedVector2Array(0, 0, 100, -100, -100, -100)
+
+[connection signal="body_entered" from="PickupArea" to="." method="_on_pickup_area_body_entered"]
+[connection signal="body_exited" from="PickupArea" to="." method="_on_pickup_area_body_exited"]
