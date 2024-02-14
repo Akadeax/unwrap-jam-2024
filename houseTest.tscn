@@ -1,10 +1,13 @@
-[gd_scene load_steps=7 format=3 uid="uid://8rqnfb1ouik1"]
+[gd_scene load_steps=10 format=3 uid="uid://8rqnfb1ouik1"]
 
 [ext_resource type="PackedScene" uid="uid://yt5vihcqbymr" path="res://HouseGen/HouseScene.tscn" id="1_ksmiq"]
 [ext_resource type="PackedScene" uid="uid://burd7rvt3gne5" path="res://Player/player.tscn" id="2_e6g4e"]
 [ext_resource type="Script" path="res://Utils/custom_camera.gd" id="3_7dhxg"]
-[ext_resource type="PackedScene" uid="uid://juqqp5rf370o" path="res://PickupObjects/objectScenes/Chair_Object.tscn" id="4_hwrxi"]
+[ext_resource type="FontFile" uid="uid://cx55imgibsjte" path="res://Sprites/fonts/SpaceMono-Regular.ttf" id="5_fxlrs"]
 [ext_resource type="Shader" path="res://Environment/ripple.gdshader" id="5_ohp0i"]
+[ext_resource type="Script" path="res://UI/Timer.gd" id="6_lftqx"]
+[ext_resource type="PackedScene" uid="uid://b3pvnspyg1prf" path="res://UI/scoreScreen/scoreBoard.tscn" id="7_di0s5"]
+[ext_resource type="PackedScene" uid="uid://bw04633k6vv8p" path="res://PickupObjects/delivery_zone.tscn" id="8_dqhk1"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7y1yn"]
 shader = ExtResource("5_ohp0i")
@@ -36,5 +39,21 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="chair" parent="." instance=ExtResource("4_hwrxi")]
-position = Vector2(922, 588)
+[node name="Timer" type="MarginContainer" parent="CanvasLayer"]
+offset_right = 59.0
+offset_bottom = 24.0
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 20
+
+[node name="Label" type="Label" parent="CanvasLayer/Timer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_fxlrs")
+theme_override_font_sizes/font_size = 40
+text = "Time: 2:30"
+script = ExtResource("6_lftqx")
+
+[node name="ScoreBoard" parent="CanvasLayer" instance=ExtResource("7_di0s5")]
+process_mode = 3
+
+[node name="DeliveryZone" parent="." instance=ExtResource("8_dqhk1")]
+position = Vector2(656, 2088)
