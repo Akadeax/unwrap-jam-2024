@@ -47,11 +47,12 @@ func _process(delta):
 		if in_delivery:
 			queue_free()
 
-func pickup( new_shark ):
+func pickup( new_shark ) -> float:
 	shark = new_shark;
 	is_held = true;
 	relative_rot = angle_difference(shark.rotation, global_rotation)
 	set_collision_layer_value(1,0);
+	return mass
 
 func drop():
 	is_held = false;
