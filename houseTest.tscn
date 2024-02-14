@@ -1,9 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://8rqnfb1ouik1"]
+[gd_scene load_steps=6 format=3 uid="uid://8rqnfb1ouik1"]
 
 [ext_resource type="PackedScene" uid="uid://yt5vihcqbymr" path="res://HouseGen/HouseScene.tscn" id="1_ksmiq"]
 [ext_resource type="PackedScene" uid="uid://burd7rvt3gne5" path="res://Player/player.tscn" id="2_e6g4e"]
 [ext_resource type="Script" path="res://Utils/custom_camera.gd" id="3_7dhxg"]
-[ext_resource type="PackedScene" uid="uid://juqqp5rf370o" path="res://PickupObjects/objectScenes/Chair_Object.tscn" id="4_hwrxi"]
 [ext_resource type="Shader" path="res://Environment/ripple.gdshader" id="5_ohp0i"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7y1yn"]
@@ -35,6 +34,3 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="chair" parent="." instance=ExtResource("4_hwrxi")]
-position = Vector2(922, 588)

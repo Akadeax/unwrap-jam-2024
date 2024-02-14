@@ -29,6 +29,8 @@ var held_weight : float
 var knockback_dir : Vector2
 var knockback_time_left : float
 
+var current_tongue_angle : float = -50
+@export var tongue_rotation_speed : float = 50
 
 
 func _physics_process(delta):
@@ -37,10 +39,15 @@ func _physics_process(delta):
 	# handle input
 	if Input.is_action_pressed("left") && !moving_back:
 		current_move_angle -= rotation_speed * delta
+		current_tongue_angle -= tongue_rotation_speed * delta
 
 	elif Input.is_action_pressed("right") && !moving_back:
 		current_move_angle += rotation_speed * delta
+		current_tongue_angle += tongue_rotation_speed * delta
 
+	current_tongue_angle = clampf(current_tongue_angle, -50, 50)
+	$Tongue.set_rotation(deg_to_rad(current_tongue_angle)) 
+	
 	if Input.is_action_just_pressed("back"):
 		current_move_angle += 180
 		moving_back = true
@@ -103,6 +110,8 @@ func _process(__):
 		is_holding_object = false
 
 	if is_holding_object:
+		$Tongue.visible = false
+		$Teeth.visible = true
 		if Input.is_action_pressed("drop"):
 			held_object.drop()
 			held_weight = 0
@@ -114,6 +123,8 @@ func _process(__):
 			knockback(up_direction.rotated(rotation)*-50, 0.2)
 
 	else:
+		$Tongue.visible = true
+		$Teeth.visible = false
 		if Input.is_action_pressed("pickup") and not objects.is_empty():
 			print(objects.size())
 			objects.sort_custom(distance_sort)
