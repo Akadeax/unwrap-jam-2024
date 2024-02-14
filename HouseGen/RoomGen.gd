@@ -408,7 +408,7 @@ func get_available_wall_location(room : RoomRect) -> SpawnInfo:
 	var check : bool = false 
 	var picked_wall : int = 0
 	while !check:
-		picked_wall = randi_range(0,4)
+		picked_wall = randi_range(0,3)
 		if !room.wall_has_door[picked_wall]:
 			check = true
 			room.wall_has_door[picked_wall] = true
@@ -422,6 +422,7 @@ func get_available_wall_location(room : RoomRect) -> SpawnInfo:
 		angle = PI + PI/2
 	elif (picked_wall == 3):
 		angle = 0
+	
 	return SpawnInfo.new(angle,chosen_pos)
 	
 func get_available_center_location(room:RoomRect) -> SpawnInfo:

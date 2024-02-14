@@ -1,6 +1,6 @@
 [gd_scene load_steps=31 format=3 uid="uid://yt5vihcqbymr"]
 
-[ext_resource type="PackedScene" uid="uid://dfjcgh13b7c1c" path="res://PickupObjects/objectScenes/testsquare.tscn" id="2_clrqx"]
+[ext_resource type="PackedScene" uid="uid://dct3au1qighsa" path="res://PickupObjects/objectScenes/testsquare.tscn" id="2_clrqx"]
 [ext_resource type="Script" path="res://HouseGen/RoomGen.gd" id="2_drh6b"]
 [ext_resource type="Texture2D" uid="uid://cqge4jikww8yh" path="res://Sprites/spriteSheets/HouseSpriteSheet.jpg" id="2_je1np"]
 [ext_resource type="PackedScene" path="res://PickupObjects/table.tscn" id="2_rmag1"]
