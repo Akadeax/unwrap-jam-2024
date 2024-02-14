@@ -25,7 +25,8 @@ SOFA, BED }
 
 var health : float
 var is_held = false;
-@export var relative_pos : Vector2 = Vector2(0,-400);
+@export var relative_pos : Vector2 = Vector2(0,-400)
+@export var offset_from_wall : Vector2 = Vector2(0,0)
 var shark;
 var immunity_time : float = 0
 @export var max_immunity_time : float = 2
