@@ -1,8 +1,31 @@
-[gd_scene load_steps=6 format=3 uid="uid://yt5vihcqbymr"]
+[gd_scene load_steps=31 format=3 uid="uid://yt5vihcqbymr"]
 
+[ext_resource type="PackedScene" uid="uid://dfjcgh13b7c1c" path="res://PickupObjects/objectScenes/testsquare.tscn" id="2_clrqx"]
 [ext_resource type="Script" path="res://HouseGen/RoomGen.gd" id="2_drh6b"]
 [ext_resource type="Texture2D" uid="uid://cqge4jikww8yh" path="res://Sprites/spriteSheets/HouseSpriteSheet.jpg" id="2_je1np"]
-[ext_resource type="PackedScene" uid="uid://ckywlhdbuc6cj" path="res://PickupObjects/chair.tscn" id="2_xt2rg"]
+[ext_resource type="PackedScene" path="res://PickupObjects/table.tscn" id="2_rmag1"]
+[ext_resource type="PackedScene" path="res://PickupObjects/chair.tscn" id="2_xt2rg"]
+[ext_resource type="PackedScene" path="res://PickupObjects/table2.tscn" id="3_ggiwn"]
+[ext_resource type="PackedScene" path="res://PickupObjects/bed.tscn" id="3_ug3qd"]
+[ext_resource type="Texture2D" uid="uid://3uo455qdmvoa" path="res://Sprites/spriteSheets/sandFloor.png" id="4_2pfky"]
+[ext_resource type="PackedScene" path="res://PickupObjects/computer_desk.tscn" id="4_62jyh"]
+[ext_resource type="PackedScene" path="res://PickupObjects/drawer.tscn" id="5_audoj"]
+[ext_resource type="PackedScene" path="res://PickupObjects/big_couch.tscn" id="6_gs6hm"]
+[ext_resource type="PackedScene" path="res://PickupObjects/rolling_chair.tscn" id="6_hs67i"]
+[ext_resource type="PackedScene" path="res://PickupObjects/open_dresser.tscn" id="7_48r3h"]
+[ext_resource type="PackedScene" path="res://PickupObjects/fish_coffee_table.tscn" id="7_rjrk6"]
+[ext_resource type="PackedScene" path="res://PickupObjects/chair2.tscn" id="9_y23si"]
+[ext_resource type="PackedScene" path="res://PickupObjects/box.tscn" id="10_anpvd"]
+[ext_resource type="PackedScene" path="res://PickupObjects/small_couch.tscn" id="10_jwxod"]
+[ext_resource type="PackedScene" path="res://PickupObjects/box_open.tscn" id="11_vssqo"]
+[ext_resource type="PackedScene" path="res://PickupObjects/table_on_desk.tscn" id="11_wn4vs"]
+[ext_resource type="PackedScene" path="res://PickupObjects/tub.tscn" id="13_1dbcc"]
+[ext_resource type="PackedScene" path="res://PickupObjects/sink.tscn" id="14_gfait"]
+[ext_resource type="PackedScene" path="res://PickupObjects/sink2.tscn" id="15_7wt4g"]
+[ext_resource type="PackedScene" path="res://PickupObjects/toilet.tscn" id="16_dyain"]
+[ext_resource type="PackedScene" path="res://PickupObjects/stove.tscn" id="17_t400t"]
+[ext_resource type="PackedScene" path="res://PickupObjects/fridge.tscn" id="18_d4ww2"]
+[ext_resource type="PackedScene" path="res://PickupObjects/sink_kitchen.tscn" id="21_fr25s"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qbyxh"]
 texture = ExtResource("2_je1np")
@@ -136,14 +159,113 @@ texture_region_size = Vector2i(128, 128)
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_qbyxh")
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7843c"]
+texture = ExtResource("4_2pfky")
+texture_region_size = Vector2i(128, 128)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+6:0/0 = 0
+7:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+5:1/0 = 0
+6:1/0 = 0
+7:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+4:2/0 = 0
+5:2/0 = 0
+6:2/0 = 0
+7:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+4:3/0 = 0
+5:3/0 = 0
+6:3/0 = 0
+7:3/0 = 0
+0:4/0 = 0
+1:4/0 = 0
+2:4/0 = 0
+3:4/0 = 0
+4:4/0 = 0
+5:4/0 = 0
+6:4/0 = 0
+7:4/0 = 0
+0:5/0 = 0
+1:5/0 = 0
+2:5/0 = 0
+3:5/0 = 0
+4:5/0 = 0
+5:5/0 = 0
+6:5/0 = 0
+7:5/0 = 0
+0:6/0 = 0
+1:6/0 = 0
+2:6/0 = 0
+3:6/0 = 0
+4:6/0 = 0
+5:6/0 = 0
+6:6/0 = 0
+7:6/0 = 0
+0:7/0 = 0
+1:7/0 = 0
+2:7/0 = 0
+3:7/0 = 0
+4:7/0 = 0
+5:7/0 = 0
+6:7/0 = 0
+7:7/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_hnxmb"]
+sources/0 = SubResource("TileSetAtlasSource_7843c")
+
 [node name="HouseScene" type="Node2D"]
 
-[node name="RoomGen" type="Node" parent="." node_paths=PackedStringArray("tilemap")]
+[node name="RoomGen" type="Node" parent="." node_paths=PackedStringArray("tilemap", "sand_tilemap")]
 script = ExtResource("2_drh6b")
 tilemap = NodePath("../TileMap")
-chair = ExtResource("2_xt2rg")
+sand_tilemap = NodePath("../TileMap2")
+big_table_1 = ExtResource("2_rmag1")
+big_table_2 = ExtResource("3_ggiwn")
+bed = ExtResource("3_ug3qd")
+computer_desk = ExtResource("4_62jyh")
+rolling_chair = ExtResource("6_hs67i")
+fish_coffee_table = ExtResource("7_rjrk6")
+closet = ExtResource("5_audoj")
+big_couch = ExtResource("6_gs6hm")
+couch = ExtResource("10_jwxod")
+tv = ExtResource("11_wn4vs")
+open_dresser = ExtResource("7_48r3h")
+tub = ExtResource("13_1dbcc")
+sink_1 = ExtResource("14_gfait")
+sink_2 = ExtResource("15_7wt4g")
+toilet = ExtResource("16_dyain")
+stove = ExtResource("17_t400t")
+fridge = ExtResource("18_d4ww2")
+table_chair_1 = ExtResource("2_xt2rg")
+table_chair_2 = ExtResource("9_y23si")
+kitchen_sink = ExtResource("21_fr25s")
+box_1 = ExtResource("10_anpvd")
+box_2 = ExtResource("11_vssqo")
+chair = ExtResource("2_clrqx")
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_bxh6h")
 rendering_quadrant_size = 128
 format = 2
+
+[node name="TileMap2" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_hnxmb")
+format = 2
+layer_0/z_index = -1
