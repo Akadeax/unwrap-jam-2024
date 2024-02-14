@@ -32,33 +32,35 @@ var lost_score : int = 0
 func _ready():
 	EventBus.objectDroppedOff.connect(on_object_dropped_off)
 	EventBus.objectDestroyed.connect(on_object_destroyed)
-	EventBus.objectDroppedOff.emit(PickupObject.Type.CHAIR,0.5)
-	EventBus.objectDroppedOff.emit(PickupObject.Type.CHAIR,1)
-	EventBus.objectDroppedOff.emit(PickupObject.Type.CHAIR,1)
-	EventBus.objectDroppedOff.emit(PickupObject.Type.CHAIR,1)
-	EventBus.objectDroppedOff.emit(PickupObject.Type.TABLE,1)
-	EventBus.objectDestroyed.emit(PickupObject.Type.SOFA)
+	# EventBus.objectDroppedOff.emit(PickupObject.Type.CHAIR,0.5)
+	# EventBus.objectDroppedOff.emit(PickupObject.Type.CHAIR,1)
+	# EventBus.objectDroppedOff.emit(PickupObject.Type.CHAIR,1)
+	# EventBus.objectDroppedOff.emit(PickupObject.Type.CHAIR,1)
+	# EventBus.objectDroppedOff.emit(PickupObject.Type.TABLE,1)
+	# EventBus.objectDestroyed.emit(PickupObject.Type.SOFA)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-var b : bool = true
-func _process(delta):
-	if b:
-		b = false
-		await get_tree().create_timer(1).timeout
-		EventBus.amntUpdate.emit(amount_of_objects)
-		EventBus.totalUpdate.emit(score,amount_of_objects)
-		EventBus.damagesUpdate.emit(lost_score,amount_of_objects)
-	pass
+	hide()
+	EventBus.time_over.connect(_on_time_over)
+
+func _on_time_over():
+	get_tree().paused = true
+	show()
+	EventBus.amntUpdate.emit(amount_of_objects)
+	EventBus.totalUpdate.emit(score,amount_of_objects)
+	EventBus.damagesUpdate.emit(lost_score,amount_of_objects)
+
 
 func on_object_dropped_off(type : PickupObject.Type, damage_percentage : float):
+	print("called")
 	var gained_score : int = int(score_dict[type] * damage_percentage)
 	score += gained_score
-	lost_score +=  score_dict[type] - gained_score 
+	lost_score +=  score_dict[type] - gained_score
 	amount_of_objects[int(type)] +=1
 	EventBus.scoreUpdate.emit(score)
+
+
 func on_object_destroyed(type : PickupObject.Type):
 	var lost : int = int(score_dict[type] * 0.5)
 	score -= lost
 	lost_score += lost
 	EventBus.scoreUpdate.emit(score)
-
