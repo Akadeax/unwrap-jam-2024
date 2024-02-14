@@ -1,19 +1,17 @@
 extends CharacterBody2D
 class_name PlayerController
 
-signal pickup(new_shark)
-
 @export var forward_speed : float = 200
 @export var rotation_speed : float = 90
 
 var current_move_angle : float = -90
 
 @export_group("body")
-@export var body_holder : Sprite2D
+@export var body_holder : Node2D
 
 
 @export_group("fin")
-@export var fin_holder : Sprite2D
+@export var fin_holder : Node2D
 
 var current_fin_angle : float = -90
 
