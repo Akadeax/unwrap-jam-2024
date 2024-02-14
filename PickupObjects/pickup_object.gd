@@ -24,7 +24,7 @@ var relative_rot : float
 
 
 var interact_delay : float
-const max_interact_delay : float = 0.2
+const max_interact_delay : float = 0.1
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
