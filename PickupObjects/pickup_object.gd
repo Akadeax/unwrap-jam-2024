@@ -24,7 +24,7 @@ var relative_rot : float
 
 
 var interact_delay : float
-const max_interact_delay : float = 0.1
+const max_interact_delay : float = 0.2
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -33,10 +33,10 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	
+
 	if immunity_time < max_immunity_time:
 		immunity_time+=delta
-	
+
 
 	if is_held:
 		global_rotation = shark.global_rotation + relative_rot

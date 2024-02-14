@@ -1,16 +1,12 @@
-[gd_scene load_steps=11 format=3 uid="uid://8rqnfb1ouik1"]
+[gd_scene load_steps=7 format=3 uid="uid://8rqnfb1ouik1"]
 
 [ext_resource type="PackedScene" uid="uid://yt5vihcqbymr" path="res://HouseGen/HouseScene.tscn" id="1_ksmiq"]
 [ext_resource type="PackedScene" uid="uid://burd7rvt3gne5" path="res://Player/player.tscn" id="2_e6g4e"]
 [ext_resource type="Script" path="res://Utils/custom_camera.gd" id="3_7dhxg"]
-[ext_resource type="FontFile" uid="uid://cx55imgibsjte" path="res://Sprites/fonts/SpaceMono-Regular.ttf" id="5_fxlrs"]
 [ext_resource type="Shader" path="res://Environment/ripple.gdshader" id="5_ohp0i"]
-[ext_resource type="Script" path="res://UI/Timer.gd" id="6_lftqx"]
-[ext_resource type="PackedScene" uid="uid://b3pvnspyg1prf" path="res://UI/scoreScreen/scoreBoard.tscn" id="7_di0s5"]
-[ext_resource type="PackedScene" uid="uid://bw04633k6vv8p" path="res://PickupObjects/delivery_zone.tscn" id="8_dqhk1"]
 
-[sub_resource type="Curve" id="Curve_5qpn6"]
-_data = [Vector2(0, 1), 0.0, -0.461539, 0, 0, Vector2(1, 0.648352), -0.298901, 0.0, 0, 0]
+[sub_resource type="Curve" id="Curve_68mx6"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.703297), -0.39627, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7y1yn"]
@@ -30,20 +26,21 @@ scale = Vector2(2.5, 2.5)
 position = Vector2(285, 530)
 zoom = Vector2(0.19, 0.19)
 script = ExtResource("3_7dhxg")
-zoom_modifier_curve = SubResource("Curve_5qpn6")
+zoom_modifier_curve = SubResource("Curve_68mx6")
 
 [node name="player" parent="." instance=ExtResource("2_e6g4e")]
-position = Vector2(157, 3002)
+position = Vector2(561, 2807)
 
 [node name="player2" parent="." node_paths=PackedStringArray("body_holder", "fishie_holder", "fin_holder") instance=ExtResource("2_e6g4e")]
-modulate = Color(1, 0.337255, 0.701961, 1)
-position = Vector2(1101, 2943)
+modulate = Color(1, 0.25098, 0.87451, 1)
+position = Vector2(1321, 2783)
 body_holder = NodePath("../player/Body2")
 fishie_holder = NodePath("../player/Fishie")
 fin_holder = NodePath("../player/Fin2")
 left_input = "left2"
 right_input = "right2"
 back_input = "back2"
+pickup_input = "pickup2"
 drop_input = "drop2"
 yeet_input = "yeet2"
 
@@ -56,22 +53,3 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="Timer" type="MarginContainer" parent="CanvasLayer"]
-offset_right = 59.0
-offset_bottom = 24.0
-theme_override_constants/margin_left = 50
-theme_override_constants/margin_top = 20
-
-[node name="Label" type="Label" parent="CanvasLayer/Timer"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("5_fxlrs")
-theme_override_font_sizes/font_size = 40
-text = "Time: 2:30"
-script = ExtResource("6_lftqx")
-
-[node name="ScoreBoard" parent="CanvasLayer" instance=ExtResource("7_di0s5")]
-process_mode = 3
-
-[node name="DeliveryZone" parent="." instance=ExtResource("8_dqhk1")]
-position = Vector2(656, 2088)

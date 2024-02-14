@@ -1,7 +1,9 @@
-[gd_scene load_steps=79 format=3 uid="uid://burd7rvt3gne5"]
+[gd_scene load_steps=81 format=3 uid="uid://burd7rvt3gne5"]
 
 [ext_resource type="Script" path="res://Player/player_controller.gd" id="1_b7tfx"]
+[ext_resource type="Texture2D" uid="uid://bf53qb074if4e" path="res://Sprites/teeth.png" id="2_wekpo"]
 [ext_resource type="Texture2D" uid="uid://bqj11o420cr8p" path="res://Player/Sprites/fin/fin1.png" id="3_aqdvs"]
+[ext_resource type="Texture2D" uid="uid://bcb7ufeok03rv" path="res://Sprites/tongue.png" id="3_jyp82"]
 [ext_resource type="Texture2D" uid="uid://dkpdnwajs2uj0" path="res://Player/Sprites/fin/fin2.png" id="4_yn5wu"]
 [ext_resource type="Texture2D" uid="uid://bscn82b0rh8r5" path="res://Player/Sprites/fin/fin3.png" id="5_1s3ge"]
 [ext_resource type="Texture2D" uid="uid://dj63p2p3dbqad" path="res://Player/Sprites/fin/fin4.png" id="6_4vq6l"]
@@ -344,6 +346,16 @@ collision_mask = 2
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="PickupArea"]
 scale = Vector2(1.965, 4.325)
 polygon = PackedVector2Array(0, 0, 100, -100, -100, -100)
+
+[node name="Teeth" type="Sprite2D" parent="."]
+position = Vector2(-10, 0)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("2_wekpo")
+
+[node name="Tongue" type="Sprite2D" parent="."]
+position = Vector2(-5, -224)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("3_jyp82")
 
 [node name="Fin2" type="AnimatedSprite2D" parent="."]
 position = Vector2(-8.7, -4)

@@ -32,7 +32,6 @@ var knockback_time_left : float
 var current_tongue_angle : float = -50
 @export var tongue_rotation_speed : float = 50
 
-
 @export_group("input")
 @export var left_input : String = "left"
 @export var right_input : String = "right"
@@ -103,7 +102,7 @@ func knockback(dir : Vector2, time : float):
 	knockback_time_left = time
 
 func _on_pickup_area_body_entered(body):
-	if body.is_in_group("pickup"):
+	if body.is_in_group(pickup_input):
 		print("added")
 		objects.push_back(body)
 
