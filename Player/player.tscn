@@ -231,7 +231,7 @@ fin_follow_speed = 55.0
 fin_follow_curve = SubResource("Curve_7kcpw")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-25, -195)
+position = Vector2(-5, -199)
 shape = SubResource("CircleShape2D_oyvbp")
 
 [node name="Fin" type="Sprite2D" parent="."]
@@ -252,11 +252,13 @@ polygon = PackedVector2Array(0, 0, 100, -100, -100, -100)
 
 [node name="Fin2" type="AnimatedSprite2D" parent="."]
 position = Vector2(-20, -4)
+scale = Vector2(0.4, 0.4)
 sprite_frames = SubResource("SpriteFrames_wcr3i")
 autoplay = "default"
 frame_progress = 0.168415
 
 [node name="Body2" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.4, 0.4)
 sprite_frames = SubResource("SpriteFrames_ogjw7")
 autoplay = "default"
 frame_progress = 0.517591
