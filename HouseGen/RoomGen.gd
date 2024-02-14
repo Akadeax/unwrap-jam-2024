@@ -1,6 +1,45 @@
 extends Node
 @export var tilemap : TileMap
+@export var sand_tilemap : TileMap
+
+@export var big_table_1 : PackedScene
+@export var big_table_2 : PackedScene
+@export var bed : PackedScene
+@export var computer_desk : PackedScene
+@export var rolling_chair : PackedScene
+@export var fish_coffee_table : PackedScene
+@export var closet : PackedScene
+@export var big_couch : PackedScene
+@export var couch : PackedScene
+@export var tv : PackedScene
+@export var open_dresser : PackedScene
+@export var tub : PackedScene
+@export var sink_1 : PackedScene
+@export var sink_2 : PackedScene
+@export var toilet : PackedScene
+@export var stove : PackedScene
+@export var fridge : PackedScene
+@export var table_chair_1 : PackedScene
+@export var table_chair_2 : PackedScene
+@export var kitchen_sink : PackedScene
+@export var box_1 : PackedScene
+@export var box_2 : PackedScene
 @export var chair : PackedScene
+
+
+class SpawnInfo:
+	var angle : float
+	var position : Vector2
+	func _init(rad : float, pos : Vector2):
+		angle = rad
+		position = pos
+
+class DualPos:
+	var top_left : Vector2
+	var bottom_right : Vector2
+	func _init(topleft : Vector2, bottomright : Vector2):
+		top_left = topleft
+		bottom_right = bottomright
 
 class Door:
 	var relative_grid_pos : Vector2i #use pos of room as 0,0
@@ -18,13 +57,13 @@ class RoomRect:
 	var doors : Array[Door] # need to be on a wall
 	var type : RoomTypes
 	var furniture : Array[PickupObject]
+	var wall_has_door : Array[bool] = [false,false,false,false]
 	func _init(passed_grid_pos : Vector2i, passed_size : Vector2i, passed_doors : Array[Door], passed_entrance : Door):
 		grid_pos = passed_grid_pos
 		size = passed_size
 		doors = passed_doors
 		entrance = passed_entrance
 		type = RoomTypes.values().pick_random()
-		
 	func duplicate() -> RoomRect:
 		return RoomRect.new(grid_pos,size,doors.duplicate(),entrance)
 	func is_overlapping(other_room : RoomRect) ->bool:
@@ -68,12 +107,20 @@ var rooms: Array[RoomRect]
 var hallways: Array[RoomRect]
 
 func _ready():
+			
+	for x_idx in 250:
+		var x = x_idx - 125
+		for y_idx in 250:
+			var y = y_idx - 125
+			var atlas = Vector2i(0,0)
+			var grid_pos = Vector2i(x,y)*8
+			sand_tilemap.set_cell(0,grid_pos,0,atlas,0)
 	generate_house()
 	for i in (rooms.size()):
 		square_room_draw(rooms[i])
-		get_available_center_location(rooms[i])
 	for i in (hallways.size()):
 		square_room_draw(hallways[i])
+	get_available_wall_location(rooms[0])
 
 func generate_house():
 	var check : bool = true
@@ -102,6 +149,7 @@ func generate_house():
 				hallway_doors.append(Door.new(Vector2i(2,0),Vector2i(0,-1),room_pos))
 		print("done")
 		var room : RoomRect = RoomRect.new(room_pos,room_size,hallway_doors,entrance)
+		room.wall_has_door = has_door
 		rooms.append(room)
 		
 		for i in range(hallway_doors.size()):
@@ -124,7 +172,6 @@ func generate_house():
 					else :
 						check = check || false 
 	print (rooms.size())
-
 
 func square_room_draw(room : RoomRect):
 	var doors : Array[Door] = room.doors.duplicate() 
@@ -187,6 +234,7 @@ func square_room_draw(room : RoomRect):
 			tilemap.set_cell(0,grid_pos_2,0,atlas2,0)
 
 func generate_room( prev_door : Door) -> RoomRect:
+	var wall_has_door : Array[bool] = [false,false,false,false]
 	const max_size : int = 8
 	const min_size : int = 4
 	var size : Vector2i = Vector2i(	randi_range(min_size,max_size),randi_range(min_size,max_size))
@@ -194,20 +242,22 @@ func generate_room( prev_door : Door) -> RoomRect:
 	var pos_correction : Vector2i
 	var entry_door : Door = Door.new(Vector2i(0,0),Vector2i(0,0),Vector2i(0,0)) 
 	if prev_door.dir.x == -1:
+		wall_has_door[0] = true
 		pos.x = prev_door.global_grid_pos.x + 1 
 		pos_correction = Vector2i(1,0)
 		pos.y = prev_door.global_grid_pos.y - 1
 	elif prev_door.dir.x == 1:
+		wall_has_door[2] = true
 		pos.x = prev_door.global_grid_pos.x - size.x
 		pos_correction = Vector2i(-1,0)
 		pos.y = prev_door.global_grid_pos.y - 1
 	elif prev_door.dir.y == -1:
-		
+		wall_has_door[1] = true
 		pos.y = prev_door.global_grid_pos.y + 1
 		pos_correction = Vector2i(0,1)
 		pos.x = prev_door.global_grid_pos.x - 1
 	elif prev_door.dir.y == 1:
-		
+		wall_has_door[3] = true
 		pos.y = prev_door.global_grid_pos.y - size.y
 		pos_correction = Vector2i(0,-1)
 		pos.x = prev_door.global_grid_pos.x - 1
@@ -216,6 +266,7 @@ func generate_room( prev_door : Door) -> RoomRect:
 	entry_door.global_grid_pos = pos + entry_door.relative_grid_pos
 
 	var room : RoomRect = RoomRect.new(pos,size,[],entry_door)
+	room.wall_has_door = wall_has_door
 	return room
 
 func generate_hallway(prev_door : Door) -> RoomRect:
@@ -315,8 +366,7 @@ func fill_room(room : RoomRect):
 
 func fill_hallway(room : RoomRect):
 	const furniture_amount = 2
-	const types : Array[PickupObject.Type] = [PickupObject.Type.BOX,PickupObject.Type.DRAWER]
-	
+	const types : Array[PickupObject.Type] = [PickupObject.Type.BOX,PickupObject.Type.DRAWER]	
 func fill_bathroom(room : RoomRect):
 	const furniture_amount = 6
 	const types : Array[PickupObject.Type] = [PickupObject.Type.BOX]
@@ -330,20 +380,56 @@ func fill_livingroom(room : RoomRect):
 	const furniture_amount = 6
 	const types : Array[PickupObject.Type] = [PickupObject.Type.BOX,PickupObject.Type.DRAWER,PickupObject.Type.TABLE,PickupObject.Type.SOFA]
 	
-func get_available_wall_location(room : RoomRect):
-	pass
-func get_available_center_location(room:RoomRect):
+func get_available_wall_location(room : RoomRect) -> SpawnInfo:
+	var possible_walls : int = 0
+	var spawn_rects : Array[DualPos] =[
+		DualPos.new(
+			tilemap.map_to_local(Vector2(Vector2(room.grid_pos) +Vector2(room.size.x-1,0.2))*8*2.5),
+			tilemap.map_to_local((Vector2(room.grid_pos) + Vector2(room.size) + Vector2(-1.2,-1))*8*2.5)
+			),
+		DualPos.new(
+			tilemap.map_to_local((Vector2(room.grid_pos) + Vector2(room.size) - Vector2(room.size.x,1.2))*8*2.5),
+			tilemap.map_to_local((Vector2(room.grid_pos) + Vector2(room.size) - Vector2(1,1))*8*2.5)
+			),
+		DualPos.new(
+			tilemap.map_to_local((Vector2(room.grid_pos))*8*2.5),
+			tilemap.map_to_local(Vector2(Vector2(room.grid_pos) +Vector2(0.2,room.size.y- 1))*8*2.5)
+			),
+		DualPos.new(
+			tilemap.map_to_local((Vector2(room.grid_pos))*8*2.5),
+			tilemap.map_to_local(Vector2(Vector2(room.grid_pos) + Vector2(room.size)-Vector2(1,room.size.y-0.2))*8*2.5)
+			),
+	] 
+	for i in range(room.wall_has_door.size()):
+		if !room.wall_has_door[i] :
+			possible_walls +=1
+	if (possible_walls == 0):
+		return SpawnInfo.new(0,Vector2(100000000,100000000))
+	var check : bool = false 
+	var picked_wall : int = 0
+	while !check:
+		picked_wall = randi_range(0,3)
+		if !room.wall_has_door[picked_wall]:
+			check = true
+			room.wall_has_door[picked_wall] = true
+	var angle : float = 0
+	var chosen_pos :Vector2 = Vector2(randf_range(spawn_rects[picked_wall].top_left.x,spawn_rects[picked_wall].bottom_right.x),randf_range(spawn_rects[picked_wall].top_left.y,spawn_rects[picked_wall].bottom_right.y))
+	if (picked_wall == 0):
+		angle = PI/2
+	elif (picked_wall == 1):
+		angle = PI
+	elif (picked_wall == 2):
+		angle = PI + PI/2
+	elif (picked_wall == 3):
+		angle = 0
+	
+	return SpawnInfo.new(angle,chosen_pos)
+	
+func get_available_center_location(room:RoomRect) -> SpawnInfo:
 	var top_left : Vector2 = (Vector2(room.grid_pos)+Vector2(1,1))*8*2.5
 	var bottom_right : Vector2 = (room.grid_pos +(room.size-Vector2i(2,2)))*8*2.5
 	top_left = tilemap.map_to_local(top_left)
 	bottom_right = tilemap.map_to_local(bottom_right)
-	
-	
 	var chosen_pos :Vector2 = Vector2(randf_range(top_left.x,bottom_right.x),randf_range(top_left.y,bottom_right.y))
-	var chair1 : Node2D = chair.instantiate()
-	add_child(chair1)
-
-	chair1.global_position = chosen_pos
-	
-		
-	pass
+	var angle = [0,PI/2,PI,PI+PI/2].pick_random()
+	return SpawnInfo.new(angle,chosen_pos)
