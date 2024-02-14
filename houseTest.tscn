@@ -74,6 +74,7 @@ text = "Time left"
 script = ExtResource("6_jpqif")
 
 [node name="ScoreBoard" parent="CanvasLayer" instance=ExtResource("7_5llg6")]
+visible = false
 anchors_preset = -1
 anchor_left = 0.009
 anchor_right = 0.598

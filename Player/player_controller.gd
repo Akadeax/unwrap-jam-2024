@@ -19,7 +19,9 @@ var current_fin_angle : float = -90
 @export var fin_follow_curve : Curve
 
 var moving_back : bool = false
+var moving_forward : bool = false
 @export var moving_back_multiplier : float = 0.4
+@export var moving_forward_multiplier : float = 1.6
 
 # pickup var
 @export var is_holding_object : bool = false
@@ -36,6 +38,7 @@ var current_tongue_angle : float = -50
 @export var left_input : String = "left"
 @export var right_input : String = "right"
 @export var back_input : String = "back"
+@export var forward_input : String = "forward"
 @export var pickup_input : String = "pickup"
 @export var drop_input : String = "drop"
 @export var yeet_input : String = "yeet"
@@ -67,11 +70,18 @@ func _physics_process(delta):
 		fishie_holder.pause()
 		fin_holder.speed_scale = 1
 
+	if Input.is_action_just_pressed(forward_input):
+		moving_forward = true
+		fin_holder.speed_scale = 1.5
+	elif Input.is_action_just_released(forward_input):
+		moving_forward = false
+		fin_holder.speed_scale = 1
 
 	var curr_speed := forward_speed - held_weight
 	if moving_back:
 		curr_speed *= moving_back_multiplier
-
+	elif moving_forward:
+		curr_speed *= moving_forward_multiplier
 	velocity = Vector2(cos(deg_to_rad(current_move_angle)), sin(deg_to_rad(current_move_angle))) * curr_speed
 
 	# body
