@@ -1,10 +1,12 @@
 extends RigidBody2D
+class_name PickupObject
 signal deliver(health_procent, base_score)
 
 @export var fragility : float
 @export var max_health : float
+@export var destruction_frames : float
 
-enum Type{ CHAIR, SOFA, DRAWER, RUG, TABLE, BOX }
+enum Type{ CHAIR, BOX, TABLE, DRAWER, SOFA }
 @export var type : Type
 
 var health : float
@@ -40,19 +42,22 @@ func drop():
 
 
 func damage_object():
-	health -= 1
-	$Sprite2D.frame += 1
+	health -= fragility
+	var i : int = 1
+	while  ( health < max_health - max_health/ destruction_frames * i):
+		i+=1
+	$Sprite2D.frame = i - 1
+	
 	if health < 0:
-		# call reduce score
-		print("I die")
 		queue_free()
-	#update sprite
 
 func _on_tree_exiting():
-	deliver.emit(float(health/max_health), fragility)
+	if health > 0:
+		EventBus.objectDroppedOff.emit(type, health/max_health)
+	else:
+		EventBus.objectDestroyed.emit(type)
 
 func _on_area_2d_body_entered(body):
-	print("damage wall")
 	if ((body is TileMap  and is_held ) or body.is_in_group("pickup") ) and (body as Node2D) != self:
 		if (is_held):
 			shark.knockback(Vector2(0, 200).rotated(shark.rotation) , 0.2)

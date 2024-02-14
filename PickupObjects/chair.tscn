@@ -14,7 +14,9 @@ can_sleep = false
 continuous_cd = 2
 linear_damp = 1.0
 script = ExtResource("1_erm3m")
-max_health = 2.0
+fragility = 34.0
+max_health = 100.0
+destruction_frames = 3.0
 relative_pos = Vector2(0, -300)
 max_immunity_time = 1.0
 
