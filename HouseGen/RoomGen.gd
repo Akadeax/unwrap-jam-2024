@@ -31,31 +31,29 @@ class RoomRect:
 		
 
 var tile_dict = { #dict for mapping the tiles to sensible names
-	"OPEN_FLOOR" : Vector2i(0,3),
+	"OPEN_FLOOR" : Vector2i(0,4),
 	"CORNER_TOP_RIGHT" : Vector2i(3,1),
 	"CORNER_TOP_LEFT" : Vector2i(0,1),
 	"CORNER_BOTTOM_RIGHT" : Vector2i(2,1),
 	"CORNER_BOTTOM_LEFT" : Vector2i(1,1),
-	"INSIDE_CORNER_TOP_RIGHT" : Vector2i(2,2),
-	"INSIDE_CORNER_TOP_LEFT" : Vector2i(0,2),
-	"INSIDE_CORNER_BOTTOM_RIGHT" : Vector2i(3,2),
-	"INSIDE_CORNER_BOTTOM_LEFT" : Vector2i(1,2),
+	"INSIDE_VERTICAL_CORNER_TOP_RIGHT" : Vector2i(2,2),
+	"INSIDE_VERTICAL_CORNER_TOP_LEFT" : Vector2i(0,2),
+	"INSIDE_VERTICAL_CORNER_BOTTOM_RIGHT" : Vector2i(3,2),
+	"INSIDE_VERTICAL_CORNER_BOTTOM_LEFT" : Vector2i(1,2),
+	"INSIDE_HORIZONTAL_CORNER_TOP_RIGHT" : Vector2i(2,3),
+	"INSIDE_HORIZONTAL_CORNER_TOP_LEFT" : Vector2i(0,3),
+	"INSIDE_HORIZONTAL_CORNER_BOTTOM_RIGHT" : Vector2i(3,3),
+	"INSIDE_HORIZONTAL_CORNER_BOTTOM_LEFT" : Vector2i(1,3),
 	"LEFT_WALL" : Vector2i(0,0),
-	"RIGHT_WALL" : Vector2i(2,0),
+	"TOP_WALL" : Vector2i(2,0),
 	"BOTTOM_WALL" : Vector2i(1,0),
-	"TOP_WALL" : Vector2i(3,0),
+	"RIGHT_WALL" : Vector2i(3,0),
 	}
 
 var rooms: Array[RoomRect]
 var hallways: Array[RoomRect]
 
 func _ready():
-	for i in 10:
-		if (i == 8):
-			i += 1
-			continue
-		print(i)
-	
 	generate_house()
 	for i in (rooms.size()):
 		square_room_draw(rooms[i],false)
@@ -109,6 +107,7 @@ func generate_house():
 						check = check || true
 					else :
 						check = check || false 
+						var dumbass
 
 
 func square_room_draw(room : RoomRect,wood : bool):
@@ -142,20 +141,20 @@ func square_room_draw(room : RoomRect,wood : bool):
 		var tile2_name : String
 		if (doors[i].dir.x):
 			if doors[i].relative_grid_pos.x == 0:
-				tile1_name = "INSIDE_CORNER_TOP_LEFT"
-				tile2_name = "INSIDE_CORNER_BOTTOM_LEFT"
+				tile1_name = "INSIDE_HORIZONTAL_CORNER_TOP_LEFT"
+				tile2_name = "INSIDE_HORIZONTAL_CORNER_BOTTOM_LEFT"
 			else :
-				tile1_name = "INSIDE_CORNER_TOP_RIGHT"
-				tile2_name = "INSIDE_CORNER_BOTTOM_RIGHT"
+				tile1_name = "INSIDE_HORIZONTAL_CORNER_TOP_RIGHT"
+				tile2_name = "INSIDE_HORIZONTAL_CORNER_BOTTOM_RIGHT"
 			tilemap.set_cell(0,(doors[i].relative_grid_pos+room.grid_pos)*8,0,tile_dict[tile1_name]+(int(wood)*Vector2i(4,0)),0)
 			tilemap.set_cell(0,(doors[i].relative_grid_pos+room.grid_pos+Vector2i(0,1))*8,0,tile_dict[tile2_name]+(int(wood)*Vector2i(4,0)),0)
 		else:
 			if doors[i].relative_grid_pos.y == 0:
-				tile1_name = "INSIDE_CORNER_TOP_LEFT"
-				tile2_name = "INSIDE_CORNER_TOP_RIGHT"
+				tile1_name = "INSIDE_VERTICAL_CORNER_TOP_LEFT"
+				tile2_name = "INSIDE_VERTICAL_CORNER_TOP_RIGHT"
 			else :
-				tile1_name = "INSIDE_CORNER_BOTTOM_LEFT"
-				tile2_name = "INSIDE_CORNER_BOTTOM_RIGHT"
+				tile1_name = "INSIDE_VERTICAL_CORNER_BOTTOM_LEFT"
+				tile2_name = "INSIDE_VERTICAL_CORNER_BOTTOM_RIGHT"
 			tilemap.set_cell(0,(doors[i].relative_grid_pos+room.grid_pos)*8,0,tile_dict[tile1_name]+(int(wood)*Vector2i(4,0)),0)
 			tilemap.set_cell(0,(doors[i].relative_grid_pos+room.grid_pos+Vector2i(1,0))*8,0,tile_dict[tile2_name]+(int(wood)*Vector2i(4,0)),0)
 

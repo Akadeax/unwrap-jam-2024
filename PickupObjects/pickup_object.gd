@@ -1,10 +1,11 @@
 extends RigidBody2D
+class_name PickupObject
 signal deliver(health_procent, base_score)
 
 @export var base_score : float
 @export var max_health : float
 
-enum Type{ CHAIR, SOFA, DRAWER, RUG, TABLE, BOX }
+enum Type{ CHAIR,BOX,TABLE,DRAWER, SOFA }
 @export var type : Type
 
 var health : float
@@ -31,6 +32,7 @@ func _process(delta):
 func pickup( new_shark ):
 	shark = new_shark;
 	is_held = true;
+	EventBus.objectDroppedOff.emit(type)
 
 func drop():
 	is_held = false;

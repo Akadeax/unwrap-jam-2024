@@ -1,17 +1,23 @@
-[gd_scene load_steps=4 format=3 uid="uid://8rqnfb1ouik1"]
+[gd_scene load_steps=5 format=3 uid="uid://bbfuqqxswh6x0"]
 
 [ext_resource type="PackedScene" uid="uid://yt5vihcqbymr" path="res://HouseGen/HouseScene.tscn" id="1_ksmiq"]
 [ext_resource type="PackedScene" uid="uid://burd7rvt3gne5" path="res://Player/player.tscn" id="2_e6g4e"]
-[ext_resource type="Script" path="res://Utils/custom_camera.gd" id="3_7dhxg"]
+[ext_resource type="PackedScene" uid="uid://bw04633k6vv8p" path="res://PickupObjects/delivery_zone.tscn" id="4_0u2su"]
+[ext_resource type="PackedScene" uid="uid://juqqp5rf370o" path="res://PickupObjects/objectScenes/Chair_Object.tscn" id="4_hwrxi"]
 
 [node name="HouseTest" type="Node2D"]
 
 [node name="HouseScene" parent="." instance=ExtResource("1_ksmiq")]
-scale = Vector2(2.5, 2.5)
+scale = Vector2(4, 4)
 
 [node name="player" parent="." instance=ExtResource("2_e6g4e")]
 position = Vector2(285, 530)
 
 [node name="Camera2D" type="Camera2D" parent="player"]
-zoom = Vector2(0.25, 0.25)
-script = ExtResource("3_7dhxg")
+zoom = Vector2(0.5, 0.5)
+
+[node name="DeliveryZone" parent="." instance=ExtResource("4_0u2su")]
+position = Vector2(1270, 3612)
+
+[node name="chair" parent="." instance=ExtResource("4_hwrxi")]
+position = Vector2(1219, 492)

@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://bufg3ckywmgf6"]
+
+[ext_resource type="Script" path="res://PickupObjects/pickup_object.gd" id="1_3psfa"]
+[ext_resource type="Texture2D" uid="uid://8fmyui06702y" path="res://Sprites/objects/table1.png" id="2_l5oai"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6q0tp"]
+radius = 301.303
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gr2k8"]
+radius = 300.107
+
+[node name="table" type="RigidBody2D" groups=["pickup"]]
+collision_layer = 2
+collision_mask = 3
+gravity_scale = 0.0
+can_sleep = false
+continuous_cd = 2
+script = ExtResource("1_3psfa")
+base_score = 100.0
+max_health = 3.0
+max_immunity_time = 1.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-1, 0)
+texture = ExtResource("2_l5oai")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -0.5)
+shape = SubResource("CircleShape2D_6q0tp")
+
+[node name="Area2D" type="Area2D" parent="." groups=["pickup"]]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_gr2k8")
+
+[connection signal="tree_exiting" from="." to="." method="_on_tree_exiting"]
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
