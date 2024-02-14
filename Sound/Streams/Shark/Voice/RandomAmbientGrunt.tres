@@ -1,0 +1,25 @@
+[gd_resource type="AudioStreamRandomizer" load_steps=7 format=3 uid="uid://c1niu46dojdbf"]
+
+[ext_resource type="AudioStream" uid="uid://cjajikbfc26tq" path="res://Sound/Streams/Shark/Voice/Ambient/Ambient_Grunt_03.wav" id="1_uj84x"]
+[ext_resource type="AudioStream" uid="uid://bawthcgjpioug" path="res://Sound/Streams/Shark/Voice/Ambient/Ambient_Grunt_05.wav" id="2_yruk4"]
+[ext_resource type="AudioStream" uid="uid://npk3w61jmvi6" path="res://Sound/Streams/Shark/Voice/Ambient/Ambient_Grunt_06.wav" id="3_0vt7x"]
+[ext_resource type="AudioStream" uid="uid://botjpyecsxhx1" path="res://Sound/Streams/Shark/Voice/Ambient/Ambient_Grunt_08.wav" id="4_67w3p"]
+[ext_resource type="AudioStream" uid="uid://bt1srsih4w5yn" path="res://Sound/Streams/Shark/Voice/Ambient/Ambient_Grunt_09.wav" id="5_fic5e"]
+[ext_resource type="AudioStream" uid="uid://bltr4frxutugx" path="res://Sound/Streams/Shark/Voice/Ambient/Ambient_Grunt_02.wav" id="6_vqb2d"]
+
+[resource]
+random_pitch = 1.2
+random_volume_offset_db = 3.0
+streams_count = 6
+stream_0/stream = ExtResource("1_uj84x")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("2_yruk4")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("3_0vt7x")
+stream_2/weight = 1.0
+stream_3/stream = ExtResource("4_67w3p")
+stream_3/weight = 1.0
+stream_4/stream = ExtResource("5_fic5e")
+stream_4/weight = 1.0
+stream_5/stream = ExtResource("6_vqb2d")
+stream_5/weight = 1.0

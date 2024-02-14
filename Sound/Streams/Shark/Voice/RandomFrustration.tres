@@ -1,0 +1,25 @@
+[gd_resource type="AudioStreamRandomizer" load_steps=7 format=3 uid="uid://bwka3iumh42x7"]
+
+[ext_resource type="AudioStream" uid="uid://cv57ijxf2ipgs" path="res://Sound/Streams/Shark/Voice/Frustration/frustration_05.wav" id="1_lw6mx"]
+[ext_resource type="AudioStream" uid="uid://fwqgp1wbaauk" path="res://Sound/Streams/Shark/Voice/Frustration/frustration_06.wav" id="2_qkmhe"]
+[ext_resource type="AudioStream" uid="uid://c64acp12hf7ne" path="res://Sound/Streams/Shark/Voice/Frustration/frustration_09.wav" id="3_v42qv"]
+[ext_resource type="AudioStream" uid="uid://c0sodm5d458mn" path="res://Sound/Streams/Shark/Voice/Frustration/frustration_10.wav" id="4_07vwn"]
+[ext_resource type="AudioStream" uid="uid://bq1ea0hmyujns" path="res://Sound/Streams/Shark/Voice/Frustration/frustration_11.wav" id="5_26tc3"]
+[ext_resource type="AudioStream" uid="uid://sfyfl5b6qlsk" path="res://Sound/Streams/Shark/Voice/Frustration/frustration_13.wav" id="6_6njja"]
+
+[resource]
+random_pitch = 1.2
+random_volume_offset_db = 3.0
+streams_count = 6
+stream_0/stream = ExtResource("1_lw6mx")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("2_qkmhe")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("3_v42qv")
+stream_2/weight = 1.0
+stream_3/stream = ExtResource("4_07vwn")
+stream_3/weight = 1.0
+stream_4/stream = ExtResource("5_26tc3")
+stream_4/weight = 1.0
+stream_5/stream = ExtResource("6_6njja")
+stream_5/weight = 1.0

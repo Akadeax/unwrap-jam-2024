@@ -1,0 +1,25 @@
+[gd_resource type="AudioStreamRandomizer" load_steps=7 format=3 uid="uid://dlraeocjsmrri"]
+
+[ext_resource type="AudioStream" uid="uid://bmcadv62hr5rm" path="res://Sound/Streams/Shark/Voice/Bite/Bite_02.wav" id="1_k6iq6"]
+[ext_resource type="AudioStream" uid="uid://d1toxqah0vapv" path="res://Sound/Streams/Shark/Voice/Bite/Bite_03.wav" id="2_xonhv"]
+[ext_resource type="AudioStream" uid="uid://vbxfyfdav32e" path="res://Sound/Streams/Shark/Voice/Bite/Bite_11.wav" id="3_0ku01"]
+[ext_resource type="AudioStream" uid="uid://bce0wylpckac7" path="res://Sound/Streams/Shark/Voice/Bite/Bite_12.wav" id="4_feell"]
+[ext_resource type="AudioStream" uid="uid://b8246yre4mjqb" path="res://Sound/Streams/Shark/Voice/Bite/Bite_14.wav" id="5_2ul03"]
+[ext_resource type="AudioStream" uid="uid://c4g5fmgmtbvjj" path="res://Sound/Streams/Shark/Voice/Bite/Bite_15.wav" id="6_qmg36"]
+
+[resource]
+random_pitch = 1.1
+random_volume_offset_db = 3.0
+streams_count = 6
+stream_0/stream = ExtResource("1_k6iq6")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("2_xonhv")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("3_0ku01")
+stream_2/weight = 1.0
+stream_3/stream = ExtResource("4_feell")
+stream_3/weight = 1.0
+stream_4/stream = ExtResource("5_2ul03")
+stream_4/weight = 1.0
+stream_5/stream = ExtResource("6_qmg36")
+stream_5/weight = 1.0
