@@ -7,11 +7,11 @@ class_name PlayerController
 var current_move_angle : float = -90
 
 @export_group("body")
-@export var body_holder : Node2D
+@export var body_holder : AnimatedSprite2D
 @export var fishie_holder : AnimatedSprite2D
 
 @export_group("fin")
-@export var fin_holder : Node2D
+@export var fin_holder : AnimatedSprite2D
 
 var current_fin_angle : float = -90
 
@@ -44,11 +44,13 @@ func _physics_process(delta):
 		current_move_angle += 180
 		moving_back = true
 		fishie_holder.play()
+		fin_holder.speed_scale = 0.25
 	elif Input.is_action_just_released("back"):
 		current_move_angle -= 180
 		moving_back = false
 		fishie_holder.frame = 0
 		fishie_holder.pause()
+		fin_holder.speed_scale = 1
 
 
 	var curr_speed := forward_speed
