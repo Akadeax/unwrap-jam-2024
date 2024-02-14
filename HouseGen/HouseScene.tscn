@@ -1,5 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://yt5vihcqbymr"]
+[gd_scene load_steps=6 format=3 uid="uid://yt5vihcqbymr"]
 
+[ext_resource type="PackedScene" uid="uid://juqqp5rf370o" path="res://PickupObjects/objectScenes/Chair_Object.tscn" id="2_b2h8k"]
 [ext_resource type="Script" path="res://HouseGen/RoomGen.gd" id="2_drh6b"]
 [ext_resource type="Texture2D" uid="uid://cqge4jikww8yh" path="res://Sprites/spriteSheets/HouseSpriteSheet.jpg" id="2_je1np"]
 
@@ -140,6 +141,7 @@ sources/0 = SubResource("TileSetAtlasSource_qbyxh")
 [node name="RoomGen" type="Node" parent="." node_paths=PackedStringArray("tilemap")]
 script = ExtResource("2_drh6b")
 tilemap = NodePath("../TileMap")
+chair = ExtResource("2_b2h8k")
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_bxh6h")
