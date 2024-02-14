@@ -2,31 +2,29 @@ extends Node
 @export var tilemap : TileMap
 @export var sand_tilemap : TileMap
 
-@export var big_table_1 : PackedScene
-@export var big_table_2 : PackedScene
-@export var bed : PackedScene
-@export var computer_desk : PackedScene
-@export var rolling_chair : PackedScene
-@export var fish_coffee_table : PackedScene
-@export var closet : PackedScene
-@export var big_couch : PackedScene
-@export var couch : PackedScene
-@export var tv : PackedScene
-@export var open_dresser : PackedScene
-@export var tub : PackedScene
-@export var sink_1 : PackedScene
-@export var sink_2 : PackedScene
-@export var toilet : PackedScene
-@export var stove : PackedScene
-@export var fridge : PackedScene
-@export var table_chair_1 : PackedScene
-@export var table_chair_2 : PackedScene
-@export var kitchen_sink : PackedScene
-@export var box_1 : PackedScene
-@export var box_2 : PackedScene
-@export var chair : PackedScene
-@export var lamp : PackedScene
-
+@export var big_table_1 : PackedScene # kitchen / center
+@export var big_table_2 : PackedScene # kitchen / center
+@export var bed : PackedScene # bedroom / wall
+@export var computer_desk : PackedScene #living room / wall
+@export var rolling_chair : PackedScene #living room / center
+@export var fish_coffee_table : PackedScene #living room / center
+@export var closet : PackedScene #living room,hallways,bedroom,bathroom / wall
+@export var big_couch : PackedScene #living room, bedroom / center
+@export var couch : PackedScene # living room, bedroom / center
+@export var tv : PackedScene # living room / wall
+@export var open_dresser : PackedScene # bedroom / wall
+@export var tub : PackedScene #bathroom / wall
+@export var sink_1 : PackedScene #bathroom / wall
+@export var sink_2 : PackedScene #bathroom / wall
+@export var toilet : PackedScene #bathroom / wall
+@export var stove : PackedScene #kitchen / wall
+@export var fridge : PackedScene #kitchen / wall
+@export var table_chair_1 : PackedScene #kitchen / center
+@export var table_chair_2 : PackedScene #kitchen / center
+@export var kitchen_sink : PackedScene #kitchen / wall
+@export var box_1 : PackedScene #anywhere / center
+@export var box_2 : PackedScene #anywhere / center
+@export var lamp : PackedScene #anywhere /center
 
 class SpawnInfo:
 	var angle : float
@@ -34,14 +32,12 @@ class SpawnInfo:
 	func _init(rad : float, pos : Vector2):
 		angle = rad
 		position = pos
-
 class DualPos:
 	var top_left : Vector2
 	var bottom_right : Vector2
 	func _init(topleft : Vector2, bottomright : Vector2):
 		top_left = topleft
 		bottom_right = bottomright
-
 class Door:
 	var relative_grid_pos : Vector2i #use pos of room as 0,0
 	var global_grid_pos : Vector2i
@@ -50,7 +46,6 @@ class Door:
 		relative_grid_pos = passed_relative_grid_pos
 		global_grid_pos = passed_house_pos + passed_relative_grid_pos
 		dir = passed_dir
-
 class RoomRect:
 	var grid_pos : Vector2i #both of these are on grid not cords
 	var size : Vector2i 
@@ -72,10 +67,8 @@ class RoomRect:
 		var house_two_actual_size = (other_room.size.abs())*(other_room.size/other_room.size) 
 		var my_rect = Rect2(grid_pos, house_one_actual_size)
 		var other_rect = Rect2(other_room.grid_pos, house_two_actual_size)
-		return my_rect.intersects(other_rect,true)
-		
+		return my_rect.intersects(other_rect,true)		
 enum RoomTypes{HALLWAY,KITCHEN,BEDROOM,BATHROOM,LIVINGROOM} 
-
 const tilemap_dict = {
 	RoomTypes.HALLWAY : 0,
 	RoomTypes.KITCHEN : 0,
@@ -83,7 +76,6 @@ const tilemap_dict = {
 	RoomTypes.BATHROOM : 0,
 	RoomTypes.LIVINGROOM : 0,
 }
-
 const tile_dict = { #dict for mapping the tiles to sensible names
 	"OPEN_FLOOR" : Vector2i(0,4),
 	"CORNER_TOP_RIGHT" : Vector2i(3,1),
@@ -360,32 +352,92 @@ func fill_room(room : RoomRect):
 	var max_items : int 
 	var center_types : Array[PackedScene] = [big_table_1]
 	var wall_types : Array[PackedScene] = [big_table_1]
+	var weights : Array[bool] = [true,false]
 	if room.type == RoomTypes.BATHROOM:
 		min_items = 4
 		max_items = 6
+		#append center furniture
+		center_types.append(box_1)
+		center_types.append(box_2)
+		center_types.append(lamp)
+		#append wall furniture
+		wall_types.append(closet)
+		wall_types.append(tub)
+		wall_types.append(sink_1)
+		wall_types.append(sink_2)
+		wall_types.append(toilet)
+		weights.append(false)
+		weights.append(false)
+		
 	if room.type == RoomTypes.BEDROOM:
 		min_items = 3
 		max_items = 8
+		#append center furniture
+		center_types.append(box_1)
+		center_types.append(box_2)
+		center_types.append(lamp)
+		center_types.append(big_couch)
+		center_types.append(couch)
+		#append wall furniture
+		wall_types.append(bed)
+		wall_types.append(closet)
+		wall_types.append(open_dresser)
+		weights.append(false)
+		
 	if room.type == RoomTypes.KITCHEN:
 		min_items = 4
 		max_items = 7
+		#append center furniture
+		center_types.append(box_1)
+		center_types.append(box_2)
+		center_types.append(lamp)
+		center_types.append(big_table_1)
+		center_types.append(big_table_2)
+		center_types.append(table_chair_1)
+		center_types.append(table_chair_2)
+		#append wall furniture
+		wall_types.append(stove)
+		wall_types.append(fridge)
+		wall_types.append(kitchen_sink)
+		weights.append(false)
 	if room.type == RoomTypes.LIVINGROOM:
 		min_items = 3
 		max_items = 6
-	fill(randi_range(min_items,max_items),center_types,wall_types,room)
+		#append center furniture
+		center_types.append(box_1)
+		center_types.append(box_2)
+		center_types.append(lamp)
+		center_types.append(rolling_chair)
+		center_types.append(fish_coffee_table)
+		center_types.append(big_couch)
+		center_types.append(couch)
+		#append wall furniture
+		wall_types.append(computer_desk)
+		wall_types.append(closet)
+		wall_types.append(tv)
+		
+		
+	fill(randi_range(min_items,max_items),center_types,wall_types,room,weights)
 
 func fill_hallway(room : RoomRect):
 	var min_items = 0
 	var max_items = 2
-	var center_types : Array[PackedScene] =  [big_table_1]
-	var wall_types : Array[PackedScene] = [big_table_1]
-	fill(randi_range(min_items,max_items),center_types,wall_types,room)
+	var center_types : Array[PackedScene] 
+	var wall_types : Array[PackedScene] 
+	var weights : Array[bool] = [true,false]
+	#append center rooms
+	center_types.append(box_1)
+	center_types.append(box_2)
+	center_types.append(lamp)
+	#append wall rooms
+	wall_types.append(closet)
+	fill(randi_range(min_items,max_items),center_types,wall_types,room,weights)
 	
-func fill(item_amount : int, center_types : Array[PackedScene],wall_types : Array[PackedScene],room : RoomRect):
+func fill(item_amount : int, center_types : Array[PackedScene],wall_types : Array[PackedScene],room : RoomRect, weight :Array[bool]):
 	if (center_types.size() == 0 && wall_types.size() == 0 ):
 		pass
 	for i in (item_amount):
-		if randi_range(0,1) == 1:
+		if weight.pick_random():
 			if (center_types.size() == 0):
 				i -=1
 				continue
