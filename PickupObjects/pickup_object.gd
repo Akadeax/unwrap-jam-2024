@@ -24,7 +24,7 @@ var relative_rot : float
 
 
 var interact_delay : float
-const max_interact_delay : float = 0.5
+const max_interact_delay : float = 0.2
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -44,7 +44,7 @@ func _process(delta):
 	else:
 		if immune:
 			interact_delay -= delta
-			if immunity_time <= 0:
+			if interact_delay <= 0:
 				immune=false
 				set_collision_layer_value(1,1);
 
@@ -99,7 +99,7 @@ func _on_tree_exiting():
 		EventBus.objectDestroyed.emit(type)
 
 func _on_area_2d_body_entered(body):
-	if ((body is TileMap  and is_held ) or body.is_in_group("pickup") ) and (body as Node2D) != self:
+	if ((body is TileMap and is_held ) or body.is_in_group("pickup") ) and (body as Node2D) != self:
 		if (is_held):
 			shark.knockback(Vector2(0, 200).rotated(shark.rotation) , 0.2)
 		damage_object()

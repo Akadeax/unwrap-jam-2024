@@ -1,7 +1,8 @@
-[gd_scene load_steps=79 format=3 uid="uid://burd7rvt3gne5"]
+[gd_scene load_steps=81 format=3 uid="uid://burd7rvt3gne5"]
 
 [ext_resource type="Script" path="res://Player/player_controller.gd" id="1_b7tfx"]
 [ext_resource type="Texture2D" uid="uid://bqj11o420cr8p" path="res://Player/Sprites/fin/fin1.png" id="3_aqdvs"]
+[ext_resource type="Texture2D" uid="uid://ba57d3xtvlmta" path="res://Player/Sprites/body.png" id="3_k7lte"]
 [ext_resource type="Texture2D" uid="uid://dkpdnwajs2uj0" path="res://Player/Sprites/fin/fin2.png" id="4_yn5wu"]
 [ext_resource type="Texture2D" uid="uid://bscn82b0rh8r5" path="res://Player/Sprites/fin/fin3.png" id="5_1s3ge"]
 [ext_resource type="Texture2D" uid="uid://dj63p2p3dbqad" path="res://Player/Sprites/fin/fin4.png" id="6_4vq6l"]
@@ -48,31 +49,31 @@
 [ext_resource type="Texture2D" uid="uid://bl8x3e6lf1p18" path="res://Player/Sprites/body/head21.png" id="47_1ug7p"]
 [ext_resource type="Texture2D" uid="uid://boo6biq6m76jg" path="res://Player/Sprites/body/head22.png" id="48_kgysa"]
 [ext_resource type="Texture2D" uid="uid://n4bfmsnax128" path="res://Player/Sprites/body/head23.png" id="49_i3vwb"]
-[ext_resource type="Texture2D" uid="uid://dkmc7r436jrg4" path="res://Player/Sprites/fishies/Beep/Beep_0003.png" id="50_t6nuy"]
 [ext_resource type="Texture2D" uid="uid://dtgb3qod4lc2j" path="res://Player/Sprites/body/head24.png" id="50_t426j"]
-[ext_resource type="Texture2D" uid="uid://bv5kc6casa1dv" path="res://Player/Sprites/fishies/Beep/Beep_0000.png" id="51_dek5w"]
-[ext_resource type="Texture2D" uid="uid://yacvt6dlf17s" path="res://Player/Sprites/fishies/Beep/Beep_0001.png" id="52_dw3r7"]
-[ext_resource type="Texture2D" uid="uid://bmmfpalemeoli" path="res://Player/Sprites/fishies/Beep/Beep_0002.png" id="53_3auvd"]
-[ext_resource type="Texture2D" uid="uid://6vlulehlnah" path="res://Player/Sprites/fishies/Beep/Beep_0004.png" id="54_dhwlk"]
-[ext_resource type="Texture2D" uid="uid://nye4xki68xm7" path="res://Player/Sprites/fishies/Beep/Beep_0005.png" id="55_8dvse"]
-[ext_resource type="Texture2D" uid="uid://c0ktdcfv0w2en" path="res://Player/Sprites/fishies/Beep/Beep_0006.png" id="56_5uk23"]
-[ext_resource type="Texture2D" uid="uid://b6ls3sgx0s8o5" path="res://Player/Sprites/fishies/Beep/Beep_0007.png" id="57_l0ek5"]
-[ext_resource type="Texture2D" uid="uid://rcx7uvjt8fs8" path="res://Player/Sprites/fishies/Beep/Beep_0008.png" id="58_4vd31"]
-[ext_resource type="Texture2D" uid="uid://d3fvnoyetyvws" path="res://Player/Sprites/fishies/Beep/Beep_0009.png" id="59_3jysn"]
-[ext_resource type="Texture2D" uid="uid://cji74nv1qmh8o" path="res://Player/Sprites/fishies/Beep/Beep_0010.png" id="60_n3yvb"]
-[ext_resource type="Texture2D" uid="uid://b8xjy7iuusg76" path="res://Player/Sprites/fishies/Beep/Beep_0011.png" id="61_o1kdc"]
-[ext_resource type="Texture2D" uid="uid://cbptaexxrmksa" path="res://Player/Sprites/fishies/Beep/Beep_0012.png" id="62_by7iq"]
-[ext_resource type="Texture2D" uid="uid://bqopm6xmsdw6a" path="res://Player/Sprites/fishies/Beep/Beep_0013.png" id="63_8lqig"]
-[ext_resource type="Texture2D" uid="uid://cch4qs3t8r6e2" path="res://Player/Sprites/fishies/Beep/Beep_0014.png" id="64_5021v"]
-[ext_resource type="Texture2D" uid="uid://b175usj4qormj" path="res://Player/Sprites/fishies/Beep/Beep_0015.png" id="65_30pkq"]
-[ext_resource type="Texture2D" uid="uid://dfcusw2qkepc4" path="res://Player/Sprites/fishies/Beep/Beep_0016.png" id="66_scjac"]
-[ext_resource type="Texture2D" uid="uid://deimbuvf64h0t" path="res://Player/Sprites/fishies/Beep/Beep_0017.png" id="67_xqnup"]
-[ext_resource type="Texture2D" uid="uid://ca1u3bb4dpny1" path="res://Player/Sprites/fishies/Beep/Beep_0018.png" id="68_hxu64"]
-[ext_resource type="Texture2D" uid="uid://bbthjs06w4kcj" path="res://Player/Sprites/fishies/Beep/Beep_0019.png" id="69_h4p3r"]
-[ext_resource type="Texture2D" uid="uid://lk4d2p1eoodn" path="res://Player/Sprites/fishies/Beep/Beep_0020.png" id="70_klrwq"]
-[ext_resource type="Texture2D" uid="uid://dotyukddmqasb" path="res://Player/Sprites/fishies/Beep/Beep_0021.png" id="71_mesvg"]
-[ext_resource type="Texture2D" uid="uid://rxlm17owilvg" path="res://Player/Sprites/fishies/Beep/Beep_0022.png" id="72_n1m3l"]
-[ext_resource type="Texture2D" uid="uid://c4xnp6xwfhacs" path="res://Player/Sprites/fishies/Beep/Beep_0023.png" id="73_lnp0p"]
+[ext_resource type="Texture2D" path="res://Player/Sprites/fishies/Beep/beep4.png" id="51_7dn2k"]
+[ext_resource type="Texture2D" path="res://Player/Sprites/fishies/Beep/beep1.png" id="52_tilii"]
+[ext_resource type="Texture2D" path="res://Player/Sprites/fishies/Beep/beep2.png" id="53_r685k"]
+[ext_resource type="Texture2D" path="res://Player/Sprites/fishies/Beep/beep3.png" id="54_fueo6"]
+[ext_resource type="Texture2D" path="res://Player/Sprites/fishies/Beep/beep5.png" id="55_n8ifg"]
+[ext_resource type="Texture2D" path="res://Player/Sprites/fishies/Beep/beep6.png" id="56_3cwrw"]
+[ext_resource type="Texture2D" path="res://Player/Sprites/fishies/Beep/beep7.png" id="57_dmvtl"]
+[ext_resource type="Texture2D" path="res://Player/Sprites/fishies/Beep/beep8.png" id="58_x8kjo"]
+[ext_resource type="Texture2D" path="res://Player/Sprites/fishies/Beep/beep9.png" id="59_pw88g"]
+[ext_resource type="Texture2D" path="res://Player/Sprites/fishies/Beep/beep10.png" id="60_x430y"]
+[ext_resource type="Texture2D" path="res://Player/Sprites/fishies/Beep/beep11.png" id="61_xaue8"]
+[ext_resource type="Texture2D" path="res://Player/Sprites/fishies/Beep/beep12.png" id="62_xa28m"]
+[ext_resource type="Texture2D" path="res://Player/Sprites/fishies/Beep/beep13.png" id="63_quyxh"]
+[ext_resource type="Texture2D" path="res://Player/Sprites/fishies/Beep/beep14.png" id="64_ppblq"]
+[ext_resource type="Texture2D" path="res://Player/Sprites/fishies/Beep/beep15.png" id="65_1pgyi"]
+[ext_resource type="Texture2D" path="res://Player/Sprites/fishies/Beep/beep16.png" id="66_a6fp2"]
+[ext_resource type="Texture2D" path="res://Player/Sprites/fishies/Beep/beep17.png" id="67_8rxaq"]
+[ext_resource type="Texture2D" path="res://Player/Sprites/fishies/Beep/beep18.png" id="68_ob4t2"]
+[ext_resource type="Texture2D" path="res://Player/Sprites/fishies/Beep/beep19.png" id="69_iyfyj"]
+[ext_resource type="Texture2D" path="res://Player/Sprites/fishies/Beep/beep20.png" id="70_x1wvp"]
+[ext_resource type="Texture2D" path="res://Player/Sprites/fishies/Beep/beep21.png" id="71_4e1fj"]
+[ext_resource type="Texture2D" path="res://Player/Sprites/fishies/Beep/beep22.png" id="72_c52eg"]
+[ext_resource type="Texture2D" path="res://Player/Sprites/fishies/Beep/beep23.png" id="73_h8p6c"]
+[ext_resource type="Texture2D" path="res://Player/Sprites/fishies/Beep/beep24.png" id="74_5ktlg"]
 
 [sub_resource type="Curve" id="Curve_7kcpw"]
 max_value = 3.0
@@ -81,6 +82,8 @@ point_count = 2
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_oyvbp"]
 radius = 115.27
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_vmdfp"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_wcr3i"]
 animations = [{
@@ -246,76 +249,76 @@ animations = [{
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("50_t6nuy")
+"texture": ExtResource("51_7dn2k")
 }, {
 "duration": 1.0,
-"texture": ExtResource("51_dek5w")
+"texture": ExtResource("52_tilii")
 }, {
 "duration": 1.0,
-"texture": ExtResource("52_dw3r7")
+"texture": ExtResource("53_r685k")
 }, {
 "duration": 1.0,
-"texture": ExtResource("53_3auvd")
+"texture": ExtResource("54_fueo6")
 }, {
 "duration": 1.0,
-"texture": ExtResource("54_dhwlk")
+"texture": ExtResource("55_n8ifg")
 }, {
 "duration": 1.0,
-"texture": ExtResource("55_8dvse")
+"texture": ExtResource("56_3cwrw")
 }, {
 "duration": 1.0,
-"texture": ExtResource("56_5uk23")
+"texture": ExtResource("57_dmvtl")
 }, {
 "duration": 1.0,
-"texture": ExtResource("57_l0ek5")
+"texture": ExtResource("58_x8kjo")
 }, {
 "duration": 1.0,
-"texture": ExtResource("58_4vd31")
+"texture": ExtResource("59_pw88g")
 }, {
 "duration": 1.0,
-"texture": ExtResource("59_3jysn")
+"texture": ExtResource("60_x430y")
 }, {
 "duration": 1.0,
-"texture": ExtResource("60_n3yvb")
+"texture": ExtResource("61_xaue8")
 }, {
 "duration": 1.0,
-"texture": ExtResource("61_o1kdc")
+"texture": ExtResource("62_xa28m")
 }, {
 "duration": 1.0,
-"texture": ExtResource("62_by7iq")
+"texture": ExtResource("63_quyxh")
 }, {
 "duration": 1.0,
-"texture": ExtResource("63_8lqig")
+"texture": ExtResource("64_ppblq")
 }, {
 "duration": 1.0,
-"texture": ExtResource("64_5021v")
+"texture": ExtResource("65_1pgyi")
 }, {
 "duration": 1.0,
-"texture": ExtResource("65_30pkq")
+"texture": ExtResource("66_a6fp2")
 }, {
 "duration": 1.0,
-"texture": ExtResource("66_scjac")
+"texture": ExtResource("67_8rxaq")
 }, {
 "duration": 1.0,
-"texture": ExtResource("67_xqnup")
+"texture": ExtResource("68_ob4t2")
 }, {
 "duration": 1.0,
-"texture": ExtResource("68_hxu64")
+"texture": ExtResource("69_iyfyj")
 }, {
 "duration": 1.0,
-"texture": ExtResource("69_h4p3r")
+"texture": ExtResource("70_x1wvp")
 }, {
 "duration": 1.0,
-"texture": ExtResource("70_klrwq")
+"texture": ExtResource("71_4e1fj")
 }, {
 "duration": 1.0,
-"texture": ExtResource("71_mesvg")
+"texture": ExtResource("72_c52eg")
 }, {
 "duration": 1.0,
-"texture": ExtResource("72_n1m3l")
+"texture": ExtResource("73_h8p6c")
 }, {
 "duration": 1.0,
-"texture": ExtResource("73_lnp0p")
+"texture": ExtResource("74_5ktlg")
 }],
 "loop": true,
 "name": &"default",
@@ -328,14 +331,24 @@ motion_mode = 1
 script = ExtResource("1_b7tfx")
 forward_speed = 500.0
 body_holder = NodePath("Body2")
-fishie_holder = NodePath("Fishie")
+fishie_holder = NodePath("AnimatedSprite2D")
 fin_holder = NodePath("Fin2")
-fin_follow_speed = 80.0
+fin_follow_speed = 55.0
 fin_follow_curve = SubResource("Curve_7kcpw")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-5, -199)
 shape = SubResource("CircleShape2D_oyvbp")
+
+[node name="Fin" type="Sprite2D" parent="."]
+visible = false
+texture = SubResource("CompressedTexture2D_vmdfp")
+offset = Vector2(0, -23.635)
+
+[node name="Body" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("3_k7lte")
+offset = Vector2(-1.88, -23.48)
 
 [node name="PickupArea" type="Area2D" parent="."]
 collision_layer = 0
@@ -360,10 +373,10 @@ frame = 5
 frame_progress = 0.973231
 offset = Vector2(-23.635, 0)
 
-[node name="Fishie" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.4, 0.4)
 sprite_frames = SubResource("SpriteFrames_j3rkv")
-frame_progress = 0.25674
+frame_progress = 0.72133
 
 [connection signal="body_entered" from="PickupArea" to="." method="_on_pickup_area_body_entered"]
 [connection signal="body_exited" from="PickupArea" to="." method="_on_pickup_area_body_exited"]
