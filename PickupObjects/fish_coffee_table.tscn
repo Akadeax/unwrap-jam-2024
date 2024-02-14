@@ -22,6 +22,7 @@ max_health = 100.0
 destruction_frames = 3.0
 destroyed_particles_scene = ExtResource("2_ejcjo")
 type = 14
+relative_pos = Vector2(0, -300)
 max_immunity_time = 1.0
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="."]

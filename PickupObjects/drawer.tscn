@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://d1si4l6mk6txa"]
+[gd_scene load_steps=6 format=3 uid="uid://d1si4l6mk6txa"]
 
 [ext_resource type="Script" path="res://PickupObjects/pickup_object.gd" id="1_4vony"]
 [ext_resource type="Texture2D" uid="uid://c8ulk2ut5qc6" path="res://Sprites/cupboard.png" id="2_bmbls"]
 [ext_resource type="PackedScene" uid="uid://c35jijc0e1sau" path="res://VFX/destroy_particles.tscn" id="2_gprm8"]
+[ext_resource type="PackedScene" uid="uid://bohcapsbcsl7o" path="res://VFX/bonk_particles.tscn" id="4_n1hdu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uqtng"]
 size = Vector2(482.79, 203.395)
@@ -34,9 +35,12 @@ collision_mask = 3
 shape = SubResource("RectangleShape2D_uqtng")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = 3.14159
 scale = Vector2(2, 2)
 texture = ExtResource("2_bmbls")
 hframes = 3
+
+[node name="BonkParticles" parent="." instance=ExtResource("4_n1hdu")]
 
 [connection signal="tree_exiting" from="." to="." method="_on_tree_exiting"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

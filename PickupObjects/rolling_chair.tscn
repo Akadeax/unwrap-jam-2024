@@ -2,11 +2,11 @@
 
 [ext_resource type="Script" path="res://PickupObjects/pickup_object.gd" id="1_bt7bi"]
 [ext_resource type="PackedScene" uid="uid://c35jijc0e1sau" path="res://VFX/destroy_particles.tscn" id="2_ouuf4"]
-[ext_resource type="Texture2D" uid="uid://b5tjlay2sj8tc" path="res://Sprites/box.png" id="3_q51vk"]
+[ext_resource type="Texture2D" uid="uid://pcdwk7v58p4g" path="res://Sprites/chair.png" id="3_b1avh"]
 [ext_resource type="PackedScene" uid="uid://bohcapsbcsl7o" path="res://VFX/bonk_particles.tscn" id="4_32s88"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_uqtng"]
-size = Vector2(500, 500)
+[sub_resource type="CircleShape2D" id="CircleShape2D_vfpwf"]
+radius = 84.86
 
 [node name="PickupObject" type="RigidBody2D" groups=["pickup"]]
 collision_layer = 3
@@ -18,23 +18,25 @@ linear_damp = 1.0
 script = ExtResource("1_bt7bi")
 fragility = 25.0
 max_health = 100.0
-destruction_frames = 2.0
+destruction_frames = 3.0
 destroyed_particles_scene = ExtResource("2_ouuf4")
+relative_pos = Vector2(0, -300)
 max_immunity_time = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_uqtng")
+shape = SubResource("CircleShape2D_vfpwf")
 
 [node name="Area2D" type="Area2D" parent="." groups=["pickup"]]
 collision_layer = 2
 collision_mask = 3
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource("RectangleShape2D_uqtng")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_vfpwf")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("3_q51vk")
-hframes = 2
+scale = Vector2(2, 2)
+texture = ExtResource("3_b1avh")
+hframes = 3
 
 [node name="BonkParticles" parent="." instance=ExtResource("4_32s88")]
 
