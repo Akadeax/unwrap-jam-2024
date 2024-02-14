@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://c0x38gfb5pvlm"]
 
 [ext_resource type="Script" path="res://Menu/menu.gd" id="1_h3py3"]
-[ext_resource type="AudioStream" uid="uid://cbth3tcby8xc7" path="res://Sound/Streams/Music/Menu_Music.wav" id="2_13xrf"]
+[ext_resource type="AudioStream" uid="uid://bq13wyobch5dy" path="res://Sound/Streams/Music/Menu_Music.mp3" id="2_mwj8e"]
 [ext_resource type="AudioStream" uid="uid://dgsw80mr1pwg5" path="res://Sound/Streams/UI/UI_Start_Game.wav" id="3_u4nhu"]
 [ext_resource type="PackedScene" uid="uid://dl0kpmvq5vc50" path="res://main.tscn" id="4_0npm0"]
 [ext_resource type="Shader" path="res://Environment/water.gdshader" id="4_yauti"]
@@ -35,7 +35,7 @@ shader_parameter/height = 0.001
 
 [node name="menu" type="Node2D" node_paths=PackedStringArray("ripple_rect", "fade_rect")]
 script = ExtResource("1_h3py3")
-music = ExtResource("2_13xrf")
+music = ExtResource("2_mwj8e")
 game_start = ExtResource("3_u4nhu")
 ripple_rect = NodePath("CanvasLayer/Ripple")
 fade_rect = NodePath("CanvasLayer/FadeRect")
@@ -122,7 +122,7 @@ mouse_filter = 2
 color = Color(0, 0, 0, 0)
 
 [node name="MenuMusicStream" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("2_13xrf")
+stream = ExtResource("2_mwj8e")
 bus = &"Music"
 script = ExtResource("7_dfac0")
 
