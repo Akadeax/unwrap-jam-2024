@@ -35,10 +35,18 @@ func pickup( new_shark ):
 	shark = new_shark;
 	is_held = true;
 	relative_rot = angle_difference(shark.rotation, global_rotation)
+	set_collision_layer_value(1,0);
 
 func drop():
 	is_held = false;
 	linear_velocity = shark.velocity * 1.3
+	set_collision_layer_value(1,1);
+	
+
+func yeet():
+	is_held = false;
+	linear_velocity = shark.velocity * 3
+	set_collision_layer_value(1,1);
 
 
 func damage_object():

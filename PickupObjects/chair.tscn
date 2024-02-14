@@ -7,7 +7,7 @@
 radius = 86.06
 
 [node name="PickupObject" type="RigidBody2D" groups=["pickup"]]
-collision_layer = 2
+collision_layer = 3
 collision_mask = 3
 gravity_scale = 0.0
 can_sleep = false

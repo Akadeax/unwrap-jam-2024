@@ -96,6 +96,9 @@ func _process(__):
 		if Input.is_action_pressed("drop"):
 			held_object.drop()
 			is_holding_object = false
+		if Input.is_action_pressed("yeet"):
+			held_object.yeet()
+			is_holding_object = false
 	else:
 		if Input.is_action_pressed("pickup") and not objects.is_empty():
 			print(objects.size())
