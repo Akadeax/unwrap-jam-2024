@@ -415,8 +415,6 @@ func fill_room(room : RoomRect):
 		wall_types.append(computer_desk)
 		wall_types.append(closet)
 		wall_types.append(tv)
-		
-		
 	fill(randi_range(min_items,max_items),center_types,wall_types,room,weights)
 
 func fill_hallway(room : RoomRect):

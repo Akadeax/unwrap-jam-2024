@@ -1,21 +1,21 @@
-[gd_scene load_steps=12 format=3 uid="uid://bbfuqqxswh6x0"]
+[gd_scene load_steps=12 format=3 uid="uid://b3r3nu56sis3u"]
 
-[ext_resource type="PackedScene" uid="uid://yt5vihcqbymr" path="res://HouseGen/HouseScene.tscn" id="1_ksmiq"]
-[ext_resource type="PackedScene" uid="uid://burd7rvt3gne5" path="res://Player/player.tscn" id="2_e6g4e"]
-[ext_resource type="Script" path="res://Utils/custom_camera.gd" id="3_7dhxg"]
-[ext_resource type="Script" path="res://Environment/game_manager.gd" id="4_6omd2"]
-[ext_resource type="FontFile" uid="uid://cx55imgibsjte" path="res://Sprites/fonts/SpaceMono-Regular.ttf" id="5_go5dp"]
-[ext_resource type="Shader" path="res://Environment/ripple.gdshader" id="5_ohp0i"]
-[ext_resource type="Script" path="res://UI/Timer.gd" id="6_jpqif"]
-[ext_resource type="PackedScene" uid="uid://b3pvnspyg1prf" path="res://UI/scoreScreen/scoreBoard.tscn" id="7_5llg6"]
-[ext_resource type="PackedScene" uid="uid://bw04633k6vv8p" path="res://PickupObjects/delivery_zone.tscn" id="9_vnbf0"]
+[ext_resource type="PackedScene" uid="uid://yt5vihcqbymr" path="res://HouseGen/HouseScene.tscn" id="1_oiltj"]
+[ext_resource type="Script" path="res://Utils/custom_camera.gd" id="2_op1jl"]
+[ext_resource type="PackedScene" uid="uid://burd7rvt3gne5" path="res://Player/player.tscn" id="3_vpxjp"]
+[ext_resource type="Script" path="res://Environment/game_manager.gd" id="4_qyats"]
+[ext_resource type="Shader" path="res://Environment/ripple.gdshader" id="5_brqnq"]
+[ext_resource type="FontFile" uid="uid://cx55imgibsjte" path="res://Sprites/fonts/SpaceMono-Regular.ttf" id="6_rnck0"]
+[ext_resource type="Script" path="res://UI/Timer.gd" id="7_pi3cc"]
+[ext_resource type="PackedScene" uid="uid://b3pvnspyg1prf" path="res://UI/scoreScreen/scoreBoard.tscn" id="8_atw4l"]
+[ext_resource type="PackedScene" uid="uid://bw04633k6vv8p" path="res://PickupObjects/delivery_zone.tscn" id="9_mjm00"]
 
 [sub_resource type="Curve" id="Curve_383s0"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.637363), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7y1yn"]
-shader = ExtResource("5_ohp0i")
+shader = ExtResource("5_brqnq")
 shader_parameter/wave_count = 20.0
 shader_parameter/speed = 3.0
 shader_parameter/height = 0.001
@@ -24,22 +24,32 @@ shader_parameter/mix_val = 0.33
 
 [node name="HouseTest" type="Node2D"]
 
-[node name="HouseScene" parent="." instance=ExtResource("1_ksmiq")]
+[node name="HouseScene" parent="." instance=ExtResource("1_oiltj")]
 scale = Vector2(2.5, 2.5)
 
 [node name="Camera2D" type="Camera2D" parent="." groups=["cam"]]
 position = Vector2(894, 3356)
 zoom = Vector2(0.19, 0.19)
 position_smoothing_speed = 500.0
-script = ExtResource("3_7dhxg")
+script = ExtResource("2_op1jl")
 zoom_modifier_curve = SubResource("Curve_383s0")
 
-[node name="player" parent="." instance=ExtResource("2_e6g4e")]
-position = Vector2(886, 3350)
+[node name="player" parent="." instance=ExtResource("3_vpxjp")]
+position = Vector2(613, 3334)
+
+[node name="player2" parent="." instance=ExtResource("3_vpxjp")]
+modulate = Color(1, 0.294118, 0.67451, 1)
+position = Vector2(1184, 3334)
+left_input = "left2"
+right_input = "right2"
+back_input = "back2"
+pickup_input = "pickup2"
+drop_input = "drop2"
+yeet_input = "yeet2"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." node_paths=PackedStringArray("background", "title_text")]
 process_mode = 3
-script = ExtResource("4_6omd2")
+script = ExtResource("4_qyats")
 background = NodePath("BG")
 title_text = NodePath("TitleTextIntro/Label")
 
@@ -68,12 +78,12 @@ theme_override_constants/margin_top = 35
 [node name="Label" type="Label" parent="CanvasLayer/MarginContainer"]
 process_mode = 3
 layout_mode = 2
-theme_override_fonts/font = ExtResource("5_go5dp")
+theme_override_fonts/font = ExtResource("6_rnck0")
 theme_override_font_sizes/font_size = 48
 text = "Time left"
-script = ExtResource("6_jpqif")
+script = ExtResource("7_pi3cc")
 
-[node name="ScoreBoard" parent="CanvasLayer" instance=ExtResource("7_5llg6")]
+[node name="ScoreBoard" parent="CanvasLayer" instance=ExtResource("8_atw4l")]
 anchors_preset = -1
 anchor_left = 0.009
 anchor_right = 0.598
@@ -93,11 +103,11 @@ theme_override_constants/margin_top = 200
 [node name="Label" type="Label" parent="CanvasLayer/TitleTextIntro"]
 layout_mode = 2
 size_flags_vertical = 0
-theme_override_fonts/font = ExtResource("5_go5dp")
+theme_override_fonts/font = ExtResource("6_rnck0")
 theme_override_font_sizes/font_size = 72
 text = "This is title text"
 horizontal_alignment = 1
 
-[node name="DeliveryZone" parent="." instance=ExtResource("9_vnbf0")]
+[node name="DeliveryZone" parent="." instance=ExtResource("9_mjm00")]
 position = Vector2(894, 4412)
 rotation = -1.5822
