@@ -29,24 +29,39 @@ var held_weight : float
 var knockback_dir : Vector2
 var knockback_time_left : float
 
+var current_tongue_angle : float = -50
+@export var tongue_rotation_speed : float = 50
 
+
+@export_group("input")
+@export var left_input : String = "left"
+@export var right_input : String = "right"
+@export var back_input : String = "back"
+@export var pickup_input : String = "pickup"
+@export var drop_input : String = "drop"
+@export var yeet_input : String = "yeet"
 
 func _physics_process(delta):
 
 	#region handle movement and animation
 	# handle input
-	if Input.is_action_pressed("left") && !moving_back:
+	if Input.is_action_pressed(left_input) && !moving_back:
 		current_move_angle -= rotation_speed * delta
+		current_tongue_angle -= tongue_rotation_speed * delta
 
-	elif Input.is_action_pressed("right") && !moving_back:
+	elif Input.is_action_pressed(right_input) && !moving_back:
 		current_move_angle += rotation_speed * delta
+		current_tongue_angle += tongue_rotation_speed * delta
 
-	if Input.is_action_just_pressed("back"):
+	current_tongue_angle = clampf(current_tongue_angle, -50, 50)
+	$Tongue.set_rotation(deg_to_rad(current_tongue_angle))
+
+	if Input.is_action_just_pressed(back_input):
 		current_move_angle += 180
 		moving_back = true
 		fishie_holder.play()
 		fin_holder.speed_scale = 0.25
-	elif Input.is_action_just_released("back"):
+	elif Input.is_action_just_released(back_input):
 		current_move_angle -= 180
 		moving_back = false
 		fishie_holder.frame = 0
@@ -103,18 +118,22 @@ func _process(__):
 		is_holding_object = false
 
 	if is_holding_object:
-		if Input.is_action_pressed("drop"):
+		$Tongue.visible = false
+		$Teeth.visible = true
+		if Input.is_action_pressed(drop_input):
 			held_object.drop()
 			held_weight = 0
 			is_holding_object = false
-		if Input.is_action_pressed("yeet"):
+		if Input.is_action_pressed(yeet_input):
 			held_object.yeet()
 			held_weight = 0
 			is_holding_object = false
 			knockback(up_direction.rotated(rotation)*-50, 0.2)
 
 	else:
-		if Input.is_action_pressed("pickup") and not objects.is_empty():
+		$Tongue.visible = true
+		$Teeth.visible = false
+		if Input.is_action_pressed(pickup_input) and not objects.is_empty():
 			print(objects.size())
 			objects.sort_custom(distance_sort)
 			held_weight = objects[0].pickup(self)

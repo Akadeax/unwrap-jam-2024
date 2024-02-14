@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://8rqnfb1ouik1"]
+[gd_scene load_steps=11 format=3 uid="uid://8rqnfb1ouik1"]
 
 [ext_resource type="PackedScene" uid="uid://yt5vihcqbymr" path="res://HouseGen/HouseScene.tscn" id="1_ksmiq"]
 [ext_resource type="PackedScene" uid="uid://burd7rvt3gne5" path="res://Player/player.tscn" id="2_e6g4e"]
@@ -8,6 +8,10 @@
 [ext_resource type="Script" path="res://UI/Timer.gd" id="6_lftqx"]
 [ext_resource type="PackedScene" uid="uid://b3pvnspyg1prf" path="res://UI/scoreScreen/scoreBoard.tscn" id="7_di0s5"]
 [ext_resource type="PackedScene" uid="uid://bw04633k6vv8p" path="res://PickupObjects/delivery_zone.tscn" id="8_dqhk1"]
+
+[sub_resource type="Curve" id="Curve_5qpn6"]
+_data = [Vector2(0, 1), 0.0, -0.461539, 0, 0, Vector2(1, 0.648352), -0.298901, 0.0, 0, 0]
+point_count = 2
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7y1yn"]
 shader = ExtResource("5_ohp0i")
@@ -22,12 +26,26 @@ shader_parameter/mix_val = 0.33
 [node name="HouseScene" parent="." instance=ExtResource("1_ksmiq")]
 scale = Vector2(2.5, 2.5)
 
-[node name="player" parent="." instance=ExtResource("2_e6g4e")]
+[node name="Camera2D" type="Camera2D" parent="." groups=["cam"]]
 position = Vector2(285, 530)
-
-[node name="Camera2D" type="Camera2D" parent="player" groups=["cam"]]
 zoom = Vector2(0.19, 0.19)
 script = ExtResource("3_7dhxg")
+zoom_modifier_curve = SubResource("Curve_5qpn6")
+
+[node name="player" parent="." instance=ExtResource("2_e6g4e")]
+position = Vector2(157, 3002)
+
+[node name="player2" parent="." node_paths=PackedStringArray("body_holder", "fishie_holder", "fin_holder") instance=ExtResource("2_e6g4e")]
+modulate = Color(1, 0.337255, 0.701961, 1)
+position = Vector2(1101, 2943)
+body_holder = NodePath("../player/Body2")
+fishie_holder = NodePath("../player/Fishie")
+fin_holder = NodePath("../player/Fin2")
+left_input = "left2"
+right_input = "right2"
+back_input = "back2"
+drop_input = "drop2"
+yeet_input = "yeet2"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
