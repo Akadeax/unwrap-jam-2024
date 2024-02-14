@@ -4,6 +4,9 @@ uniform float wave_count : hint_range(1.0, 20.0, 1.0) = 20.0;
 uniform float speed : hint_range(0.0, 10.0, 0.1) = 3.0;
 uniform float height : hint_range(0.0, 0.1, 0.001) = 0.003;
 
+uniform vec4 color : source_color = vec4(1, 1, 1, 1);
+uniform float mix_val : hint_range(0.0, 1.0, 0.01) = 0.35;
+
 uniform sampler2D SCREEN_TEXTURE : hint_screen_texture, filter_linear_mipmap;
 
 void fragment() {
@@ -11,5 +14,5 @@ void fragment() {
 	float cLength = length(cPos);
 	vec2 uv = FRAGCOORD.xy / (1.0 / SCREEN_PIXEL_SIZE).xy + (cPos/cLength) * cos(cLength * wave_count - TIME * speed) * height;
     vec3 col = texture(SCREEN_TEXTURE,uv).xyz;
-	COLOR = vec4(col,1.0);
+	COLOR = mix(vec4(col,1.0), color, mix_val * length(cPos));
 }
