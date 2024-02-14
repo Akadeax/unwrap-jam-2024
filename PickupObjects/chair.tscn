@@ -1,7 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://ckywlhdbuc6cj"]
+[gd_scene load_steps=6 format=3 uid="uid://ckywlhdbuc6cj"]
 
 [ext_resource type="Script" path="res://PickupObjects/pickup_object.gd" id="1_erm3m"]
 [ext_resource type="Texture2D" uid="uid://fvkd031ternh" path="res://Sprites/chair_pog.png" id="2_3cwev"]
+[ext_resource type="PackedScene" uid="uid://c35jijc0e1sau" path="res://VFX/destroy_particles.tscn" id="2_578oc"]
+[ext_resource type="PackedScene" uid="uid://bohcapsbcsl7o" path="res://VFX/bonk_particles.tscn" id="4_atcku"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vm14j"]
 radius = 86.06
@@ -17,6 +19,7 @@ script = ExtResource("1_erm3m")
 fragility = 34.0
 max_health = 100.0
 destruction_frames = 3.0
+destroyed_particles_scene = ExtResource("2_578oc")
 relative_pos = Vector2(0, -300)
 max_immunity_time = 1.0
 
@@ -37,6 +40,8 @@ z_index = 1
 position = Vector2(12, -19)
 texture = ExtResource("2_3cwev")
 hframes = 3
+
+[node name="BonkParticles" parent="." instance=ExtResource("4_atcku")]
 
 [connection signal="tree_exiting" from="." to="." method="_on_tree_exiting"]
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

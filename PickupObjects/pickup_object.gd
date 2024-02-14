@@ -6,6 +6,8 @@ signal deliver(health_procent, base_score)
 @export var max_health : float
 @export var destruction_frames : float
 
+@export var destroyed_particles_scene : PackedScene
+
 enum Type{ CHAIR, BOX, TABLE, DRAWER, SOFA }
 @export var type : Type
 
@@ -41,7 +43,7 @@ func drop():
 	is_held = false;
 	linear_velocity = shark.velocity * 1.3
 	set_collision_layer_value(1,1);
-	
+
 
 func yeet():
 	is_held = false;
@@ -55,9 +57,17 @@ func damage_object():
 	while  ( health < max_health - max_health/ destruction_frames * i):
 		i+=1
 	$Sprite2D.frame = i - 1
-	
+
 	if health < 0:
+		var part := destroyed_particles_scene.instantiate() as GPUParticles2D
+		part.emitting = true
+		get_tree().root.add_child(part)
+		part.global_position = global_position
 		queue_free()
+		get_tree().get_first_node_in_group("cam").apply_shake(15, 50)
+	else:
+		$BonkParticles.emitting = true
+		get_tree().get_first_node_in_group("cam").apply_shake(35, 30)
 
 func _on_tree_exiting():
 	if health > 0:
@@ -70,4 +80,3 @@ func _on_area_2d_body_entered(body):
 		if (is_held):
 			shark.knockback(Vector2(0, 200).rotated(shark.rotation) , 0.2)
 		damage_object()
-

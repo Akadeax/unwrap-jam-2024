@@ -31,7 +31,7 @@ gravity = Vector3(0, 0, 0)
 scale_curve = SubResource("CurveTexture_cwfv1")
 color_ramp = SubResource("GradientTexture1D_m2841")
 
-[node name="GPUParticles2D" type="GPUParticles2D"]
+[node name="DestroyParticles" type="GPUParticles2D"]
 emitting = false
 amount = 35
 process_material = SubResource("ParticleProcessMaterial_t2rmi")
