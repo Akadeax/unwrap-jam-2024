@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://dl0kpmvq5vc50"]
+[gd_scene load_steps=9 format=3 uid="uid://dl0kpmvq5vc50"]
 
 [ext_resource type="Script" path="res://Utils/custom_camera.gd" id="1_k0xmf"]
 [ext_resource type="PackedScene" uid="uid://ccqpt0l87sunk" path="res://Player/player.tscn" id="2_6q1ic"]
 [ext_resource type="AudioStream" uid="uid://dkyuewt7amyft" path="res://Sound/Streams/Environment/Ambience.wav" id="3_nfvv7"]
 [ext_resource type="Script" path="res://AmbienceStream.gd" id="4_yefoq"]
+[ext_resource type="AudioStream" uid="uid://cph1xxhndsm6q" path="res://Sound/Streams/Interactables/Damage/RandomCeramicDamage.tres" id="5_mptr0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fblan"]
 size = Vector2(1748, 143)
@@ -36,3 +37,6 @@ texture = SubResource("GradientTexture2D_56rth")
 stream = ExtResource("3_nfvv7")
 bus = &"Ambience"
 script = ExtResource("4_yefoq")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_mptr0")
