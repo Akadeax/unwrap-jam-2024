@@ -3,10 +3,27 @@ class_name ScoreBoard
 
 const score_dict = {
 	PickupObject.Type.CHAIR : 10,
+	PickupObject.Type.CHAIR2 : 10,
+	PickupObject.Type.ROLLING_CHAIR : 10,
+	PickupObject.Type.SMALL_COUCH : 12,
 	PickupObject.Type.BOX : 15,
+	PickupObject.Type.BOX2 : 15,
+	PickupObject.Type.FRIDGE : 20,
+	PickupObject.Type.STOVE : 20,
+	PickupObject.Type.SINK : 22,
+	PickupObject.Type.SINK2 : 22,
+	PickupObject.Type.KITCHEN_SINK : 22,
+	PickupObject.Type.TOILET : 23,
 	PickupObject.Type.TABLE : 25,
+	PickupObject.Type.TABLE2 : 25,
+	PickupObject.Type.FISH_COFFEE_TABLE : 25,
+	PickupObject.Type.COMPUTER_DESK : 30,
+	PickupObject.Type.TV_DESK : 30,
 	PickupObject.Type.DRAWER : 50,
+	PickupObject.Type.OPEN_DRESSER : 50,
+	PickupObject.Type.TUB : 90,
 	PickupObject.Type.SOFA : 100,
+	PickupObject.Type.BED : 100,
 }
 var amount_of_objects : Array[int] = [0,0,0,0,0]
 var score : int = 0

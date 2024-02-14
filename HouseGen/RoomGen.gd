@@ -118,9 +118,11 @@ func _ready():
 	generate_house()
 	for i in (rooms.size()):
 		square_room_draw(rooms[i])
+		if (i != 0):
+			fill_room(rooms[i])
 	for i in (hallways.size()):
 		square_room_draw(hallways[i])
-	get_available_wall_location(rooms[0])
+		fill_hallway(hallways[i])
 
 func generate_house():
 	var check : bool = true
@@ -353,33 +355,58 @@ func generate_hallway(prev_door : Door) -> RoomRect:
 	return room
 
 func fill_room(room : RoomRect):
-	if room.type == RoomTypes.HALLWAY:
-		fill_hallway(room)
+	var min_items : int
+	var max_items : int 
+	var center_types : Array[PackedScene] = [big_table_1]
+	var wall_types : Array[PackedScene] = [big_table_1]
 	if room.type == RoomTypes.BATHROOM:
-		fill_bathroom(room)
+		min_items = 4
+		max_items = 6
 	if room.type == RoomTypes.BEDROOM:
-		fill_bedroom(room)
+		min_items = 3
+		max_items = 8
 	if room.type == RoomTypes.KITCHEN:
-		fill_Kitchen(room)
+		min_items = 4
+		max_items = 7
 	if room.type == RoomTypes.LIVINGROOM:
-		fill_livingroom(room)
+		min_items = 3
+		max_items = 6
+	fill(randi_range(min_items,max_items),center_types,wall_types,room)
 
 func fill_hallway(room : RoomRect):
-	const furniture_amount = 2
-	const types : Array[PickupObject.Type] = [PickupObject.Type.BOX,PickupObject.Type.DRAWER]	
-func fill_bathroom(room : RoomRect):
-	const furniture_amount = 6
-	const types : Array[PickupObject.Type] = [PickupObject.Type.BOX]
-func fill_bedroom(room : RoomRect):
-	const furniture_amount = 8
-	const types : Array[PickupObject.Type] = [PickupObject.Type.BOX,PickupObject.Type.DRAWER]
-func fill_Kitchen(room : RoomRect):
-	const furniture_amount = 5
-	const types : Array[PickupObject.Type] = [PickupObject.Type.BOX,PickupObject.Type.TABLE]
-func fill_livingroom(room : RoomRect):
-	const furniture_amount = 6
-	const types : Array[PickupObject.Type] = [PickupObject.Type.BOX,PickupObject.Type.DRAWER,PickupObject.Type.TABLE,PickupObject.Type.SOFA]
+	var min_items = 0
+	var max_items = 2
+	var center_types : Array[PackedScene] =  [big_table_1]
+	var wall_types : Array[PackedScene] = [big_table_1]
+	fill(randi_range(min_items,max_items),center_types,wall_types,room)
 	
+func fill(item_amount : int, center_types : Array[PackedScene],wall_types : Array[PackedScene],room : RoomRect):
+	if (center_types.size() == 0 && wall_types.size() == 0 ):
+		pass
+	for i in (item_amount):
+		if randi_range(0,1) == 1:
+			if (center_types.size() == 0):
+				i -=1
+				continue
+			var spawn_info = get_available_center_location(room)
+			var child = center_types.pick_random().instantiate()
+			add_child(child)
+			child.global_position = spawn_info.position
+			child.global_rotation = spawn_info.angle
+		else : 
+			if (wall_types.size() == 0):
+				i -=1
+				continue
+			var spawn_info = get_available_wall_location(room)
+			var child = wall_types.pick_random().instantiate()
+			if (spawn_info.position == Vector2(100000000,100000000)):
+				i -=1
+				continue
+			add_child(child)
+			child.global_position = spawn_info.position
+			child.global_rotation = spawn_info.angle
+
+
 func get_available_wall_location(room : RoomRect) -> SpawnInfo:
 	var possible_walls : int = 0
 	var spawn_rects : Array[DualPos] =[
