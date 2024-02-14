@@ -25,9 +25,10 @@ var moving_back : bool = false
 @export var is_holding_object : bool = false
 var objects = []
 var held_object
-
+var held_weight : float
 var knockback_dir : Vector2
 var knockback_time_left : float
+
 
 
 func _physics_process(delta):
@@ -53,7 +54,7 @@ func _physics_process(delta):
 		fin_holder.speed_scale = 1
 
 
-	var curr_speed := forward_speed
+	var curr_speed := forward_speed - held_weight
 	if moving_back:
 		curr_speed *= moving_back_multiplier
 
@@ -104,9 +105,11 @@ func _process(__):
 	if is_holding_object:
 		if Input.is_action_pressed("drop"):
 			held_object.drop()
+			held_weight = 0
 			is_holding_object = false
 		if Input.is_action_pressed("yeet"):
 			held_object.yeet()
+			held_weight = 0
 			is_holding_object = false
 			knockback(up_direction.rotated(rotation)*-50, 0.2)
 
@@ -114,7 +117,8 @@ func _process(__):
 		if Input.is_action_pressed("pickup") and not objects.is_empty():
 			print(objects.size())
 			objects.sort_custom(distance_sort)
-			objects[0].pickup(self)
+			held_weight = objects[0].pickup(self)
+			print(held_weight)
 			held_object = objects[0]
 			is_holding_object = true
 
