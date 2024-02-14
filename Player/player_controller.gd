@@ -8,7 +8,7 @@ var current_move_angle : float = -90
 
 @export_group("body")
 @export var body_holder : Node2D
-
+@export var fishie_holder : AnimatedSprite2D
 
 @export_group("fin")
 @export var fin_holder : Node2D
@@ -43,9 +43,13 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("back"):
 		current_move_angle += 180
 		moving_back = true
+		fishie_holder.play()
 	elif Input.is_action_just_released("back"):
 		current_move_angle -= 180
 		moving_back = false
+		fishie_holder.frame = 0
+		fishie_holder.pause()
+
 
 	var curr_speed := forward_speed
 	if moving_back:
