@@ -1,0 +1,41 @@
+[gd_scene load_steps=7 format=3 uid="uid://c35jijc0e1sau"]
+
+[ext_resource type="Texture2D" uid="uid://distsk17a6h1m" path="res://Sprites/woodChip.png" id="1_ijaju"]
+
+[sub_resource type="Gradient" id="Gradient_l3whd"]
+offsets = PackedFloat32Array(0, 0.0819672, 0.786885, 1)
+colors = PackedColorArray(1, 1, 1, 0, 0.942623, 0.942623, 0.942623, 1, 0.164918, 0.060229, 0.0129934, 0.0745098, 0.296344, 0.104861, 0.0444862, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_m2841"]
+gradient = SubResource("Gradient_l3whd")
+
+[sub_resource type="Curve" id="Curve_j2c71"]
+_data = [Vector2(0, 0.230769), 0.0, 0.0, 0, 0, Vector2(0.753333, 0.21978), 0.0, 0.0, 0, 0, Vector2(1, 0), -0.54945, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_cwfv1"]
+curve = SubResource("Curve_j2c71")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_t2rmi"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 128.0
+angle_min = 64.7
+angle_max = 339.7
+direction = Vector3(0, 0, 0)
+initial_velocity_min = 2000.0
+initial_velocity_max = 4000.0
+angular_velocity_min = -242.69
+angular_velocity_max = 550.12
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_cwfv1")
+color_ramp = SubResource("GradientTexture1D_m2841")
+
+[node name="GPUParticles2D" type="GPUParticles2D"]
+emitting = false
+amount = 35
+process_material = SubResource("ParticleProcessMaterial_t2rmi")
+texture = ExtResource("1_ijaju")
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
