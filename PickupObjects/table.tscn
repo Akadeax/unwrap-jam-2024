@@ -17,11 +17,9 @@ continuous_cd = 2
 linear_damp = 1.0
 script = ExtResource("1_kv8jo")
 fragility = 25.0
-max_health = 100.0
 destruction_frames = 1.0
 destroyed_particles_scene = ExtResource("2_f65tf")
 type = 12
-max_immunity_time = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_8jvv0")
