@@ -26,13 +26,16 @@ const score_dict = {
 	PickupObject.Type.SOFA : 100,
 	PickupObject.Type.BED : 100,
 }
-var amount_of_objects : Array[int] = [0,0,0,0,0]
+var amount_of_objects : Array[int] = []
 var score : int = 0
 var lost_score : int = 0
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	EventBus.objectDroppedOff.connect(on_object_dropped_off)
 	EventBus.objectDestroyed.connect(on_object_destroyed)
+
+	amount_of_objects.resize(score_dict.values().size())
+	amount_of_objects.fill(0)
 	# EventBus.objectDroppedOff.emit(PickupObject.Type.CHAIR,0.5)
 	# EventBus.objectDroppedOff.emit(PickupObject.Type.CHAIR,1)
 	# EventBus.objectDroppedOff.emit(PickupObject.Type.CHAIR,1)

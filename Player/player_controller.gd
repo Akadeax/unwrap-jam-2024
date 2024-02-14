@@ -102,8 +102,7 @@ func knockback(dir : Vector2, time : float):
 	knockback_time_left = time
 
 func _on_pickup_area_body_entered(body):
-	if body.is_in_group(pickup_input):
-		print("added")
+	if body.is_in_group("pickup"):
 		objects.push_back(body)
 
 
