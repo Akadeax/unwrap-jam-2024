@@ -2,20 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cqge4jikww8yh"
-path="res://.godot/imported/HouseSpriteSheet.jpg-f2b701321fd0bb5420ab7e8b06f40fcf.ctex"
+uid="uid://bjojygtj6i2sh"
+path="res://.godot/imported/bed.png-19c9e9d50f9754af3a234ebe2ac86142.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/spriteSheets/HouseSpriteSheet.jpg"
-dest_files=["res://.godot/imported/HouseSpriteSheet.jpg-f2b701321fd0bb5420ab7e8b06f40fcf.ctex"]
+source_file="res://Sprites/bed.png"
+dest_files=["res://.godot/imported/bed.png-19c9e9d50f9754af3a234ebe2ac86142.ctex"]
 
 [params]
 
-compress/mode=1
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

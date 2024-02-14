@@ -1,9 +1,23 @@
-[gd_scene load_steps=3 format=3 uid="uid://bw04633k6vv8p"]
+[gd_scene load_steps=9 format=3 uid="uid://bw04633k6vv8p"]
 
 [ext_resource type="Script" path="res://PickupObjects/delivery_zone.gd" id="1_t1xew"]
+[ext_resource type="Texture2D" uid="uid://duchchgvyimmq" path="res://Sprites/truckOpen.png" id="2_1f5ej"]
+[ext_resource type="Texture2D" uid="uid://c3b4koxw00e4l" path="res://Sprites/truckClosed.png" id="3_hmnvw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0qwou"]
+size = Vector2(600, 400)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2hsnp"]
+size = Vector2(800, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_50bi1"]
+size = Vector2(200, 350)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_stqa2"]
+size = Vector2(20, 200)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a4kjd"]
-size = Vector2(500, 500)
+size = Vector2(200, 200)
 
 [node name="DeliveryZone" type="Area2D" groups=["delivery"]]
 collision_layer = 2
@@ -12,14 +26,50 @@ priority = 5
 script = ExtResource("1_t1xew")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(106, 15)
+shape = SubResource("RectangleShape2D_0qwou")
+
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+position = Vector2(106, 15)
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="RigidBody2D"]
+position = Vector2(-106, -233)
+shape = SubResource("RectangleShape2D_2hsnp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+position = Vector2(-580, -14)
+shape = SubResource("RectangleShape2D_50bi1")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="RigidBody2D"]
+position = Vector2(384, -237)
+rotation = 0.851721
+shape = SubResource("RectangleShape2D_stqa2")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="RigidBody2D"]
+position = Vector2(-59, 235)
+shape = SubResource("RectangleShape2D_2hsnp")
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="RigidBody2D"]
+position = Vector2(391, 255)
+rotation = 2.30907
+shape = SubResource("RectangleShape2D_stqa2")
+
+[node name="Door" type="Area2D" parent="."]
+
+[node name="door" type="CollisionShape2D" parent="Door"]
+position = Vector2(-351, 303)
 shape = SubResource("RectangleShape2D_a4kjd")
 
-[node name="ColorRect" type="ColorRect" parent="."]
-offset_left = -250.0
-offset_top = -250.0
-offset_right = 250.0
-offset_bottom = 250.0
-color = Color(0, 0.733333, 0, 1)
+[node name="DoorOpen" type="Sprite2D" parent="."]
+texture = ExtResource("2_1f5ej")
+
+[node name="DoorClosed" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("3_hmnvw")
+
+[node name="VanClosed" type="Sprite2D" parent="."]
+visible = false
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]
+[connection signal="body_entered" from="Door" to="." method="_on_door_body_entered"]

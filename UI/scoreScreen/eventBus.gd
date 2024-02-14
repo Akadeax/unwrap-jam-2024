@@ -11,3 +11,6 @@ signal amntUpdate(amount_of_objects : Array[int])
 signal totalUpdate(current_score : int,amount_of_objects : Array[int])
 
 signal damagesUpdate(total_damage_cost : int)
+
+
+signal time_over()

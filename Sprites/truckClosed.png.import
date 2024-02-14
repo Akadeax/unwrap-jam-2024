@@ -2,20 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cqge4jikww8yh"
-path="res://.godot/imported/HouseSpriteSheet.jpg-f2b701321fd0bb5420ab7e8b06f40fcf.ctex"
+uid="uid://c3b4koxw00e4l"
+path="res://.godot/imported/truckClosed.png-c5c5b9e5389c8a0f52ccf1a9d7b34761.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/spriteSheets/HouseSpriteSheet.jpg"
-dest_files=["res://.godot/imported/HouseSpriteSheet.jpg-f2b701321fd0bb5420ab7e8b06f40fcf.ctex"]
+source_file="res://Sprites/truckClosed.png"
+dest_files=["res://.godot/imported/truckClosed.png-c5c5b9e5389c8a0f52ccf1a9d7b34761.ctex"]
 
 [params]
 
-compress/mode=1
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
