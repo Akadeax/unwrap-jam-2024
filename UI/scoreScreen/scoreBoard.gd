@@ -55,7 +55,6 @@ func _on_time_over():
 
 
 func on_object_dropped_off(type : PickupObject.Type, damage_percentage : float):
-	print("called")
 	var gained_score : int = int(score_dict[type] * damage_percentage)
 	score += gained_score
 	lost_score +=  score_dict[type] - gained_score

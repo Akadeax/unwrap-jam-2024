@@ -88,7 +88,6 @@ func yeet():
 
 
 func damage_object():
-	print(immunity_time)
 	if immunity_time < max_immunity_time:
 		return
 	health -= fragility

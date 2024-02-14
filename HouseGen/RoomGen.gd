@@ -127,10 +127,8 @@ func generate_house():
 		var entrance : Door = Door.new(Vector2i(2,5),Vector2i(0,1),room_pos)
 		var amnt_of_hallways : int = [2,2,3].pick_random()
 		var hallway_doors : Array[Door]
-		print("%s : doors" %amnt_of_hallways) 
 		var has_door : Array[bool] = [false,false,false]
 		for i in amnt_of_hallways:
-			print("run")
 			var rand_dir = randi_range(0,2)
 			if has_door[rand_dir]:
 				i -=1
@@ -142,7 +140,6 @@ func generate_house():
 				hallway_doors.append(Door.new(Vector2i(5,2),Vector2i(1,0),room_pos))
 			elif rand_dir == 2 :
 				hallway_doors.append(Door.new(Vector2i(2,0),Vector2i(0,-1),room_pos))
-		print("done")
 		var room : RoomRect = RoomRect.new(room_pos,room_size,hallway_doors,entrance)
 		room.wall_has_door = has_door
 		rooms.append(room)
@@ -166,7 +163,6 @@ func generate_house():
 						check = check || true
 					else :
 						check = check || false 
-	print (rooms.size())
 
 func square_room_draw(room : RoomRect):
 	var doors : Array[Door] = room.doors.duplicate() 

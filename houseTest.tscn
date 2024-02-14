@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bbfuqqxswh6x0"]
+[gd_scene load_steps=14 format=3 uid="uid://bbfuqqxswh6x0"]
 
 [ext_resource type="PackedScene" uid="uid://yt5vihcqbymr" path="res://HouseGen/HouseScene.tscn" id="1_ksmiq"]
 [ext_resource type="PackedScene" uid="uid://burd7rvt3gne5" path="res://Player/player.tscn" id="2_e6g4e"]
@@ -9,6 +9,8 @@
 [ext_resource type="Script" path="res://UI/Timer.gd" id="6_jpqif"]
 [ext_resource type="PackedScene" uid="uid://b3pvnspyg1prf" path="res://UI/scoreScreen/scoreBoard.tscn" id="7_5llg6"]
 [ext_resource type="PackedScene" uid="uid://bw04633k6vv8p" path="res://PickupObjects/delivery_zone.tscn" id="9_vnbf0"]
+[ext_resource type="AudioStream" uid="uid://dkyuewt7amyft" path="res://sound/Streams/Environment/Ambience.wav" id="10_7hoah"]
+[ext_resource type="AudioStream" uid="uid://bwrmcma3g83en" path="res://sound/Streams/Music/FullGameLoop.wav" id="11_3vg7u"]
 
 [sub_resource type="Curve" id="Curve_383s0"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.637363), 0.0, 0.0, 0, 0]
@@ -102,3 +104,13 @@ horizontal_alignment = 1
 [node name="DeliveryZone" parent="." instance=ExtResource("9_vnbf0")]
 position = Vector2(894, 4412)
 rotation = -1.5822
+
+[node name="Ambience" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("10_7hoah")
+autoplay = true
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("11_3vg7u")
+autoplay = true

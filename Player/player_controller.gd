@@ -43,6 +43,13 @@ var current_tongue_angle : float = -50
 @export var drop_input : String = "drop"
 @export var yeet_input : String = "yeet"
 
+
+@export_group("players")
+@export var bump_player : AudioStreamPlayer
+@export var grab_player : AudioStreamPlayer
+@export var beep_player : AudioStreamPlayer
+
+
 func _physics_process(delta):
 
 	#region handle movement and animation
@@ -63,6 +70,7 @@ func _physics_process(delta):
 		moving_back = true
 		fishie_holder.play()
 		fin_holder.speed_scale = 0.25
+		beep_player.play()
 	elif Input.is_action_just_released(back_input):
 		current_move_angle -= 180
 		moving_back = false
@@ -103,6 +111,7 @@ func _physics_process(delta):
 		velocity = knockback_dir * 150 * knockback_time_left
 
 	if (move_and_slide()):
+		bump_player.play()
 		knockback(get_wall_normal()*50, 0.2)
 		get_tree().get_first_node_in_group("cam").apply_shake(8.5, 30)
 
@@ -142,10 +151,9 @@ func _process(__):
 		$Tongue.visible = true
 		$Teeth.visible = false
 		if Input.is_action_pressed(pickup_input) and not objects.is_empty():
-			print(objects.size())
+			grab_player.play()
 			objects.sort_custom(distance_sort)
 			held_weight = objects[0].pickup(self)
-			print(held_weight)
 			held_object = objects[0]
 			is_holding_object = true
 

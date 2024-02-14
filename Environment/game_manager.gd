@@ -57,7 +57,7 @@ func _ready():
 	tween.tween_interval(0.8)
 	tween.tween_property(title_text, "self_modulate:a", 0, 0.1)
 
-	tween.tween_property(background, "color:a", 0, 0.3)
+	tween.tween_property(background, "color:a", 0, 0.7)
 
 	var cam = get_tree().get_first_node_in_group("cam")
 	tween.tween_property(cam, "global_position", Vector2(100, 100), 1)

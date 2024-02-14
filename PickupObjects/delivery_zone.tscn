@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://bw04633k6vv8p"]
+[gd_scene load_steps=10 format=3 uid="uid://bw04633k6vv8p"]
 
 [ext_resource type="Script" path="res://PickupObjects/delivery_zone.gd" id="1_t1xew"]
 [ext_resource type="Texture2D" uid="uid://duchchgvyimmq" path="res://Sprites/truckOpen.png" id="2_1f5ej"]
 [ext_resource type="Texture2D" uid="uid://c3b4koxw00e4l" path="res://Sprites/truckClosed.png" id="3_hmnvw"]
+[ext_resource type="AudioStream" uid="uid://coyqw3a3wf1t2" path="res://sound/Streams/Shark/randomPlacements.tres" id="4_pv5qp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0qwou"]
 size = Vector2(600, 400)
@@ -19,11 +20,12 @@ size = Vector2(20, 200)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a4kjd"]
 size = Vector2(200, 200)
 
-[node name="DeliveryZone" type="Area2D" groups=["delivery"]]
+[node name="DeliveryZone" type="Area2D" node_paths=PackedStringArray("deliver_player") groups=["delivery"]]
 collision_layer = 2
 collision_mask = 2
 priority = 5
 script = ExtResource("1_t1xew")
+deliver_player = NodePath("DeliverPlayer")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(106, 15)
@@ -69,6 +71,9 @@ texture = ExtResource("3_hmnvw")
 
 [node name="VanClosed" type="Sprite2D" parent="."]
 visible = false
+
+[node name="DeliverPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_pv5qp")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]

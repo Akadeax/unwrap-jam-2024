@@ -1,12 +1,14 @@
 extends Area2D
 
+@export var deliver_player : AudioStreamPlayer
+
 func _on_body_entered(body):
 	if body.is_in_group("pickup"):
 		if (!body.is_held):
 			body.queue_free()
 		else:
 			body.in_delivery = true
-
+		deliver_player.play()
 
 func _on_body_exited(body):
 	if body.is_in_group("pickup"):
@@ -25,4 +27,4 @@ func _on_door_body_entered(body):
 		#await get_tree().create_timer(1.0).timeout
 		#lerp(position,position + Vector2(-1000, 0).rotated(rotation),)
 		
-		print("game end")
+		EventBus.time_over.emit()
