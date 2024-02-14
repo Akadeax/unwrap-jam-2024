@@ -1,10 +1,16 @@
-[gd_scene load_steps=6 format=3 uid="uid://8rqnfb1ouik1"]
+[gd_scene load_steps=7 format=3 uid="uid://8rqnfb1ouik1"]
 
 [ext_resource type="PackedScene" uid="uid://yt5vihcqbymr" path="res://HouseGen/HouseScene.tscn" id="1_ksmiq"]
 [ext_resource type="PackedScene" uid="uid://burd7rvt3gne5" path="res://Player/player.tscn" id="2_e6g4e"]
 [ext_resource type="Script" path="res://Utils/custom_camera.gd" id="3_7dhxg"]
 [ext_resource type="PackedScene" uid="uid://vc5sgeq8koh1" path="res://PickupObjects/pickup_object.tscn" id="4_hm4fg"]
-[ext_resource type="PackedScene" uid="uid://ckywlhdbuc6cj" path="res://PickupObjects/chair.tscn" id="5_u6t33"]
+[ext_resource type="Shader" path="res://Environment/ripple.gdshader" id="5_ohp0i"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7y1yn"]
+shader = ExtResource("5_ohp0i")
+shader_parameter/wave_count = 20.0
+shader_parameter/speed = 3.0
+shader_parameter/height = 0.001
 
 [node name="HouseTest" type="Node2D"]
 
@@ -14,15 +20,19 @@ scale = Vector2(2.5, 2.5)
 [node name="player" parent="." instance=ExtResource("2_e6g4e")]
 position = Vector2(285, 530)
 
-[node name="Camera2D" type="Camera2D" parent="player"]
+[node name="Camera2D" type="Camera2D" parent="player" groups=["cam"]]
 zoom = Vector2(0.245, 0.245)
 script = ExtResource("3_7dhxg")
 
 [node name="PickupObject" parent="." instance=ExtResource("4_hm4fg")]
 position = Vector2(994, -35)
 
-[node name="PickupObject2" parent="." instance=ExtResource("4_hm4fg")]
-position = Vector2(1016, 810)
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="PickupObject3" parent="." instance=ExtResource("5_u6t33")]
-position = Vector2(411, 1164)
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_7y1yn")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
