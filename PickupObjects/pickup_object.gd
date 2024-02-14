@@ -3,8 +3,8 @@ class_name PickupObject
 signal deliver(health_procent, base_score)
 
 @export var fragility : float
-@export var max_health : float
-@export var destruction_frames : float
+@export var max_health : float = 100
+@export var destruction_frames : float = 3
 
 @export var destroyed_particles_scene : PackedScene
 
@@ -27,8 +27,8 @@ var health : float
 var is_held = false;
 @export var relative_pos : Vector2 = Vector2(0,-400);
 var shark;
-var immunity_time : float
-@export var max_immunity_time : float
+var immunity_time : float = 0
+@export var max_immunity_time : float = 2
 var immune : bool
 var in_delivery : bool
 
@@ -87,8 +87,9 @@ func yeet():
 
 
 func damage_object():
+	print(immunity_time)
 	if immunity_time < max_immunity_time:
-		pass
+		return
 	health -= fragility
 	var i : int = 1
 	while  ( health < max_health - max_health/ destruction_frames * i):

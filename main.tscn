@@ -35,9 +35,11 @@ texture = SubResource("GradientTexture2D_56rth")
 
 [node name="PickupObject" parent="." instance=ExtResource("3_u8sj1")]
 position = Vector2(-1997, 791)
+max_immunity_time = 2.0
 
 [node name="DeliveryZone" parent="." instance=ExtResource("4_eum7i")]
 position = Vector2(1731, 167)
 
 [node name="PickupObject2" parent="." instance=ExtResource("5_0akoi")]
 position = Vector2(-1291, 73)
+max_immunity_time = 2.0
