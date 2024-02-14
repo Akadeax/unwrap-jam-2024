@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Utils/custom_camera.gd" id="1_k0xmf"]
 [ext_resource type="PackedScene" uid="uid://ccqpt0l87sunk" path="res://Player/player.tscn" id="2_6q1ic"]
-[ext_resource type="AudioStream" uid="uid://dkyuewt7amyft" path="res://Sound/Streams/Environment/Ambience.wav" id="3_nfvv7"]
+[ext_resource type="AudioStream" uid="uid://bnw7jgnhrs8p5" path="res://Sound/Streams/Environment/Ambience.mp3" id="3_vyomr"]
 [ext_resource type="AudioStream" uid="uid://3ytgfcvsfacm" path="res://Sound/Streams/Music/GameLoopstems/MusicIntensity1.mp3" id="4_st5k5"]
 [ext_resource type="AudioStream" uid="uid://cyn0cp3lyrkhf" path="res://Sound/Streams/Music/GameLoopstems/MusicIntensity2.mp3" id="5_bylwc"]
 [ext_resource type="AudioStream" uid="uid://eapccgnk4xy1" path="res://Sound/Streams/Music/GameLoopstems/MusicIntensity3.mp3" id="6_byote"]
@@ -106,7 +106,7 @@ scale = Vector2(29.4124, 2.32)
 texture = SubResource("GradientTexture2D_56rth")
 
 [node name="AmbiencePlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_nfvv7")
+stream = ExtResource("3_vyomr")
 autoplay = true
 bus = &"Ambience"
 script = SubResource("GDScript_2urc8")
