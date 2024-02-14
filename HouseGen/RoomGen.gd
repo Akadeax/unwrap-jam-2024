@@ -15,11 +15,13 @@ class RoomRect:
 	var size : Vector2i 
 	var entrance : Door
 	var doors : Array[Door] # need to be on a wall
+	var type : RoomTypes
 	func _init(passed_grid_pos : Vector2i, passed_size : Vector2i, passed_doors : Array[Door], passed_entrance : Door):
 		grid_pos = passed_grid_pos
 		size = passed_size
 		doors = passed_doors
 		entrance = passed_entrance
+		type = RoomTypes.values().pick_random()
 	func duplicate() -> RoomRect:
 		return RoomRect.new(grid_pos,size,doors.duplicate(),entrance)
 	func is_overlapping(other_room : RoomRect) ->bool:
@@ -29,8 +31,17 @@ class RoomRect:
 		var other_rect = Rect2(other_room.grid_pos, house_two_actual_size)
 		return my_rect.intersects(other_rect,true)
 		
+enum RoomTypes{HALLWAY,KITCHEN,BEDROOM,BATHROOM,LIVINGROOM} 
 
-var tile_dict = { #dict for mapping the tiles to sensible names
+const tilemap_dict = {
+	RoomTypes.HALLWAY : 0,
+	RoomTypes.KITCHEN : 0,
+	RoomTypes.BEDROOM : 0,
+	RoomTypes.BATHROOM : 0,
+	RoomTypes.LIVINGROOM : 0,
+}
+
+const tile_dict = { #dict for mapping the tiles to sensible names
 	"OPEN_FLOOR" : Vector2i(0,4),
 	"CORNER_TOP_RIGHT" : Vector2i(3,1),
 	"CORNER_TOP_LEFT" : Vector2i(0,1),
@@ -56,9 +67,9 @@ var hallways: Array[RoomRect]
 func _ready():
 	generate_house()
 	for i in (rooms.size()):
-		square_room_draw(rooms[i],false)
+		square_room_draw(rooms[i])
 	for i in (hallways.size()):
-		square_room_draw(hallways[i],false)
+		square_room_draw(hallways[i])
 	
 
 func generate_house():
@@ -98,6 +109,8 @@ func generate_house():
 				var newroom = generate_room(hallways[x].doors[i])
 				rooms.append(newroom)
 		check = false
+		if rooms.size() < 6 :
+			check = true
 		for i in (rooms.size()):
 			for j in (rooms.size()):
 				if i != j:
@@ -107,10 +120,10 @@ func generate_house():
 						check = check || true
 					else :
 						check = check || false 
-						var dumbass
+	print (rooms.size())
 
 
-func square_room_draw(room : RoomRect,wood : bool):
+func square_room_draw(room : RoomRect):
 	var doors : Array[Door] = room.doors.duplicate() 
 	doors.append(room.entrance)
 	for xIdx in range(room.size.x):
@@ -133,9 +146,9 @@ func square_room_draw(room : RoomRect,wood : bool):
 			elif yIdx == 0 && xIdx == (room.size.x-1):
 				tile_name = "CORNER_TOP_RIGHT"
 			if tile_name == "OPEN_FLOOR":
-				tilemap.set_cell(0,(Vector2i(xIdx,yIdx)+room.grid_pos)*8,0,Vector2i(randi_range(0,3),tile_dict[tile_name].y)+(int(wood)*Vector2i(4,0)),0)
+				tilemap.set_cell(0,(Vector2i(xIdx,yIdx)+room.grid_pos)*8,0,Vector2i(randi_range(0,3),tile_dict[tile_name].y)+(tilemap_dict[room.type]*Vector2i(4,0)),0)
 			else:
-				tilemap.set_cell(0,(Vector2i(xIdx,yIdx)+room.grid_pos)*8,0,(tile_dict[tile_name])+(int(wood)*Vector2i(4,0)),0)
+				tilemap.set_cell(0,(Vector2i(xIdx,yIdx)+room.grid_pos)*8,0,(tile_dict[tile_name])+(tilemap_dict[room.type]*Vector2i(4,0)),0)
 	for i in range(doors.size()):
 		var tile1_name : String 
 		var tile2_name : String
@@ -146,8 +159,8 @@ func square_room_draw(room : RoomRect,wood : bool):
 			else :
 				tile1_name = "INSIDE_HORIZONTAL_CORNER_TOP_RIGHT"
 				tile2_name = "INSIDE_HORIZONTAL_CORNER_BOTTOM_RIGHT"
-			tilemap.set_cell(0,(doors[i].relative_grid_pos+room.grid_pos)*8,0,tile_dict[tile1_name]+(int(wood)*Vector2i(4,0)),0)
-			tilemap.set_cell(0,(doors[i].relative_grid_pos+room.grid_pos+Vector2i(0,1))*8,0,tile_dict[tile2_name]+(int(wood)*Vector2i(4,0)),0)
+			tilemap.set_cell(0,(doors[i].relative_grid_pos+room.grid_pos)*8,0,tile_dict[tile1_name]+(tilemap_dict[room.type]*Vector2i(4,0)),0)
+			tilemap.set_cell(0,(doors[i].relative_grid_pos+room.grid_pos+Vector2i(0,1))*8,0,tile_dict[tile2_name]+(tilemap_dict[room.type]*Vector2i(4,0)),0)
 		else:
 			if doors[i].relative_grid_pos.y == 0:
 				tile1_name = "INSIDE_VERTICAL_CORNER_TOP_LEFT"
@@ -155,8 +168,8 @@ func square_room_draw(room : RoomRect,wood : bool):
 			else :
 				tile1_name = "INSIDE_VERTICAL_CORNER_BOTTOM_LEFT"
 				tile2_name = "INSIDE_VERTICAL_CORNER_BOTTOM_RIGHT"
-			tilemap.set_cell(0,(doors[i].relative_grid_pos+room.grid_pos)*8,0,tile_dict[tile1_name]+(int(wood)*Vector2i(4,0)),0)
-			tilemap.set_cell(0,(doors[i].relative_grid_pos+room.grid_pos+Vector2i(1,0))*8,0,tile_dict[tile2_name]+(int(wood)*Vector2i(4,0)),0)
+			tilemap.set_cell(0,(doors[i].relative_grid_pos+room.grid_pos)*8,0,tile_dict[tile1_name]+(tilemap_dict[room.type]*Vector2i(4,0)),0)
+			tilemap.set_cell(0,(doors[i].relative_grid_pos+room.grid_pos+Vector2i(1,0))*8,0,tile_dict[tile2_name]+(tilemap_dict[room.type]*Vector2i(4,0)),0)
 
 func generate_room( prev_door : Door) -> RoomRect:
 	const max_size : int = 8
@@ -270,4 +283,5 @@ func generate_hallway(prev_door : Door) -> RoomRect:
 		var new_door : Door = Door.new(door_pos,dir,pos)
 		doors.append(new_door)
 	var room : RoomRect = RoomRect.new(pos,size,doors,entry_door)
+	room.type = RoomTypes.HALLWAY
 	return room
