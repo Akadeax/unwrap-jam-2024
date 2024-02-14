@@ -15,8 +15,13 @@ var is_held = false;
 var shark;
 var immunity_time : float
 @export var max_immunity_time : float
+var immune : bool
+var in_delivery : bool
 
 var relative_rot : float
+
+var iteract_delay : float
+const max_interact_delay : float = 0.5
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -26,10 +31,19 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 
+
 	if is_held:
 		global_rotation = shark.global_rotation + relative_rot
 		global_position = shark.global_position + relative_pos.rotated(shark.global_rotation)
-
+	else:
+		if immune:
+			immunity_time -= delta 
+			if immunity_time <= 0:
+				immune=false
+				set_collision_layer_value(1,1);
+			
+		if in_delivery:
+			queue_free()
 
 func pickup( new_shark ):
 	shark = new_shark;
@@ -40,13 +54,15 @@ func pickup( new_shark ):
 func drop():
 	is_held = false;
 	linear_velocity = shark.velocity * 1.3
-	set_collision_layer_value(1,1);
+	immune = true
+	immunity_time = max_immunity_time
 	
 
 func yeet():
 	is_held = false;
 	linear_velocity = shark.velocity * 3
-	set_collision_layer_value(1,1);
+	immune = true
+	immunity_time = max_immunity_time
 
 
 func damage_object():

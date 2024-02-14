@@ -75,7 +75,8 @@ func _physics_process(delta):
 	if knockback_time_left > 0:
 		velocity = knockback_dir * 150 * knockback_time_left
 
-	move_and_slide()
+	if (move_and_slide()):
+		knockback(get_wall_normal()*50, 0.2)
 
 func knockback(dir : Vector2, time : float):
 	knockback_dir = dir
@@ -103,6 +104,8 @@ func _process(__):
 		if Input.is_action_pressed("yeet"):
 			held_object.yeet()
 			is_holding_object = false
+			knockback(up_direction.rotated(rotation)*-50, 0.2)
+			
 	else:
 		if Input.is_action_pressed("pickup") and not objects.is_empty():
 			print(objects.size())

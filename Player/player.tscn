@@ -325,13 +325,12 @@ animations = [{
 "speed": 12.0
 }]
 
-[node name="player" type="CharacterBody2D" node_paths=PackedStringArray("body_holder", "fishie_holder", "fin_holder")]
+[node name="player" type="CharacterBody2D" node_paths=PackedStringArray("body_holder", "fin_holder")]
 z_index = 2
 motion_mode = 1
 script = ExtResource("1_b7tfx")
 forward_speed = 500.0
 body_holder = NodePath("Body2")
-fishie_holder = NodePath("AnimatedSprite2D")
 fin_holder = NodePath("Fin2")
 fin_follow_speed = 55.0
 fin_follow_curve = SubResource("Curve_7kcpw")
@@ -376,7 +375,7 @@ offset = Vector2(-23.635, 0)
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.4, 0.4)
 sprite_frames = SubResource("SpriteFrames_j3rkv")
-frame_progress = 0.25674
+frame_progress = 0.72133
 
 [connection signal="body_entered" from="PickupArea" to="." method="_on_pickup_area_body_entered"]
 [connection signal="body_exited" from="PickupArea" to="." method="_on_pickup_area_body_exited"]
