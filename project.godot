@@ -20,6 +20,12 @@ config/icon="res://Sprites/icon.svg"
 SoundManager="*res://addons/sound_manager/sound_manager.gd"
 EventBus="*res://UI/scoreScreen/eventBus.gd"
 
+[display]
+
+window/size/mode=2
+window/stretch/mode="viewport"
+window/stretch/aspect="keep_height"
+
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/sound_manager/plugin.cfg")
@@ -64,3 +70,5 @@ back={
 [rendering]
 
 renderer/rendering_method="mobile"
+2d/snap/snap_2d_transforms_to_pixel=true
+2d/snap/snap_2d_vertices_to_pixel=true
