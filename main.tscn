@@ -1,9 +1,9 @@
 [gd_scene load_steps=8 format=3 uid="uid://dl0kpmvq5vc50"]
 
 [ext_resource type="Script" path="res://Utils/custom_camera.gd" id="1_k0xmf"]
-[ext_resource type="PackedScene" uid="uid://ccqpt0l87sunk" path="res://Player/player.tscn" id="2_6q1ic"]
-[ext_resource type="PackedScene" uid="uid://bw04633k6vv8p" path="res://PickupObjects/delivery_zone.tscn" id="3_28asb"]
-[ext_resource type="PackedScene" uid="uid://vc5sgeq8koh1" path="res://PickupObjects/pickup_object.tscn" id="4_pxo4p"]
+[ext_resource type="PackedScene" uid="uid://burd7rvt3gne5" path="res://Player/player.tscn" id="2_6q1ic"]
+[ext_resource type="PackedScene" uid="uid://vc5sgeq8koh1" path="res://PickupObjects/pickup_object.tscn" id="3_u8sj1"]
+[ext_resource type="PackedScene" uid="uid://bw04633k6vv8p" path="res://PickupObjects/delivery_zone.tscn" id="4_eum7i"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fblan"]
 size = Vector2(1748, 143)
@@ -32,14 +32,8 @@ position = Vector2(-2, -823)
 scale = Vector2(29.4124, 2.32)
 texture = SubResource("GradientTexture2D_56rth")
 
-[node name="DeliveryZone" parent="." instance=ExtResource("3_28asb")]
-position = Vector2(-1871, -562)
+[node name="PickupObject" parent="." instance=ExtResource("3_u8sj1")]
+position = Vector2(-1997, 791)
 
-[node name="PickupObject" parent="." instance=ExtResource("4_pxo4p")]
-position = Vector2(1059, -276)
-
-[node name="PickupObject2" parent="." instance=ExtResource("4_pxo4p")]
-position = Vector2(-645, 807)
-
-[node name="PickupObject3" parent="." instance=ExtResource("4_pxo4p")]
-position = Vector2(-1083, -231)
+[node name="DeliveryZone" parent="." instance=ExtResource("4_eum7i")]
+position = Vector2(1731, 167)

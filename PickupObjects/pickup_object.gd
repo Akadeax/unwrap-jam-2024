@@ -4,6 +4,9 @@ signal deliver(health_procent, base_score)
 @export var base_score : float
 @export var max_health : float
 
+enum Type{ CHAIR, SOFA, DRAWER, RUG, TABLE, BOX }
+@export var type : Type
+
 var health : float
 var is_held = false;
 const relative_pos = Vector2(0,-400);
@@ -18,12 +21,12 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	
+
 	if is_held:
 		rotation = shark.rotation
 		position = shark.position + relative_pos.rotated(shark.rotation)
 		linear_velocity = shark.velocity
-	
+
 
 func pickup( new_shark ):
 	shark = new_shark;
@@ -35,7 +38,7 @@ func drop():
 
 func damage_object():
 	health -= 1
-	
+
 	if health < 0:
 		# call reduce score
 		print("I die")
@@ -44,7 +47,7 @@ func damage_object():
 
 func _on_tree_exiting():
 	deliver.emit(float(health/max_health), base_score)
-	
+
 
 
 func _on_area_2d_area_entered(area):

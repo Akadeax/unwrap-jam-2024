@@ -54,6 +54,7 @@ func _physics_process(delta):
 
 func _on_pickup_area_body_entered(body):
 	if body.is_in_group("pickup"):
+		print("added")
 		objects.push_back(body)
 
 
@@ -62,16 +63,17 @@ func _on_pickup_area_body_exited(body):
 		objects.erase(body)
 
 
-func _process(delta):
+func _process(__):
 	if not held_object or not is_instance_valid(held_object):
 		is_holding_object = false
-	
+
 	if is_holding_object:
 		if Input.is_action_pressed("drop"):
 			held_object.drop()
 			is_holding_object = false
 	else:
 		if Input.is_action_pressed("pickup") and not objects.is_empty():
+			print(objects.size())
 			objects.sort_custom(distance_sort)
 			objects[0].pickup(self)
 			#var object = objects[0]
@@ -79,7 +81,7 @@ func _process(delta):
 			#add_child(object)
 			held_object = objects[0]
 			is_holding_object = true
-		
+
 
 func distance_sort(lhs,rhs) -> bool:
 	return (Vector2(lhs.position - position).length_squared() < Vector2(rhs.position - position).length_squared())
