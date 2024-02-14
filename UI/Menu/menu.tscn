@@ -1,8 +1,8 @@
 [gd_scene load_steps=10 format=3 uid="uid://c0x38gfb5pvlm"]
 
-[ext_resource type="Script" path="res://Menu/menu.gd" id="1_h3py3"]
-[ext_resource type="AudioStream" uid="uid://cbth3tcby8xc7" path="res://Menu/UI_Music.wav" id="2_13xrf"]
-[ext_resource type="AudioStream" uid="uid://dhuj48vhse5vw" path="res://Menu/StartGame_UI.wav" id="3_7h5o8"]
+[ext_resource type="Script" path="res://UI/Menu/menu.gd" id="1_h3py3"]
+[ext_resource type="AudioStream" uid="uid://cbth3tcby8xc7" path="res://sound/UI_Music.wav" id="2_13xrf"]
+[ext_resource type="AudioStream" uid="uid://dhuj48vhse5vw" path="res://sound/StartGame_UI.wav" id="3_7h5o8"]
 [ext_resource type="PackedScene" uid="uid://dl0kpmvq5vc50" path="res://main.tscn" id="4_0npm0"]
 [ext_resource type="Shader" path="res://Environment/water.gdshader" id="4_yauti"]
 [ext_resource type="Shader" path="res://Environment/ripple.gdshader" id="5_ir20u"]

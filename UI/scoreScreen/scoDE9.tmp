@@ -1,0 +1,44 @@
+[gd_scene load_steps=5 format=3 uid="uid://b3pvnspyg1prf"]
+
+[ext_resource type="Script" path="res://UI/scoreScreen/scoreBoard.gd" id="1_8rwx5"]
+[ext_resource type="Texture2D" uid="uid://dmmbyrts3fkr5" path="res://Sprites/UI/testBox.png" id="1_617ev"]
+[ext_resource type="Script" path="res://UI/scoreScreen/totalScoreLabel.gd" id="2_mcdnp"]
+[ext_resource type="Script" path="res://UI/scoreScreen/amountLabel.gd" id="4_obin5"]
+
+[node name="ScoreBoard" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_8rwx5")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("1_617ev")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 542.0
+offset_top = 123.0
+offset_right = 593.0
+offset_bottom = 146.0
+text = "SCORE"
+
+[node name="totalScoreLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 687.0
+offset_top = 507.0
+offset_right = 738.0
+offset_bottom = 530.0
+text = "Total:"
+script = ExtResource("2_mcdnp")
+
+[node name="amountLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 592.0
+offset_top = 165.0
+offset_right = 643.0
+offset_bottom = 188.0
+text = "Total:"
+script = ExtResource("4_obin5")
