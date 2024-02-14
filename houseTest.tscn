@@ -1,9 +1,18 @@
-[gd_scene load_steps=6 format=3 uid="uid://bbfuqqxswh6x0"]
+[gd_scene load_steps=12 format=3 uid="uid://bbfuqqxswh6x0"]
 
 [ext_resource type="PackedScene" uid="uid://yt5vihcqbymr" path="res://HouseGen/HouseScene.tscn" id="1_ksmiq"]
 [ext_resource type="PackedScene" uid="uid://burd7rvt3gne5" path="res://Player/player.tscn" id="2_e6g4e"]
 [ext_resource type="Script" path="res://Utils/custom_camera.gd" id="3_7dhxg"]
+[ext_resource type="Script" path="res://Environment/game_manager.gd" id="4_6omd2"]
+[ext_resource type="FontFile" uid="uid://cx55imgibsjte" path="res://Sprites/fonts/SpaceMono-Regular.ttf" id="5_go5dp"]
 [ext_resource type="Shader" path="res://Environment/ripple.gdshader" id="5_ohp0i"]
+[ext_resource type="Script" path="res://UI/Timer.gd" id="6_jpqif"]
+[ext_resource type="PackedScene" uid="uid://b3pvnspyg1prf" path="res://UI/scoreScreen/scoreBoard.tscn" id="7_5llg6"]
+[ext_resource type="PackedScene" uid="uid://bw04633k6vv8p" path="res://PickupObjects/delivery_zone.tscn" id="9_vnbf0"]
+
+[sub_resource type="Curve" id="Curve_383s0"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.637363), 0.0, 0.0, 0, 0]
+point_count = 2
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7y1yn"]
 shader = ExtResource("5_ohp0i")
@@ -18,19 +27,87 @@ shader_parameter/mix_val = 0.33
 [node name="HouseScene" parent="." instance=ExtResource("1_ksmiq")]
 scale = Vector2(2.5, 2.5)
 
-[node name="player" parent="." instance=ExtResource("2_e6g4e")]
-position = Vector2(285, 530)
-
-[node name="Camera2D" type="Camera2D" parent="player" groups=["cam"]]
+[node name="Camera2D" type="Camera2D" parent="." groups=["cam"]]
+position = Vector2(894, 3356)
 zoom = Vector2(0.19, 0.19)
+position_smoothing_speed = 500.0
 script = ExtResource("3_7dhxg")
+zoom_modifier_curve = SubResource("Curve_383s0")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="player" parent="." instance=ExtResource("2_e6g4e")]
+position = Vector2(613, 3334)
 
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+[node name="player2" parent="." instance=ExtResource("2_e6g4e")]
+modulate = Color(1, 0.317647, 0.611765, 1)
+position = Vector2(1134, 3334)
+left_input = "left2"
+right_input = "right2"
+back_input = "back2"
+pickup_input = "pickup2"
+drop_input = "drop2"
+yeet_input = "yeet2"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." node_paths=PackedStringArray("background", "title_text")]
+process_mode = 3
+script = ExtResource("4_6omd2")
+background = NodePath("BG")
+title_text = NodePath("TitleTextIntro/Label")
+
+[node name="Shader" type="ColorRect" parent="CanvasLayer"]
 material = SubResource("ShaderMaterial_7y1yn")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="BG" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0)
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 70
+theme_override_constants/margin_top = 35
+
+[node name="Label" type="Label" parent="CanvasLayer/MarginContainer"]
+process_mode = 3
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_go5dp")
+theme_override_font_sizes/font_size = 48
+text = "Time left"
+script = ExtResource("6_jpqif")
+
+[node name="ScoreBoard" parent="CanvasLayer" instance=ExtResource("7_5llg6")]
+anchors_preset = -1
+anchor_left = 0.009
+anchor_right = 0.598
+anchor_bottom = 0.625
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.615, 1.615)
+
+[node name="TitleTextIntro" type="MarginContainer" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_top = 200
+
+[node name="Label" type="Label" parent="CanvasLayer/TitleTextIntro"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("5_go5dp")
+theme_override_font_sizes/font_size = 72
+text = "This is title text"
+horizontal_alignment = 1
+
+[node name="DeliveryZone" parent="." instance=ExtResource("9_vnbf0")]
+position = Vector2(894, 4412)
+rotation = -1.5822

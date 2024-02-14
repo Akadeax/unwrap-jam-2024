@@ -8,12 +8,12 @@ func _ready():
 
 
 func _process(delta : float):
-	if current_time > 0:
-		current_time -= delta
-	else:
-		current_time = 0
-		EventBus.time_over.emit()
-
+	if get_tree().paused == false:
+		if current_time > 0:
+			current_time -= delta
+		else:
+			current_time = 0
+			EventBus.time_over.emit()
 
 	text = "Time Left: %s" % as_text()
 
@@ -22,7 +22,7 @@ func _process(delta : float):
 
 func as_text() -> String:
 	var minutes := int(current_time) / 60
-	var seconds := int(current_time) % 60 + 1
+	var seconds := int(current_time + 0.99) % 60
 
 	var minutes_str := str(minutes)
 	var seconds_str := str(seconds)
