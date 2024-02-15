@@ -1,4 +1,4 @@
-[gd_scene load_steps=64 format=3 uid="uid://bbfuqqxswh6x0"]
+[gd_scene load_steps=66 format=3 uid="uid://bbfuqqxswh6x0"]
 
 [ext_resource type="PackedScene" uid="uid://yt5vihcqbymr" path="res://HouseGen/HouseScene.tscn" id="1_ksmiq"]
 [ext_resource type="PackedScene" uid="uid://burd7rvt3gne5" path="res://Player/player.tscn" id="2_e6g4e"]
@@ -52,6 +52,8 @@
 [ext_resource type="Texture2D" uid="uid://bgnv0thprdod5" path="res://SPEECHbUBBLE3.png" id="38_kv6ox"]
 [ext_resource type="AudioStream" uid="uid://mqaipulpp6kr" path="res://sound/Streams/Music/Music_Intensity3.wav" id="38_ylhwf"]
 [ext_resource type="AudioStream" uid="uid://j1onew3lugvj" path="res://sound/Streams/Music/Music_Intensity4.wav" id="39_r3e7i"]
+[ext_resource type="Texture2D" uid="uid://bjvcrpvw78qgu" path="res://Sprites/truck_roof.png" id="41_eqn05"]
+[ext_resource type="Script" path="res://vanRoogf.gd" id="42_xa8dp"]
 
 [sub_resource type="Curve" id="Curve_383s0"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.637363), 0.0, 0.0, 0, 0]
@@ -366,6 +368,11 @@ texture = ExtResource("29_a23uj")
 [node name="DeliveryZone" parent="." instance=ExtResource("9_vnbf0")]
 position = Vector2(894, 4412)
 rotation = -1.5822
+
+[node name="VanRoof" type="Sprite2D" parent="DeliveryZone"]
+z_index = 10
+texture = ExtResource("41_eqn05")
+script = ExtResource("42_xa8dp")
 
 [node name="Ambience" type="AudioStreamPlayer" parent="."]
 process_mode = 3
