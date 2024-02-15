@@ -95,6 +95,12 @@ const tile_dict = { #dict for mapping the tiles to sensible names
 	"BOTTOM_WALL" : Vector2i(1,0),
 	"RIGHT_WALL" : Vector2i(3,0),
 	}
+const door_dir_to_wallIdx = {
+	0:0,
+	1:2,
+	2:1,
+	3:3
+}
 
 var rooms: Array[RoomRect]
 var hallways: Array[RoomRect]
@@ -127,10 +133,8 @@ func generate_house():
 		var entrance : Door = Door.new(Vector2i(2,5),Vector2i(0,1),room_pos)
 		var amnt_of_hallways : int = [2,2,3].pick_random()
 		var hallway_doors : Array[Door]
-		print("%s : doors" %amnt_of_hallways) 
 		var has_door : Array[bool] = [false,false,false]
 		for i in amnt_of_hallways:
-			print("run")
 			var rand_dir = randi_range(0,2)
 			if has_door[rand_dir]:
 				i -=1
@@ -142,7 +146,6 @@ func generate_house():
 				hallway_doors.append(Door.new(Vector2i(5,2),Vector2i(1,0),room_pos))
 			elif rand_dir == 2 :
 				hallway_doors.append(Door.new(Vector2i(2,0),Vector2i(0,-1),room_pos))
-		print("done")
 		var room : RoomRect = RoomRect.new(room_pos,room_size,hallway_doors,entrance)
 		room.wall_has_door = has_door
 		rooms.append(room)
@@ -166,7 +169,6 @@ func generate_house():
 						check = check || true
 					else :
 						check = check || false 
-	print (rooms.size())
 
 func square_room_draw(room : RoomRect):
 	var doors : Array[Door] = room.doors.duplicate() 
@@ -237,22 +239,22 @@ func generate_room( prev_door : Door) -> RoomRect:
 	var pos_correction : Vector2i
 	var entry_door : Door = Door.new(Vector2i(0,0),Vector2i(0,0),Vector2i(0,0)) 
 	if prev_door.dir.x == -1:
-		wall_has_door[0] = true
+		wall_has_door[2] = true
 		pos.x = prev_door.global_grid_pos.x + 1 
 		pos_correction = Vector2i(1,0)
 		pos.y = prev_door.global_grid_pos.y - 1
 	elif prev_door.dir.x == 1:
-		wall_has_door[2] = true
+		wall_has_door[0] = true
 		pos.x = prev_door.global_grid_pos.x - size.x
 		pos_correction = Vector2i(-1,0)
 		pos.y = prev_door.global_grid_pos.y - 1
 	elif prev_door.dir.y == -1:
-		wall_has_door[1] = true
+		wall_has_door[3] = true
 		pos.y = prev_door.global_grid_pos.y + 1
 		pos_correction = Vector2i(0,1)
 		pos.x = prev_door.global_grid_pos.x - 1
 	elif prev_door.dir.y == 1:
-		wall_has_door[3] = true
+		wall_has_door[1] = true
 		pos.y = prev_door.global_grid_pos.y - size.y
 		pos_correction = Vector2i(0,-1)
 		pos.x = prev_door.global_grid_pos.x - 1
@@ -282,13 +284,13 @@ func generate_hallway(prev_door : Door) -> RoomRect:
 		pos_correction = Vector2i(-1,0)
 		pos.y = prev_door.global_grid_pos.y - 1
 	elif prev_door.dir.x == 1:
-		wall_has_door[1] = true
+		wall_has_door[2] = true
 		size.y = 4
 		pos.x = prev_door.global_grid_pos.x + 1
 		pos_correction = Vector2i(1,0)
 		pos.y = prev_door.global_grid_pos.y - 1
 	elif prev_door.dir.y == -1:
-		wall_has_door[2] = true
+		wall_has_door[1] = true
 		size.x = 4
 		pos.y = prev_door.global_grid_pos.y - size.y
 		pos_correction = Vector2i(0,-1)
@@ -307,10 +309,10 @@ func generate_hallway(prev_door : Door) -> RoomRect:
 	var doors : Array[Door] 
 	for i in (door_amnt):
 		var door_dir = randi_range(0,3)
-		if wall_has_door[door_dir]:
+		if wall_has_door[door_dir_to_wallIdx[door_dir]]:
 			i -=1
 			continue
-		wall_has_door[door_dir] = true
+		wall_has_door[door_dir_to_wallIdx[door_dir]] = true
 		var dir : Vector2i
 		var door_pos : Vector2i
 		if door_dir == 0:
@@ -345,13 +347,14 @@ func generate_hallway(prev_door : Door) -> RoomRect:
 		doors.append(new_door)
 	var room : RoomRect = RoomRect.new(pos,size,doors,entry_door)
 	room.type = RoomTypes.HALLWAY
+	room.wall_has_door = wall_has_door
 	return room
 
 func fill_room(room : RoomRect):
 	var min_items : int
 	var max_items : int 
-	var center_types : Array[PackedScene] = [big_table_1]
-	var wall_types : Array[PackedScene] = [big_table_1]
+	var center_types : Array[PackedScene] = []
+	var wall_types : Array[PackedScene] = []
 	var weights : Array[bool] = [true,false]
 	if room.type == RoomTypes.BATHROOM:
 		min_items = 4
@@ -418,11 +421,14 @@ func fill_room(room : RoomRect):
 	fill(randi_range(min_items,max_items),center_types,wall_types,room,weights)
 
 func fill_hallway(room : RoomRect):
-	var min_items = 0
-	var max_items = 2
+	var min_items = 4
+	var max_items = 4
+	
 	var center_types : Array[PackedScene] 
 	var wall_types : Array[PackedScene] 
+	
 	var weights : Array[bool] = [true,false]
+	
 	#append center rooms
 	center_types.append(box_1)
 	center_types.append(box_2)
@@ -462,22 +468,23 @@ func get_available_wall_location(room : RoomRect) -> SpawnInfo:
 	var possible_walls : int = 0
 	var spawn_rects : Array[DualPos] =[
 		DualPos.new(
-			tilemap.map_to_local(Vector2(Vector2(room.grid_pos) +Vector2(room.size.x-1,0.2))*8*2.5),
-			tilemap.map_to_local((Vector2(room.grid_pos) + Vector2(room.size) + Vector2(-1.2,-1))*8*2.5)
+			tilemap.map_to_local(Vector2(Vector2(room.grid_pos) +Vector2(room.size.x-0.75,0.5))*8*2.5),
+			tilemap.map_to_local((Vector2(room.grid_pos) + Vector2(room.size) + Vector2(-0.75,-1.5))*8*2.5)
 			),
 		DualPos.new(
-			tilemap.map_to_local((Vector2(room.grid_pos) + Vector2(room.size) - Vector2(room.size.x,1.2))*8*2.5),
-			tilemap.map_to_local((Vector2(room.grid_pos) + Vector2(room.size) - Vector2(1,1))*8*2.5)
+			tilemap.map_to_local((Vector2(room.grid_pos) + Vector2(room.size) + Vector2(-room.size.x+0.5,-.75))*8*2.5),
+			tilemap.map_to_local((Vector2(room.grid_pos) + Vector2(room.size) + Vector2(-1.5,-0.75))*8*2.5),
 			),
 		DualPos.new(
-			tilemap.map_to_local((Vector2(room.grid_pos))*8*2.5),
-			tilemap.map_to_local(Vector2(Vector2(room.grid_pos) +Vector2(0.2,room.size.y- 1))*8*2.5)
+			tilemap.map_to_local((Vector2(room.grid_pos) + Vector2(room.size) + Vector2(-room.size.x-0.18,-room.size.y+0.5))*8*2.5),
+			tilemap.map_to_local((Vector2(room.grid_pos) + Vector2(room.size) + Vector2(-room.size.x-0.18,-1.3))*8*2.5),
 			),
 		DualPos.new(
-			tilemap.map_to_local((Vector2(room.grid_pos))*8*2.5),
-			tilemap.map_to_local(Vector2(Vector2(room.grid_pos) + Vector2(room.size)-Vector2(1,room.size.y-0.2))*8*2.5)
+			tilemap.map_to_local((Vector2(room.grid_pos) + Vector2(room.size) + Vector2(-room.size.x+0.5,-room.size.y-.18))*8*2.5),
+			tilemap.map_to_local(Vector2(Vector2(room.grid_pos) +Vector2(room.size.x-1.5,-0.18))*8*2.5)
 			),
 	] 
+	
 	for i in range(room.wall_has_door.size()):
 		if !room.wall_has_door[i] :
 			possible_walls +=1

@@ -17,15 +17,16 @@ continuous_cd = 2
 linear_damp = 1.0
 script = ExtResource("1_eg62h")
 fragility = 25.0
-max_health = 100.0
 destruction_frames = 2.0
 destroyed_particles_scene = ExtResource("2_pxe16")
 max_immunity_time = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, 258)
 shape = SubResource("RectangleShape2D_uqtng")
 
 [node name="Area2D" type="Area2D" parent="." groups=["pickup"]]
+position = Vector2(-1, 258)
 collision_layer = 2
 collision_mask = 3
 
@@ -33,10 +34,12 @@ collision_mask = 3
 shape = SubResource("RectangleShape2D_uqtng")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-1, 258)
 texture = ExtResource("3_24h7u")
 hframes = 2
 
 [node name="BonkParticles" parent="." instance=ExtResource("4_86a5q")]
+position = Vector2(-1, 258)
 
 [connection signal="tree_exiting" from="." to="." method="_on_tree_exiting"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

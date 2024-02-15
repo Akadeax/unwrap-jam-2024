@@ -22,7 +22,7 @@ shader_parameter/height = 0.001
 shader_parameter/color = Color(0.254902, 0.478431, 0.576471, 1)
 shader_parameter/mix_val = 0.33
 
-[node name="HouseTest" type="Node2D"]
+[node name="HouseTest2" type="Node2D"]
 
 [node name="HouseScene" parent="." instance=ExtResource("1_ksmiq")]
 scale = Vector2(2.5, 2.5)

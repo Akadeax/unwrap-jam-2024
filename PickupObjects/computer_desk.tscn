@@ -21,9 +21,11 @@ destruction_frames = 2.0
 destroyed_particles_scene = ExtResource("2_7u3wy")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 128)
 shape = SubResource("RectangleShape2D_uqtng")
 
 [node name="Area2D" type="Area2D" parent="." groups=["pickup"]]
+position = Vector2(0, 128)
 collision_layer = 2
 collision_mask = 3
 
@@ -31,11 +33,13 @@ collision_mask = 3
 shape = SubResource("RectangleShape2D_uqtng")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, 128)
 scale = Vector2(2, 2)
 texture = ExtResource("3_830uj")
 hframes = 3
 
 [node name="BonkParticles" parent="." instance=ExtResource("4_gkt4i")]
+position = Vector2(0, 128)
 
 [connection signal="tree_exiting" from="." to="." method="_on_tree_exiting"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

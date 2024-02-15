@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c0sfhchigbqr5"
-path="res://.godot/imported/table1.png-78e468c26ee2e1300d6166b754f4078a.ctex"
+uid="uid://bmyu76xcuejqq"
+path="res://.godot/imported/testCross.png-5963c00628d68dc797780f2d9fe8f858.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/objects/table1.png"
-dest_files=["res://.godot/imported/table1.png-78e468c26ee2e1300d6166b754f4078a.ctex"]
+source_file="res://Sprites/spriteSheets/testCross.png"
+dest_files=["res://.godot/imported/testCross.png-5963c00628d68dc797780f2d9fe8f858.ctex"]
 
 [params]
 

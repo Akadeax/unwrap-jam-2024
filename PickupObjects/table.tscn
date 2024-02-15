@@ -17,7 +17,6 @@ continuous_cd = 2
 linear_damp = 1.0
 script = ExtResource("1_kv8jo")
 fragility = 25.0
-destruction_frames = 1.0
 destroyed_particles_scene = ExtResource("2_f65tf")
 type = 12
 
@@ -34,6 +33,7 @@ shape = SubResource("CircleShape2D_8jvv0")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.6, 0.6)
 texture = ExtResource("2_mut8q")
+hframes = 3
 
 [node name="BonkParticles" parent="." instance=ExtResource("3_bgfam")]
 
