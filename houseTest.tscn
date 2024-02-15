@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bbfuqqxswh6x0"]
+[gd_scene load_steps=18 format=3 uid="uid://bbfuqqxswh6x0"]
 
 [ext_resource type="PackedScene" uid="uid://yt5vihcqbymr" path="res://HouseGen/HouseScene.tscn" id="1_ksmiq"]
 [ext_resource type="PackedScene" uid="uid://burd7rvt3gne5" path="res://Player/player.tscn" id="2_e6g4e"]
@@ -9,6 +9,12 @@
 [ext_resource type="Script" path="res://UI/Timer.gd" id="6_jpqif"]
 [ext_resource type="PackedScene" uid="uid://b3pvnspyg1prf" path="res://UI/scoreScreen/scoreBoard.tscn" id="7_5llg6"]
 [ext_resource type="PackedScene" uid="uid://bw04633k6vv8p" path="res://PickupObjects/delivery_zone.tscn" id="9_vnbf0"]
+[ext_resource type="AudioStream" uid="uid://dkyuewt7amyft" path="res://sound/Streams/Environment/Ambience.wav" id="10_7hoah"]
+[ext_resource type="AudioStream" uid="uid://bwrmcma3g83en" path="res://sound/Streams/Music/FullGameLoop.wav" id="11_3vg7u"]
+[ext_resource type="Texture2D" uid="uid://dlhnulcimtmr4" path="res://UI/Sprites/Button - PS Cross 1.png" id="12_v7bep"]
+[ext_resource type="Texture2D" uid="uid://ctpl3f0t0dgkl" path="res://UI/Sprites/Button - PS Square 1.png" id="13_5waif"]
+[ext_resource type="Texture2D" uid="uid://c7w4ehmcsjhyb" path="res://UI/Sprites/Button - PS Circle 1.png" id="14_ncwh1"]
+[ext_resource type="Texture2D" uid="uid://bv1b5xhhtaamo" path="res://UI/Sprites/PS5_Dpad.png" id="15_861aq"]
 
 [sub_resource type="Curve" id="Curve_383s0"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.637363), 0.0, 0.0, 0, 0]
@@ -74,6 +80,7 @@ text = "Time left"
 script = ExtResource("6_jpqif")
 
 [node name="ScoreBoard" parent="CanvasLayer" instance=ExtResource("7_5llg6")]
+visible = false
 anchors_preset = -1
 anchor_left = 0.009
 anchor_right = 0.598
@@ -101,3 +108,75 @@ horizontal_alignment = 1
 [node name="DeliveryZone" parent="." instance=ExtResource("9_vnbf0")]
 position = Vector2(894, 4412)
 rotation = -1.5822
+
+[node name="Ambience" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("10_7hoah")
+autoplay = true
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("11_3vg7u")
+autoplay = true
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
+color = Color(0.682353, 0.701961, 0.694118, 1)
+blend_mode = 1
+
+[node name="DirectionalLight2D2" type="DirectionalLight2D" parent="."]
+color = Color(0.262745, 0.772549, 0.917647, 1)
+energy = 0.75
+
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2(-610, -3042)
+scale = Vector2(1.63, 1.63)
+
+[node name="ColorRect" type="ColorRect" parent="Node2D"]
+offset_left = 1305.0
+offset_top = 4116.0
+offset_right = 1345.0
+offset_bottom = 4156.0
+scale = Vector2(38.4892, 19.3612)
+color = Color(0.145098, 0.145098, 0.145098, 0.45098)
+
+[node name="Label" type="Label" parent="Node2D"]
+offset_left = 1335.0
+offset_top = 4749.0
+offset_right = 1907.0
+offset_bottom = 4856.0
+theme_override_fonts/font = ExtResource("5_go5dp")
+theme_override_font_sizes/font_size = 72
+text = "<- Leave Early"
+
+[node name="Label2" type="Label" parent="Node2D"]
+offset_left = 1367.0
+offset_top = 4152.0
+offset_right = 2643.0
+offset_bottom = 4589.0
+theme_override_fonts/font = ExtResource("5_go5dp")
+theme_override_font_sizes/font_size = 72
+text = "Move: WASD or 
+Pick object up: left click or
+Drop object: middle click  or
+Throw object: right click  or
+"
+
+[node name="Button-PsCross1" type="Sprite2D" parent="Node2D"]
+position = Vector2(2733, 4317)
+scale = Vector2(0.245092, 0.245092)
+texture = ExtResource("12_v7bep")
+
+[node name="Button-PsCross2" type="Sprite2D" parent="Node2D"]
+position = Vector2(2733, 4427)
+scale = Vector2(0.245092, 0.245092)
+texture = ExtResource("13_5waif")
+
+[node name="Button-PsCross3" type="Sprite2D" parent="Node2D"]
+position = Vector2(2733, 4541)
+scale = Vector2(0.245092, 0.245092)
+texture = ExtResource("14_ncwh1")
+
+[node name="Ps5Dpad" type="Sprite2D" parent="Node2D"]
+position = Vector2(2019, 4211)
+scale = Vector2(1.28, 1.28)
+texture = ExtResource("15_861aq")

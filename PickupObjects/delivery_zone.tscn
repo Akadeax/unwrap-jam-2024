@@ -1,8 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://bw04633k6vv8p"]
+[gd_scene load_steps=20 format=3 uid="uid://bw04633k6vv8p"]
 
 [ext_resource type="Script" path="res://PickupObjects/delivery_zone.gd" id="1_t1xew"]
 [ext_resource type="Texture2D" uid="uid://duchchgvyimmq" path="res://Sprites/truckOpen.png" id="2_1f5ej"]
 [ext_resource type="Texture2D" uid="uid://c3b4koxw00e4l" path="res://Sprites/truckClosed.png" id="3_hmnvw"]
+[ext_resource type="AudioStream" uid="uid://coyqw3a3wf1t2" path="res://sound/Streams/Shark/randomPlacements.tres" id="4_pv5qp"]
+[ext_resource type="Texture2D" uid="uid://b71mmwponnmvc" path="res://Sprites/star.png" id="5_10lu7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0qwou"]
 size = Vector2(600, 400)
@@ -19,11 +21,63 @@ size = Vector2(20, 200)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a4kjd"]
 size = Vector2(200, 200)
 
-[node name="DeliveryZone" type="Area2D" groups=["delivery"]]
+[sub_resource type="Gradient" id="Gradient_r7voi"]
+offsets = PackedFloat32Array(0, 0.131148, 0.811475, 1)
+colors = PackedColorArray(0, 0.67451, 0.811765, 0.192157, 0.465987, 0.482283, 0.434903, 1, 0.884129, 0.887665, 0.877385, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_7xhys"]
+gradient = SubResource("Gradient_r7voi")
+
+[sub_resource type="Curve" id="Curve_ki0hg"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_5fr4y"]
+curve = SubResource("Curve_ki0hg")
+
+[sub_resource type="Curve" id="Curve_orsdg"]
+_data = [Vector2(0, 1), 0.0, -0.0499503, 0, 0, Vector2(1, 0.263736), -2.9304, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_m2t7o"]
+curve = SubResource("Curve_orsdg")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_jmkr7"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+angle_min = -372.1
+initial_velocity_min = 674.16
+initial_velocity_max = 842.7
+angular_velocity_min = -420.68
+angular_velocity_max = 550.12
+gravity = Vector3(0, 0, 0)
+tangential_accel_max = 33.71
+scale_min = 1.25
+scale_max = 1.9
+scale_curve = SubResource("CurveTexture_m2t7o")
+color_ramp = SubResource("GradientTexture1D_7xhys")
+emission_curve = SubResource("CurveTexture_5fr4y")
+hue_variation_min = -0.18
+hue_variation_max = 0.22
+
+[sub_resource type="Gradient" id="Gradient_hjxwr"]
+offsets = PackedFloat32Array(0, 0.785714)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_5mwde"]
+gradient = SubResource("Gradient_hjxwr")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[node name="DeliveryZone" type="Area2D" node_paths=PackedStringArray("deliver_player", "deliver_particles") groups=["delivery"]]
+rotation = -1.56601
 collision_layer = 2
 collision_mask = 2
 priority = 5
 script = ExtResource("1_t1xew")
+deliver_player = NodePath("DeliverPlayer")
+deliver_particles = NodePath("GPUParticles2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(106, 15)
@@ -69,6 +123,38 @@ texture = ExtResource("3_hmnvw")
 
 [node name="VanClosed" type="Sprite2D" parent="."]
 visible = false
+
+[node name="DeliverPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_pv5qp")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+position = Vector2(424.148, 29.9688)
+emitting = false
+amount = 35
+process_material = SubResource("ParticleProcessMaterial_jmkr7")
+texture = ExtResource("5_10lu7")
+lifetime = 1.5
+one_shot = true
+explosiveness = 0.73
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+color = Color(0, 0.87451, 0.882353, 1)
+texture = SubResource("GradientTexture2D_5mwde")
+texture_scale = 44.8
+
+[node name="PointLight2D2" type="PointLight2D" parent="."]
+position = Vector2(-566.232, 161.714)
+color = Color(0.639216, 0.431373, 0, 1)
+energy = 3.74
+texture = SubResource("GradientTexture2D_5mwde")
+texture_scale = 5.62
+
+[node name="PointLight2D3" type="PointLight2D" parent="."]
+position = Vector2(-561.774, -160.311)
+color = Color(0.639216, 0.431373, 0, 1)
+energy = 3.74
+texture = SubResource("GradientTexture2D_5mwde")
+texture_scale = 5.62
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]

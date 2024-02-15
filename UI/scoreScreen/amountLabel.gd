@@ -22,5 +22,3 @@ func amnt_update(amnt : Array[int]):
 			text += "%s         " %amnt[i]
 			var total_val : int= ScoreBoard.score_dict[PickupObject.Type.get(name_dict[i].strip_edges().to_upper())]*amnt[i] 
 			text += "%s \n" %total_val
-
-

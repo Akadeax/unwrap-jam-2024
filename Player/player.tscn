@@ -1,4 +1,4 @@
-[gd_scene load_steps=81 format=3 uid="uid://burd7rvt3gne5"]
+[gd_scene load_steps=86 format=3 uid="uid://burd7rvt3gne5"]
 
 [ext_resource type="Script" path="res://Player/player_controller.gd" id="1_b7tfx"]
 [ext_resource type="Texture2D" uid="uid://bf53qb074if4e" path="res://Sprites/teeth.png" id="2_wekpo"]
@@ -75,6 +75,9 @@
 [ext_resource type="Texture2D" uid="uid://dotyukddmqasb" path="res://Player/Sprites/fishies/Beep/Beep_0021.png" id="71_mesvg"]
 [ext_resource type="Texture2D" uid="uid://rxlm17owilvg" path="res://Player/Sprites/fishies/Beep/Beep_0022.png" id="72_n1m3l"]
 [ext_resource type="Texture2D" uid="uid://c4xnp6xwfhacs" path="res://Player/Sprites/fishies/Beep/Beep_0023.png" id="73_lnp0p"]
+[ext_resource type="AudioStream" uid="uid://bfx8vx0brvcts" path="res://sound/Streams/Shark/randomBumps.tres" id="76_gvouf"]
+[ext_resource type="AudioStream" uid="uid://bsajpgsq2dmw" path="res://sound/Streams/Shark/randomGrabs.tres" id="77_3tnon"]
+[ext_resource type="AudioStream" uid="uid://2gnrq6hfsf2l" path="res://sound/Streams/Shark/Shark_BackingUp_Beep.wav" id="78_02m64"]
 
 [sub_resource type="Curve" id="Curve_7kcpw"]
 max_value = 3.0
@@ -324,7 +327,18 @@ animations = [{
 "speed": 12.0
 }]
 
-[node name="player" type="CharacterBody2D" node_paths=PackedStringArray("body_holder", "fishie_holder", "fin_holder") groups=["player"]]
+[sub_resource type="Gradient" id="Gradient_i1x3b"]
+offsets = PackedFloat32Array(0, 0.727273)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_15j2c"]
+gradient = SubResource("Gradient_i1x3b")
+width = 1024
+height = 1024
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[node name="player" type="CharacterBody2D" node_paths=PackedStringArray("body_holder", "fishie_holder", "fin_holder", "bump_player", "grab_player", "beep_player", "back_light") groups=["player"]]
 z_index = 2
 motion_mode = 1
 script = ExtResource("1_b7tfx")
@@ -334,6 +348,10 @@ fishie_holder = NodePath("Fishie")
 fin_holder = NodePath("Fin2")
 fin_follow_speed = 55.0
 fin_follow_curve = SubResource("Curve_7kcpw")
+bump_player = NodePath("BumpPlayer")
+grab_player = NodePath("GrabPlayer")
+beep_player = NodePath("BeepPlayer")
+back_light = NodePath("Fishie/FishieLight")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-5, -199)
@@ -376,6 +394,28 @@ offset = Vector2(-23.635, 0)
 scale = Vector2(0.4, 0.4)
 sprite_frames = SubResource("SpriteFrames_j3rkv")
 frame_progress = 0.72133
+
+[node name="FishieLight" type="PointLight2D" parent="Fishie"]
+position = Vector2(110, -335)
+scale = Vector2(2.5, 2.5)
+color = Color(0.941176, 0.105882, 0, 1)
+energy = 7.92
+texture = SubResource("GradientTexture2D_15j2c")
+texture_scale = 0.15
+
+[node name="BumpPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("76_gvouf")
+
+[node name="GrabPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("77_3tnon")
+
+[node name="BeepPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("78_02m64")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+energy = 0.8
+texture = SubResource("GradientTexture2D_15j2c")
+texture_scale = 3.5
 
 [connection signal="body_entered" from="PickupArea" to="." method="_on_pickup_area_body_entered"]
 [connection signal="body_exited" from="PickupArea" to="." method="_on_pickup_area_body_exited"]

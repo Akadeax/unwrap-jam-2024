@@ -10,7 +10,7 @@ func _ready():
 	background.color.a = 0.4
 	title_text.self_modulate.a = 0
 
-	const text_delay : float = 2
+	const text_delay : float = 3
 
 	var tween := get_tree().create_tween().set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
 
@@ -57,7 +57,7 @@ func _ready():
 	tween.tween_interval(0.8)
 	tween.tween_property(title_text, "self_modulate:a", 0, 0.1)
 
-	tween.tween_property(background, "color:a", 0, 0.3)
+	tween.tween_property(background, "color:a", 0, 0.7)
 
 	var cam = get_tree().get_first_node_in_group("cam")
 	tween.tween_property(cam, "global_position", Vector2(100, 100), 1)
