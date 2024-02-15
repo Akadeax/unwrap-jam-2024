@@ -11,6 +11,10 @@ class_name GameManager
 @export var _2tex : Texture2D
 @export var _1tex : Texture2D
 
+
+@export var tex_bg : TextureRect
+
+
 func _ready():
 	get_tree().paused = true
 
@@ -24,6 +28,8 @@ func _ready():
 	tween.tween_property(manager_holder, "modulate:a", 1, 0.3)
 
 	tween.tween_callback(set_text.bind("Poseidon's waiting!"))
+	tex_bg.modulate.a = 0
+	tween.parallel().tween_property(tex_bg, "modulate:a", 1, 0.2)
 
 	tween.tween_property(title_text, "self_modulate:a", 1, 0.5)
 	tween.tween_interval(text_delay)
@@ -47,8 +53,8 @@ func _ready():
 	tween.tween_property(title_text, "self_modulate:a", 1, 0.2)
 	tween.tween_interval(text_delay)
 	tween.tween_property(title_text, "self_modulate:a", 0, 0.2)
-
 	tween.tween_callback(set_text.bind(""))
+	tween.parallel().tween_property(tex_bg, "modulate:a", 0, 0.2)
 	tween.tween_callback(set_texture.bind(3))
 
 	var num_holder_og_scale : Vector2 = number_holder.scale
@@ -111,3 +117,7 @@ func set_texture(index : int):
 			number_holder.texture = _2tex
 		3:
 			number_holder.texture = _3tex
+
+
+func enable_text_bg(val : bool):
+	tex_bg.vsible = val

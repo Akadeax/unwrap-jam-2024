@@ -1,13 +1,17 @@
-[gd_scene load_steps=47 format=3 uid="uid://dcpfcbl8egoqx"]
+[gd_scene load_steps=64 format=3 uid="uid://dcpfcbl8egoqx"]
 
 [ext_resource type="PackedScene" uid="uid://yt5vihcqbymr" path="res://HouseGen/HouseScene.tscn" id="1_2ae6w"]
 [ext_resource type="Script" path="res://Utils/custom_camera.gd" id="2_vs4hw"]
 [ext_resource type="PackedScene" uid="uid://burd7rvt3gne5" path="res://Player/player.tscn" id="3_nvdua"]
 [ext_resource type="Script" path="res://Environment/game_manager.gd" id="4_dpv65"]
+[ext_resource type="Texture2D" uid="uid://bojieokwfxbvx" path="res://Sprites/BUBBLE.png" id="4_rpw7p"]
 [ext_resource type="Shader" path="res://UI/scroll.gdshader" id="5_ieu7h"]
 [ext_resource type="Texture2D" uid="uid://380ypsg8tefb" path="res://UI/waterTile (1).png" id="6_5fui5"]
+[ext_resource type="Texture2D" uid="uid://igtokihvppwk" path="res://sound/AHHH/3to1.png" id="6_jbran"]
 [ext_resource type="Shader" path="res://Environment/ripple.gdshader" id="7_0sytv"]
+[ext_resource type="Texture2D" uid="uid://d4atp1snu23ve" path="res://sound/AHHH/2to2.png" id="7_fwf7o"]
 [ext_resource type="FontFile" uid="uid://cx55imgibsjte" path="res://Sprites/fonts/SpaceMono-Regular.ttf" id="8_7iwck"]
+[ext_resource type="Texture2D" uid="uid://cwh1yk48rfn3k" path="res://sound/AHHH/1to1.png" id="8_ovnyd"]
 [ext_resource type="Script" path="res://UI/Timer.gd" id="9_daur0"]
 [ext_resource type="Script" path="res://UI/scoreScreen/scoreBoard.gd" id="10_77qlj"]
 [ext_resource type="Texture2D" uid="uid://c22xb4le4mhad" path="res://UI/scoreScreen/Board/terrible_stamp.png" id="11_og7wr"]
@@ -24,13 +28,18 @@
 [ext_resource type="Script" path="res://UI/scoreScreen/totalScoreLabel.gd" id="22_qwu01"]
 [ext_resource type="Script" path="res://UI/scoreScreen/amountLabel.gd" id="23_3qk3e"]
 [ext_resource type="Script" path="res://UI/scoreScreen/damagesLabel.gd" id="24_aevyp"]
+[ext_resource type="AudioStream" uid="uid://dn8reyelka05u" path="res://sound/AHHH/Result_Terrible.wav" id="25_aasy8"]
 [ext_resource type="Texture2D" uid="uid://doin5ob32sps1" path="res://UI/scoreScreen/Board/you_scored.png" id="25_e0es6"]
+[ext_resource type="AudioStream" uid="uid://cnfotp60iqcqt" path="res://sound/AHHH/Result_Bad.wav" id="26_g0oye"]
 [ext_resource type="AudioStream" uid="uid://brihxtc0ov2x4" path="res://sound/Drumroll.wav" id="26_rrugs"]
+[ext_resource type="AudioStream" uid="uid://0n7b2lc7pmou" path="res://sound/AHHH/Result_Alright.wav" id="27_587no"]
 [ext_resource type="PackedScene" uid="uid://bw04633k6vv8p" path="res://PickupObjects/delivery_zone.tscn" id="27_fy4f0"]
 [ext_resource type="Texture2D" uid="uid://synshpwc1nrm" path="res://UI/Menu/menu.png" id="27_oc2ms"]
 [ext_resource type="Texture2D" uid="uid://bsq3x5mlbajkg" path="res://UI/Menu/menu_hovered.png" id="28_514td"]
+[ext_resource type="AudioStream" uid="uid://d2v6v2wi3br4d" path="res://sound/AHHH/Result_good.wav" id="28_jxlrt"]
 [ext_resource type="AudioStream" uid="uid://bnw7jgnhrs8p5" path="res://sound/Streams/Environment/Ambience.mp3" id="28_uo6ce"]
 [ext_resource type="Texture2D" uid="uid://ba25wrsswq5gs" path="res://UI/ä.png" id="29_dxsci"]
+[ext_resource type="AudioStream" uid="uid://df7bnkms33b8b" path="res://sound/AHHH/Result_Amazing.wav" id="29_vuf56"]
 [ext_resource type="Texture2D" uid="uid://dlhnulcimtmr4" path="res://UI/Sprites/Button - PS Cross 1.png" id="29_yemhg"]
 [ext_resource type="Texture2D" uid="uid://ctpl3f0t0dgkl" path="res://UI/Sprites/Button - PS Square 1.png" id="30_4ji1d"]
 [ext_resource type="Texture2D" uid="uid://c7w4ehmcsjhyb" path="res://UI/Sprites/Button - PS Circle 1.png" id="31_optig"]
@@ -41,19 +50,50 @@
 [ext_resource type="AudioStream" uid="uid://cm58krigp71mq" path="res://sound/Streams/Music/Music_Intensity1.wav" id="36_kdsnf"]
 [ext_resource type="AudioStream" uid="uid://c5vg1oph36qu2" path="res://sound/Streams/Music/Music_Intensity2.wav" id="37_cdens"]
 [ext_resource type="AudioStream" uid="uid://mqaipulpp6kr" path="res://sound/Streams/Music/Music_Intensity3.wav" id="38_ksptw"]
+[ext_resource type="Texture2D" uid="uid://bgnv0thprdod5" path="res://SPEECHbUBBLE3.png" id="38_r432y"]
 [ext_resource type="AudioStream" uid="uid://j1onew3lugvj" path="res://sound/Streams/Music/Music_Intensity4.wav" id="39_fiskv"]
 
 [sub_resource type="Curve" id="Curve_383s0"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.637363), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ijohg"]
+[sub_resource type="Gradient" id="Gradient_scifo"]
+offsets = PackedFloat32Array(0, 0.111765, 0.941176, 1)
+colors = PackedColorArray(0.313726, 0.72549, 0.94902, 0, 0.845969, 0.943195, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_nsj2x"]
+gradient = SubResource("Gradient_scifo")
+
+[sub_resource type="Curve" id="Curve_5clr3"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.252525, 1), 0.0, 0.0, 0, 0, Vector2(0.787879, 1), 0.0572582, 0.0572582, 0, 0, Vector2(1, 0), -24.2967, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_ppeei"]
+curve = SubResource("Curve_5clr3")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_1b5fr"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(9999, 9999, 1)
+angle_min = -165.7
+angle_max = 471.5
+angular_velocity_min = -63.72
+angular_velocity_max = 50.97
+gravity = Vector3(0, 0, 0)
+scale_min = 0.2
+scale_max = 0.4
+scale_curve = SubResource("CurveTexture_ppeei")
+color_ramp = SubResource("GradientTexture1D_nsj2x")
+hue_variation_min = -0.05
+hue_variation_max = 0.05
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sosnn"]
 shader = ExtResource("5_ieu7h")
 shader_parameter/motion = Vector2(30, 35)
 shader_parameter/scale = 1.0
 shader_parameter/offset = Vector2(0, 0)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_a418a"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nuqjy"]
 shader = ExtResource("7_0sytv")
 shader_parameter/wave_count = 20.0
 shader_parameter/speed = 3.0
@@ -61,7 +101,13 @@ shader_parameter/height = 0.001
 shader_parameter/color = Color(0.254902, 0.478431, 0.576471, 1)
 shader_parameter/mix_val = 0.0
 
-[sub_resource type="Curve" id="Curve_iin6m"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8wa3u"]
+bg_color = Color(0, 0.345098, 0.678431, 0.337255)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b1cxj"]
+bg_color = Color(0.521569, 0.678431, 1, 0.603922)
+
+[sub_resource type="Curve" id="Curve_e45qh"]
 _data = [Vector2(0, 0), 0.0, 2.03419, 0, 0, Vector2(1, 0.582417), 0.35343, 0.0, 0, 0]
 point_count = 2
 
@@ -91,17 +137,30 @@ pickup_input = "pickup2"
 drop_input = "drop2"
 yeet_input = "yeet2"
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." node_paths=PackedStringArray("background", "title_text", "manager_holder")]
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+process_mode = 3
+amount = 75
+process_material = SubResource("ParticleProcessMaterial_1b5fr")
+texture = ExtResource("4_rpw7p")
+lifetime = 0.7
+explosiveness = 0.09
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." node_paths=PackedStringArray("background", "title_text", "manager_holder", "number_holder", "tex_bg")]
 process_mode = 3
 script = ExtResource("4_dpv65")
 background = NodePath("BG")
 title_text = NodePath("TitleTextIntro/Label")
 manager_holder = NodePath("Manager")
 menu_path = "res://UI/Menu/menu.tscn"
+number_holder = NodePath("NumTex")
+_3tex = ExtResource("6_jbran")
+_2tex = ExtResource("7_fwf7o")
+_1tex = ExtResource("8_ovnyd")
+tex_bg = NodePath("bg")
 
 [node name="BG2" type="TextureRect" parent="CanvasLayer"]
 modulate = Color(1, 1, 1, 0.0705882)
-material = SubResource("ShaderMaterial_ijohg")
+material = SubResource("ShaderMaterial_sosnn")
 custom_minimum_size = Vector2(62.44, 0)
 anchors_preset = 15
 anchor_right = 1.0
@@ -113,7 +172,7 @@ texture = ExtResource("6_5fui5")
 stretch_mode = 1
 
 [node name="Shader" type="ColorRect" parent="CanvasLayer"]
-material = SubResource("ShaderMaterial_a418a")
+material = SubResource("ShaderMaterial_nuqjy")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -134,7 +193,7 @@ offset_bottom = 40.0
 theme_override_constants/margin_left = 70
 theme_override_constants/margin_top = 35
 
-[node name="TIME" type="Label" parent="CanvasLayer/MarginContainer"]
+[node name="TIME" type="Label" parent="CanvasLayer/MarginContainer" node_paths=PackedStringArray("progress")]
 process_mode = 3
 layout_mode = 2
 theme_override_fonts/font = ExtResource("8_7iwck")
@@ -142,6 +201,21 @@ theme_override_font_sizes/font_size = 48
 text = "Time left"
 script = ExtResource("9_daur0")
 level_time_secs = 180
+progress = NodePath("ProgressBar")
+
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/MarginContainer/TIME"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 73.0
+offset_bottom = 73.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_8wa3u")
+theme_override_styles/fill = SubResource("StyleBoxFlat_b1cxj")
+value = 0.5
+show_percentage = false
 
 [node name="ScoreBoard" type="Control" parent="CanvasLayer" node_paths=PackedStringArray("bg", "stamp_holder", "stamp_text_holder", "you_scored_holder")]
 layout_mode = 3
@@ -152,13 +226,16 @@ grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(1.615, 1.615)
 script = ExtResource("10_77qlj")
-bg = NodePath("../BG")
+bg = NodePath("")
 score_stamps = Array[Texture2D]([ExtResource("11_og7wr"), ExtResource("12_cbtwi"), ExtResource("13_850a4"), ExtResource("14_fh6wb"), ExtResource("15_f8a5g")])
 score_texts = Array[Texture2D]([ExtResource("16_ych5s"), ExtResource("17_uuw5w"), ExtResource("18_0htrg"), ExtResource("19_anahx"), ExtResource("20_j72v5")])
-stamp_roll_curve = SubResource("Curve_iin6m")
-stamp_holder = NodePath("Stamp")
-stamp_text_holder = NodePath("StampText")
-you_scored_holder = NodePath("YouScored")
+score_sounds = Array[AudioStream]([ExtResource("25_aasy8"), ExtResource("26_g0oye"), ExtResource("27_587no"), ExtResource("28_jxlrt"), ExtResource("29_vuf56")])
+stamp_roll_curve = SubResource("Curve_e45qh")
+stamp_holder = NodePath("")
+stamp_text_holder = NodePath("")
+you_scored_holder = NodePath("")
+
+[node name="Player" type="AudioStreamPlayer" parent="CanvasLayer/ScoreBoard"]
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/ScoreBoard"]
 layout_mode = 0
@@ -250,10 +327,20 @@ texture_pressed = ExtResource("28_514td")
 texture_hover = ExtResource("28_514td")
 texture_focused = ExtResource("28_514td")
 
+[node name="bg" type="TextureRect" parent="CanvasLayer"]
+offset_left = 67.0
+offset_top = 161.0
+offset_right = 5806.0
+offset_bottom = 857.0
+scale = Vector2(0.312771, 0.312771)
+texture = ExtResource("38_r432y")
+
 [node name="TitleTextIntro" type="MarginContainer" parent="CanvasLayer"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = 9.0
+offset_bottom = 9.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
@@ -262,16 +349,25 @@ theme_override_constants/margin_top = 200
 [node name="Label" type="Label" parent="CanvasLayer/TitleTextIntro"]
 layout_mode = 2
 size_flags_vertical = 0
+theme_override_colors/font_color = Color(0.14902, 0.14902, 0.14902, 1)
 theme_override_fonts/font = ExtResource("8_7iwck")
-theme_override_font_sizes/font_size = 72
+theme_override_font_sizes/font_size = 66
 text = "This is title text"
 horizontal_alignment = 1
 
+[node name="NumTex" type="TextureRect" parent="CanvasLayer"]
+offset_left = 986.0
+offset_top = 155.0
+offset_right = 3050.0
+offset_bottom = 1612.0
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("6_jbran")
+
 [node name="Manager" type="TextureRect" parent="CanvasLayer"]
-offset_left = 662.0
-offset_top = 303.0
-offset_right = 2726.0
-offset_bottom = 1760.0
+offset_left = 233.0
+offset_top = 336.0
+offset_right = 2297.0
+offset_bottom = 1793.0
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("29_dxsci")
 

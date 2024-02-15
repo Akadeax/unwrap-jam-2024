@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://yt5vihcqbymr"]
+[gd_scene load_steps=38 format=3 uid="uid://yt5vihcqbymr"]
 
 [ext_resource type="Script" path="res://HouseGen/RoomGen.gd" id="2_drh6b"]
 [ext_resource type="Texture2D" uid="uid://cqge4jikww8yh" path="res://Sprites/spriteSheets/HouseSpriteSheet.jpg" id="2_je1np"]
@@ -14,11 +14,8 @@
 [ext_resource type="PackedScene" uid="uid://c4xacku3esysv" path="res://PickupObjects/fish_coffee_table.tscn" id="7_rjrk6"]
 [ext_resource type="PackedScene" uid="uid://uenixmtvttj" path="res://PickupObjects/big_couch.tscn" id="9_k3ru3"]
 [ext_resource type="PackedScene" uid="uid://bgolck7j7nrja" path="res://PickupObjects/small_couch.tscn" id="10_a5kdp"]
-[ext_resource type="PackedScene" uid="uid://da6p5hkijxuu4" path="res://Carpets/carpet_small_1.tscn" id="10_o4u68"]
-[ext_resource type="PackedScene" uid="uid://blry3270c0y0p" path="res://Carpets/carpet_small_2.tscn" id="11_jo3bj"]
 [ext_resource type="PackedScene" uid="uid://bbku8ex8qbe5w" path="res://PickupObjects/tv_on_desk.tscn" id="11_wpdcu"]
 [ext_resource type="PackedScene" uid="uid://dt67g627bt7rw" path="res://PickupObjects/open_dresser.tscn" id="12_kj7ua"]
-[ext_resource type="PackedScene" uid="uid://w647ba37xhhm" path="res://Carpets/carpet_small_3.tscn" id="12_u07hl"]
 [ext_resource type="PackedScene" uid="uid://bfv3xl3pch7dj" path="res://Carpets/carpet_big_1.tscn" id="13_13umr"]
 [ext_resource type="PackedScene" uid="uid://nkrp4wc58rm2" path="res://PickupObjects/tub.tscn" id="13_pa77e"]
 [ext_resource type="PackedScene" uid="uid://y1xq4mirdvak" path="res://Carpets/carpet_big_2.tscn" id="14_pwwbq"]
@@ -33,6 +30,7 @@
 [ext_resource type="PackedScene" uid="uid://c1silwvch821c" path="res://PickupObjects/box.tscn" id="22_2xjq7"]
 [ext_resource type="PackedScene" uid="uid://c6iiy3hbr3iog" path="res://PickupObjects/box_open.tscn" id="23_kkbhl"]
 [ext_resource type="PackedScene" uid="uid://bnsqh53lako0d" path="res://PickupObjects/lamp.tscn" id="24_wpcw7"]
+[ext_resource type="PackedScene" path="res://Carpets/transitionTile.tscn" id="26_e5gln"]
 [ext_resource type="PackedScene" path="res://Carpets/carpet_straight_1.tscn" id="32_ubd47"]
 [ext_resource type="PackedScene" path="res://Carpets/carpet_straight_2.tscn" id="33_isnxm"]
 
@@ -298,7 +296,7 @@ kitchen_sink = ExtResource("21_dvbr5")
 box_1 = ExtResource("22_2xjq7")
 box_2 = ExtResource("23_kkbhl")
 lamp = ExtResource("24_wpcw7")
-doorway_rugs = Array[PackedScene]([ExtResource("10_o4u68"), ExtResource("11_jo3bj"), ExtResource("12_u07hl")])
+doorway_rugs = Array[PackedScene]([ExtResource("26_e5gln")])
 big_rugs = Array[PackedScene]([ExtResource("13_13umr"), ExtResource("14_pwwbq"), ExtResource("15_821yf")])
 big_straight_rugs = Array[PackedScene]([ExtResource("32_ubd47"), ExtResource("33_isnxm")])
 

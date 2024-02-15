@@ -1,9 +1,10 @@
-[gd_scene load_steps=55 format=3 uid="uid://bbfuqqxswh6x0"]
+[gd_scene load_steps=64 format=3 uid="uid://bbfuqqxswh6x0"]
 
 [ext_resource type="PackedScene" uid="uid://yt5vihcqbymr" path="res://HouseGen/HouseScene.tscn" id="1_ksmiq"]
 [ext_resource type="PackedScene" uid="uid://burd7rvt3gne5" path="res://Player/player.tscn" id="2_e6g4e"]
 [ext_resource type="Script" path="res://Utils/custom_camera.gd" id="3_7dhxg"]
 [ext_resource type="Script" path="res://Environment/game_manager.gd" id="4_6omd2"]
+[ext_resource type="Texture2D" uid="uid://bojieokwfxbvx" path="res://Sprites/BUBBLE.png" id="4_iklww"]
 [ext_resource type="Shader" path="res://UI/scroll.gdshader" id="5_g602o"]
 [ext_resource type="FontFile" uid="uid://cx55imgibsjte" path="res://Sprites/fonts/SpaceMono-Regular.ttf" id="5_go5dp"]
 [ext_resource type="Shader" path="res://Environment/ripple.gdshader" id="5_ohp0i"]
@@ -48,12 +49,43 @@
 [ext_resource type="AudioStream" uid="uid://cm58krigp71mq" path="res://sound/Streams/Music/Music_Intensity1.wav" id="36_pxlfi"]
 [ext_resource type="AudioStream" uid="uid://c5vg1oph36qu2" path="res://sound/Streams/Music/Music_Intensity2.wav" id="37_mrexa"]
 [ext_resource type="Texture2D" uid="uid://cwh1yk48rfn3k" path="res://sound/AHHH/1to1.png" id="37_xtrni"]
+[ext_resource type="Texture2D" uid="uid://bgnv0thprdod5" path="res://SPEECHbUBBLE3.png" id="38_kv6ox"]
 [ext_resource type="AudioStream" uid="uid://mqaipulpp6kr" path="res://sound/Streams/Music/Music_Intensity3.wav" id="38_ylhwf"]
 [ext_resource type="AudioStream" uid="uid://j1onew3lugvj" path="res://sound/Streams/Music/Music_Intensity4.wav" id="39_r3e7i"]
 
 [sub_resource type="Curve" id="Curve_383s0"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.637363), 0.0, 0.0, 0, 0]
 point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_8v8av"]
+offsets = PackedFloat32Array(0, 0.111765, 0.941176, 1)
+colors = PackedColorArray(0.313726, 0.72549, 0.94902, 0, 0.845969, 0.943195, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_34sib"]
+gradient = SubResource("Gradient_8v8av")
+
+[sub_resource type="Curve" id="Curve_3ajnj"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.252525, 1), 0.0, 0.0, 0, 0, Vector2(0.787879, 1), 0.0572582, 0.0572582, 0, 0, Vector2(1, 0), -24.2967, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_l6yu0"]
+curve = SubResource("Curve_3ajnj")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_w4uby"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(9999, 9999, 1)
+angle_min = -165.7
+angle_max = 471.5
+angular_velocity_min = -63.72
+angular_velocity_max = 50.97
+gravity = Vector3(0, 0, 0)
+scale_min = 0.2
+scale_max = 0.4
+scale_curve = SubResource("CurveTexture_l6yu0")
+color_ramp = SubResource("GradientTexture1D_34sib")
+hue_variation_min = -0.05
+hue_variation_max = 0.05
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vcoq5"]
 shader = ExtResource("5_g602o")
@@ -68,6 +100,12 @@ shader_parameter/speed = 3.0
 shader_parameter/height = 0.001
 shader_parameter/color = Color(0.254902, 0.478431, 0.576471, 1)
 shader_parameter/mix_val = 0.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_05451"]
+bg_color = Color(0, 0.345098, 0.678431, 0.337255)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i8800"]
+bg_color = Color(0.521569, 0.678431, 1, 0.603922)
 
 [sub_resource type="Curve" id="Curve_vivfy"]
 _data = [Vector2(0, 0), 0.0, 2.03419, 0, 0, Vector2(1, 0.582417), 0.35343, 0.0, 0, 0]
@@ -89,7 +127,15 @@ zoom_modifier_curve = SubResource("Curve_383s0")
 position = Vector2(886, 3350)
 allow_controller = true
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." node_paths=PackedStringArray("background", "title_text", "manager_holder", "number_holder")]
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+process_mode = 3
+amount = 75
+process_material = SubResource("ParticleProcessMaterial_w4uby")
+texture = ExtResource("4_iklww")
+lifetime = 0.7
+explosiveness = 0.09
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." node_paths=PackedStringArray("background", "title_text", "manager_holder", "number_holder", "tex_bg")]
 process_mode = 3
 script = ExtResource("4_6omd2")
 background = NodePath("BG")
@@ -100,6 +146,7 @@ number_holder = NodePath("NumTex")
 _3tex = ExtResource("35_n4j5o")
 _2tex = ExtResource("36_ntspm")
 _1tex = ExtResource("37_xtrni")
+tex_bg = NodePath("bg")
 
 [node name="BG2" type="TextureRect" parent="CanvasLayer"]
 modulate = Color(1, 1, 1, 0.0705882)
@@ -136,7 +183,7 @@ offset_bottom = 40.0
 theme_override_constants/margin_left = 70
 theme_override_constants/margin_top = 35
 
-[node name="TIME" type="Label" parent="CanvasLayer/MarginContainer"]
+[node name="TIME" type="Label" parent="CanvasLayer/MarginContainer" node_paths=PackedStringArray("progress")]
 process_mode = 3
 layout_mode = 2
 theme_override_fonts/font = ExtResource("5_go5dp")
@@ -144,6 +191,21 @@ theme_override_font_sizes/font_size = 48
 text = "Time left"
 script = ExtResource("6_jpqif")
 level_time_secs = 180
+progress = NodePath("ProgressBar")
+
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/MarginContainer/TIME"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 73.0
+offset_bottom = 73.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_05451")
+theme_override_styles/fill = SubResource("StyleBoxFlat_i8800")
+value = 0.5
+show_percentage = false
 
 [node name="ScoreBoard" type="Control" parent="CanvasLayer" node_paths=PackedStringArray("bg", "stamp_holder", "stamp_text_holder", "you_scored_holder")]
 layout_mode = 3
@@ -255,10 +317,22 @@ texture_pressed = ExtResource("28_1yqmp")
 texture_hover = ExtResource("28_1yqmp")
 texture_focused = ExtResource("28_1yqmp")
 
+[node name="bg" type="TextureRect" parent="CanvasLayer"]
+offset_left = 67.0
+offset_top = 161.0
+offset_right = 5806.0
+offset_bottom = 857.0
+scale = Vector2(0.312771, 0.312771)
+texture = ExtResource("38_kv6ox")
+
 [node name="TitleTextIntro" type="MarginContainer" parent="CanvasLayer"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 2.0
+offset_top = 13.0
+offset_right = 2.0
+offset_bottom = 13.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
@@ -267,8 +341,9 @@ theme_override_constants/margin_top = 200
 [node name="Label" type="Label" parent="CanvasLayer/TitleTextIntro"]
 layout_mode = 2
 size_flags_vertical = 0
+theme_override_colors/font_color = Color(0.14902, 0.14902, 0.14902, 1)
 theme_override_fonts/font = ExtResource("5_go5dp")
-theme_override_font_sizes/font_size = 72
+theme_override_font_sizes/font_size = 66
 text = "This is title text"
 horizontal_alignment = 1
 
@@ -281,10 +356,10 @@ scale = Vector2(0.25, 0.25)
 texture = ExtResource("35_n4j5o")
 
 [node name="Manager" type="TextureRect" parent="CanvasLayer"]
-offset_left = 662.0
-offset_top = 303.0
-offset_right = 2726.0
-offset_bottom = 1760.0
+offset_left = 233.0
+offset_top = 336.0
+offset_right = 2297.0
+offset_bottom = 1793.0
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("29_a23uj")
 

@@ -3,6 +3,8 @@ extends Label
 @export var level_time_secs : int = 150
 var current_time : float
 
+@export var progress : ProgressBar
+
 func _ready():
 	current_time = level_time_secs
 
@@ -17,14 +19,16 @@ func _process(delta : float):
 			van.game_end()
 			#EventBus.time_over.emit()
 
-	text = "Time Left: %s" % as_text()
+	text = as_text()
+	progress.max_value = 1
+	progress.value = current_time / level_time_secs
 
 
 
 
 func as_text() -> String:
 	var minutes := int(current_time) / 60
-	var seconds := int(current_time + 0.99) % 60
+	var seconds := int(current_time) % 60
 
 	var minutes_str := str(minutes)
 	var seconds_str := str(seconds)
@@ -33,4 +37,4 @@ func as_text() -> String:
 	if seconds < 10:
 		seconds_str = "0" + seconds_str
 
-	return "%s:%s" % [minutes_str, seconds_str]
+	return "Time Left"

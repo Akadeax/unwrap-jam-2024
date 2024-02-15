@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://nn2rk5x8f8mv"]
+[gd_scene load_steps=3 format=3 uid="uid://cv6xe7v6iol43"]
 
 [ext_resource type="PackedScene" uid="uid://yt5vihcqbymr" path="res://HouseGen/HouseScene.tscn" id="1_umt6y"]
 [ext_resource type="Script" path="res://Utils/freecam.gd" id="2_evgyf"]
