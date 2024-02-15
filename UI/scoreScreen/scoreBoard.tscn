@@ -1,58 +1,105 @@
-[gd_scene load_steps=7 format=3 uid="uid://b3pvnspyg1prf"]
+[gd_scene load_steps=15 format=3 uid="uid://b3pvnspyg1prf"]
 
 [ext_resource type="Script" path="res://UI/scoreScreen/scoreBoard.gd" id="1_8rwx5"]
 [ext_resource type="Texture2D" uid="uid://dmmbyrts3fkr5" path="res://Sprites/UI/testBox.png" id="1_617ev"]
 [ext_resource type="Script" path="res://UI/scoreScreen/totalScoreLabel.gd" id="2_mcdnp"]
+[ext_resource type="Texture2D" uid="uid://dr5mbdqtn6rda" path="res://UI/scoreScreen/Board/terrible.png" id="3_u4enq"]
 [ext_resource type="FontFile" uid="uid://cx55imgibsjte" path="res://Sprites/fonts/SpaceMono-Regular.ttf" id="4_2q8m3"]
 [ext_resource type="Script" path="res://UI/scoreScreen/amountLabel.gd" id="4_obin5"]
+[ext_resource type="Texture2D" uid="uid://ck0jq7xng00a8" path="res://UI/scoreScreen/Board/bad.png" id="4_tqr4l"]
+[ext_resource type="Texture2D" uid="uid://wrrefss5jknn" path="res://UI/scoreScreen/Board/alright.png" id="5_o8a4o"]
 [ext_resource type="Script" path="res://UI/scoreScreen/damagesLabel.gd" id="6_shlas"]
+[ext_resource type="Texture2D" uid="uid://bmsee076868fs" path="res://UI/scoreScreen/Board/good.png" id="6_yvyqu"]
+[ext_resource type="Texture2D" uid="uid://bni5ra7oguscv" path="res://UI/scoreScreen/Board/amazing_icon.png" id="7_533ly"]
+[ext_resource type="Texture2D" uid="uid://sagfuly2176o" path="res://UI/scoreScreen/Board/amazing.png" id="8_8n0e7"]
+[ext_resource type="Texture2D" uid="uid://doin5ob32sps1" path="res://UI/scoreScreen/Board/you_scored.png" id="9_m8ewi"]
 
-[node name="ScoreBoard" type="Control"]
+[sub_resource type="Curve" id="Curve_vivfy"]
+_data = [Vector2(0, 0), 0.0, 2.03419, 0, 0, Vector2(1, 0.582417), 0.35343, 0.0, 0, 0]
+point_count = 2
+
+[node name="ScoreBoard" type="Control" node_paths=PackedStringArray("stamp_holder", "stamp_text_holder", "you_scored_holder")]
 layout_mode = 3
 anchors_preset = 0
+scale = Vector2(1.615, 1.615)
 script = ExtResource("1_8rwx5")
+score_stamps = Array[Texture2D]([ExtResource("7_533ly"), ExtResource("7_533ly"), ExtResource("7_533ly"), ExtResource("7_533ly"), ExtResource("7_533ly")])
+score_texts = Array[Texture2D]([ExtResource("3_u4enq"), ExtResource("4_tqr4l"), ExtResource("5_o8a4o"), ExtResource("6_yvyqu"), ExtResource("8_8n0e7")])
+stamp_roll_curve = SubResource("Curve_vivfy")
+stamp_holder = NodePath("Stamp")
+stamp_text_holder = NodePath("StampText")
+you_scored_holder = NodePath("YouScored")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 201.238
+offset_top = 72.4458
+offset_right = 2121.24
+offset_bottom = 1152.45
 scale = Vector2(0.6, 0.6)
 texture = ExtResource("1_617ev")
 
 [node name="Title" type="Label" parent="."]
 layout_mode = 0
-offset_left = 542.0
-offset_top = 123.0
-offset_right = 593.0
-offset_bottom = 146.0
+offset_left = 743.238
+offset_top = 195.446
+offset_right = 794.238
+offset_bottom = 218.446
 text = "SCORE"
 
 [node name="totalScoreLabel" type="Label" parent="."]
 layout_mode = 0
-offset_left = 550.0
-offset_top = 507.0
-offset_right = 601.0
-offset_bottom = 531.0
+offset_left = 751.238
+offset_top = 579.446
+offset_right = 859.238
+offset_bottom = 603.446
 theme_override_fonts/font = ExtResource("4_2q8m3")
 text = "      Total"
 script = ExtResource("2_mcdnp")
 
 [node name="amountLabel" type="Label" parent="."]
 layout_mode = 0
-offset_left = 551.0
-offset_top = 151.0
-offset_right = 904.0
-offset_bottom = 175.0
+offset_left = 752.238
+offset_top = 223.446
+offset_right = 1105.24
+offset_bottom = 247.446
 theme_override_fonts/font = ExtResource("4_2q8m3")
 text = "Object type     amnt      value"
 script = ExtResource("4_obin5")
 
 [node name="damagesLabel" type="Label" parent="."]
 layout_mode = 0
-offset_left = 550.0
-offset_top = 465.0
-offset_right = 805.0
-offset_bottom = 489.0
+offset_left = 751.238
+offset_top = 537.446
+offset_right = 1006.24
+offset_bottom = 561.446
 theme_override_fonts/font = ExtResource("4_2q8m3")
 text = "      Damages            "
 script = ExtResource("6_shlas")
+
+[node name="Stamp" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 474.923
+offset_top = 286.687
+offset_right = 1748.92
+offset_bottom = 1623.69
+scale = Vector2(0.17609, 0.176706)
+texture = ExtResource("7_533ly")
+
+[node name="StampText" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 62.5387
+offset_top = 419.814
+offset_right = 2124.54
+offset_bottom = 796.814
+scale = Vector2(0.169501, 0.169501)
+texture = ExtResource("8_8n0e7")
+
+[node name="YouScored" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 72.4458
+offset_top = 230.96
+offset_right = 1388.45
+offset_bottom = 537.96
+scale = Vector2(0.229264, 0.229264)
+texture = ExtResource("9_m8ewi")

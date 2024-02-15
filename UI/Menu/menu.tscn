@@ -1,9 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://c0x38gfb5pvlm"]
+[gd_scene load_steps=9 format=3 uid="uid://c0x38gfb5pvlm"]
 
 [ext_resource type="Script" path="res://UI/Menu/menu.gd" id="1_h3py3"]
 [ext_resource type="AudioStream" uid="uid://cbth3tcby8xc7" path="res://sound/UI_Music.wav" id="2_13xrf"]
 [ext_resource type="AudioStream" uid="uid://dhuj48vhse5vw" path="res://sound/StartGame_UI.wav" id="3_7h5o8"]
-[ext_resource type="PackedScene" uid="uid://dl0kpmvq5vc50" path="res://main.tscn" id="4_0npm0"]
+[ext_resource type="PackedScene" uid="uid://bbfuqqxswh6x0" path="res://houseTest.tscn" id="4_0npm0"]
 [ext_resource type="Shader" path="res://Environment/water.gdshader" id="4_yauti"]
 [ext_resource type="Shader" path="res://Environment/ripple.gdshader" id="5_ir20u"]
 
@@ -20,25 +20,23 @@ shader_parameter/WATER_COL = Color(0.04, 0.38, 0.88, 1)
 shader_parameter/WATER2_COL = Color(0.04, 0.35, 0.78, 1)
 shader_parameter/FOAM_COL = Color(0.8125, 0.9609, 0.9648, 1)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_sgt06"]
-shader = ExtResource("5_ir20u")
-shader_parameter/wave_count = 20.0
-shader_parameter/speed = 3.0
-shader_parameter/height = 0.003
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hlu6b"]
 shader = ExtResource("5_ir20u")
 shader_parameter/wave_count = 20.0
 shader_parameter/speed = 4.6
 shader_parameter/height = 0.001
+shader_parameter/color = Color(0.0627451, 0.65098, 0.894118, 1)
+shader_parameter/mix_val = 0.25
 
-[node name="menu" type="Node2D" node_paths=PackedStringArray("ripple_rect", "fade_rect")]
+[node name="menu" type="Node2D"]
 script = ExtResource("1_h3py3")
 music = ExtResource("2_13xrf")
 game_start = ExtResource("3_7h5o8")
-ripple_rect = NodePath("CanvasLayer/Ripple")
-fade_rect = NodePath("CanvasLayer/FadeRect")
 game_scene = ExtResource("4_0npm0")
+ripple_rect = Object(ColorRect,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"clip_children":0,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":SubResource("ShaderMaterial_hlu6b"),"use_parent_material":false,"clip_contents":false,"custom_minimum_size":Vector2(0, 0),"layout_direction":0,"layout_mode":3,"anchors_preset":15,"anchor_left":0.0,"anchor_top":0.0,"anchor_right":1.0,"anchor_bottom":1.0,"offset_left":0.0,"offset_top":0.0,"offset_right":0.0,"offset_bottom":0.0,"grow_horizontal":2,"grow_vertical":2,"rotation":0.0,"scale":Vector2(1, 1),"pivot_offset":Vector2(0, 0),"size_flags_horizontal":1,"size_flags_vertical":1,"size_flags_stretch_ratio":1.0,"auto_translate":true,"localize_numeral_system":true,"tooltip_text":"","focus_neighbor_left":NodePath(""),"focus_neighbor_top":NodePath(""),"focus_neighbor_right":NodePath(""),"focus_neighbor_bottom":NodePath(""),"focus_next":NodePath(""),"focus_previous":NodePath(""),"focus_mode":0,"mouse_filter":2,"mouse_force_pass_scroll_events":true,"mouse_default_cursor_shape":0,"shortcut_context":null,"theme":null,"theme_type_variation":&"","color":Color(1, 1, 1, 1),"script":null)
+
+fade_rect = Object(ColorRect,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"clip_children":0,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"clip_contents":false,"custom_minimum_size":Vector2(0, 0),"layout_direction":0,"layout_mode":3,"anchors_preset":15,"anchor_left":0.0,"anchor_top":0.0,"anchor_right":1.0,"anchor_bottom":1.0,"offset_left":0.0,"offset_top":0.0,"offset_right":0.0,"offset_bottom":0.0,"grow_horizontal":2,"grow_vertical":2,"rotation":0.0,"scale":Vector2(1, 1),"pivot_offset":Vector2(0, 0),"size_flags_horizontal":1,"size_flags_vertical":1,"size_flags_stretch_ratio":1.0,"auto_translate":true,"localize_numeral_system":true,"tooltip_text":"","focus_neighbor_left":NodePath(""),"focus_neighbor_top":NodePath(""),"focus_neighbor_right":NodePath(""),"focus_neighbor_bottom":NodePath(""),"focus_next":NodePath(""),"focus_previous":NodePath(""),"focus_mode":0,"mouse_filter":2,"mouse_force_pass_scroll_events":true,"mouse_default_cursor_shape":0,"shortcut_context":null,"theme":null,"theme_type_variation":&"","color":Color(0, 0, 0, 0),"script":null)
+
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -97,10 +95,6 @@ custom_minimum_size = Vector2(120, 50)
 layout_mode = 2
 text = "Quit
 "
-
-[node name="CanvasModulate" type="CanvasModulate" parent="CanvasLayer"]
-z_index = 1
-material = SubResource("ShaderMaterial_sgt06")
 
 [node name="Ripple" type="ColorRect" parent="CanvasLayer"]
 material = SubResource("ShaderMaterial_hlu6b")
