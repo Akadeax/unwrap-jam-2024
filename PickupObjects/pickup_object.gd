@@ -26,7 +26,7 @@ SOFA, BED }
 var health : float
 var is_held = false;
 @export var relative_pos : Vector2 = Vector2(0,-400)
-@export var offset_from_wall : Vector2 = Vector2(0,0)
+@export var wall_offset_correction : float
 var shark;
 var immunity_time : float = 0
 @export var max_immunity_time : float = 2
@@ -55,7 +55,7 @@ func _process(delta):
 
 	if is_held:
 		global_rotation = shark.global_rotation + relative_rot
-		global_position = shark.global_position + relative_pos.rotated(shark.global_rotation)
+		global_position = shark.global_position + relative_pos.rotated(shark.global_rotation) + Vector2(0,-wall_offset_correction).rotated(global_rotation)
 	else:
 		if immune:
 			interact_delay -= delta

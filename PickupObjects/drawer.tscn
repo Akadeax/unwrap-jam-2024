@@ -20,6 +20,7 @@ script = ExtResource("1_4vony")
 fragility = 20.0
 destroyed_particles_scene = ExtResource("2_gprm8")
 type = 17
+wall_offset_correction = 101.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0.000640869, 104.001)
