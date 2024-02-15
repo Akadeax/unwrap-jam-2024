@@ -13,7 +13,7 @@ func _process(delta):
 			player.drop_items()
 			player.position = position
 			player.visible = false
-			player.set_collision_layer_value(1,0);
+			player.is_ending = true;
 			if is_driving:
 				position += (Vector2(-1000, 0) * delta).rotated(rotation)
 	

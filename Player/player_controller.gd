@@ -30,6 +30,7 @@ var held_object
 var held_weight : float
 var knockback_dir : Vector2
 var knockback_time_left : float
+var is_ending : bool = false
 
 var current_tongue_angle : float = -50
 @export var tongue_rotation_speed : float = 50
@@ -119,7 +120,7 @@ func _physics_process(delta):
 	if knockback_time_left > 0:
 		velocity = knockback_dir * 150 * knockback_time_left
 
-	if (move_and_slide()):
+	if (move_and_slide() and not is_ending):
 		bump_player.play()
 		knockback(get_wall_normal()*50, 0.2)
 		get_tree().get_first_node_in_group("cam").apply_shake(8.5, 30)
