@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=3 uid="uid://bbfuqqxswh6x0"]
+[gd_scene load_steps=47 format=3 uid="uid://bbfuqqxswh6x0"]
 
 [ext_resource type="PackedScene" uid="uid://yt5vihcqbymr" path="res://HouseGen/HouseScene.tscn" id="1_ksmiq"]
 [ext_resource type="PackedScene" uid="uid://burd7rvt3gne5" path="res://Player/player.tscn" id="2_e6g4e"]
@@ -34,6 +34,7 @@
 [ext_resource type="AudioStream" uid="uid://brihxtc0ov2x4" path="res://sound/Drumroll.wav" id="24_7feh1"]
 [ext_resource type="Texture2D" uid="uid://synshpwc1nrm" path="res://UI/Menu/menu.png" id="27_6tb4q"]
 [ext_resource type="Texture2D" uid="uid://bsq3x5mlbajkg" path="res://UI/Menu/menu_hovered.png" id="28_1yqmp"]
+[ext_resource type="Texture2D" uid="uid://ba25wrsswq5gs" path="res://UI/ä.png" id="29_a23uj"]
 [ext_resource type="Script" path="res://sound_listener.gd" id="34_1iyvl"]
 [ext_resource type="AudioStream" uid="uid://d0twm8q5e0wd2" path="res://sound/Streams/Interactables/Damage/RandomWoodDamage.tres" id="35_jqvij"]
 [ext_resource type="AudioStream" uid="uid://q77ntrinjeu4" path="res://sound/Streams/Interactables/Destruction/RandomWoodDamage.tres" id="36_7qu8t"]
@@ -80,11 +81,12 @@ zoom_modifier_curve = SubResource("Curve_383s0")
 position = Vector2(886, 3350)
 allow_controller = true
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." node_paths=PackedStringArray("background", "title_text")]
+[node name="CanvasLayer" type="CanvasLayer" parent="." node_paths=PackedStringArray("background", "title_text", "manager_holder")]
 process_mode = 3
 script = ExtResource("4_6omd2")
 background = NodePath("BG")
 title_text = NodePath("TitleTextIntro/Label")
+manager_holder = NodePath("Manager")
 menu_path = "res://UI/Menu/menu.tscn"
 
 [node name="BG2" type="TextureRect" parent="CanvasLayer"]
@@ -227,6 +229,7 @@ texture = ExtResource("19_fjn16")
 stream = ExtResource("24_7feh1")
 
 [node name="Menu" type="TextureButton" parent="CanvasLayer/ScoreBoard"]
+layout_mode = 0
 offset_left = 1026.45
 offset_top = 0.619195
 offset_right = 2054.45
@@ -254,9 +257,13 @@ theme_override_font_sizes/font_size = 72
 text = "This is title text"
 horizontal_alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="Manager" type="TextureRect" parent="CanvasLayer"]
+offset_left = 662.0
+offset_top = 303.0
+offset_right = 2726.0
+offset_bottom = 1760.0
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("29_a23uj")
 
 [node name="DeliveryZone" parent="." instance=ExtResource("9_vnbf0")]
 position = Vector2(894, 4412)
