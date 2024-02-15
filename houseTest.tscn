@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=3 uid="uid://bbfuqqxswh6x0"]
+[gd_scene load_steps=55 format=3 uid="uid://bbfuqqxswh6x0"]
 
 [ext_resource type="PackedScene" uid="uid://yt5vihcqbymr" path="res://HouseGen/HouseScene.tscn" id="1_ksmiq"]
 [ext_resource type="PackedScene" uid="uid://burd7rvt3gne5" path="res://Player/player.tscn" id="2_e6g4e"]
@@ -30,16 +30,24 @@
 [ext_resource type="Script" path="res://UI/scoreScreen/amountLabel.gd" id="17_3pdx4"]
 [ext_resource type="Script" path="res://UI/scoreScreen/damagesLabel.gd" id="18_52dhs"]
 [ext_resource type="Texture2D" uid="uid://doin5ob32sps1" path="res://UI/scoreScreen/Board/you_scored.png" id="19_fjn16"]
+[ext_resource type="AudioStream" uid="uid://dn8reyelka05u" path="res://sound/AHHH/Result_Terrible.wav" id="21_3r7ou"]
 [ext_resource type="Texture2D" uid="uid://d2bh8n6kxskvo" path="res://UI/scoreBoard.png" id="21_7q7rw"]
+[ext_resource type="AudioStream" uid="uid://cnfotp60iqcqt" path="res://sound/AHHH/Result_Bad.wav" id="22_3cd3q"]
+[ext_resource type="AudioStream" uid="uid://0n7b2lc7pmou" path="res://sound/AHHH/Result_Alright.wav" id="23_l2acm"]
 [ext_resource type="AudioStream" uid="uid://brihxtc0ov2x4" path="res://sound/Drumroll.wav" id="24_7feh1"]
+[ext_resource type="AudioStream" uid="uid://d2v6v2wi3br4d" path="res://sound/AHHH/Result_good.wav" id="24_eu22v"]
+[ext_resource type="AudioStream" uid="uid://df7bnkms33b8b" path="res://sound/AHHH/Result_Amazing.wav" id="25_yc8iq"]
 [ext_resource type="Texture2D" uid="uid://synshpwc1nrm" path="res://UI/Menu/menu.png" id="27_6tb4q"]
 [ext_resource type="Texture2D" uid="uid://bsq3x5mlbajkg" path="res://UI/Menu/menu_hovered.png" id="28_1yqmp"]
 [ext_resource type="Texture2D" uid="uid://ba25wrsswq5gs" path="res://UI/ä.png" id="29_a23uj"]
 [ext_resource type="Script" path="res://sound_listener.gd" id="34_1iyvl"]
 [ext_resource type="AudioStream" uid="uid://d0twm8q5e0wd2" path="res://sound/Streams/Interactables/Damage/RandomWoodDamage.tres" id="35_jqvij"]
+[ext_resource type="Texture2D" uid="uid://igtokihvppwk" path="res://sound/AHHH/3to1.png" id="35_n4j5o"]
 [ext_resource type="AudioStream" uid="uid://q77ntrinjeu4" path="res://sound/Streams/Interactables/Destruction/RandomWoodDamage.tres" id="36_7qu8t"]
+[ext_resource type="Texture2D" uid="uid://d4atp1snu23ve" path="res://sound/AHHH/2to2.png" id="36_ntspm"]
 [ext_resource type="AudioStream" uid="uid://cm58krigp71mq" path="res://sound/Streams/Music/Music_Intensity1.wav" id="36_pxlfi"]
 [ext_resource type="AudioStream" uid="uid://c5vg1oph36qu2" path="res://sound/Streams/Music/Music_Intensity2.wav" id="37_mrexa"]
+[ext_resource type="Texture2D" uid="uid://cwh1yk48rfn3k" path="res://sound/AHHH/1to1.png" id="37_xtrni"]
 [ext_resource type="AudioStream" uid="uid://mqaipulpp6kr" path="res://sound/Streams/Music/Music_Intensity3.wav" id="38_ylhwf"]
 [ext_resource type="AudioStream" uid="uid://j1onew3lugvj" path="res://sound/Streams/Music/Music_Intensity4.wav" id="39_r3e7i"]
 
@@ -81,13 +89,17 @@ zoom_modifier_curve = SubResource("Curve_383s0")
 position = Vector2(886, 3350)
 allow_controller = true
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." node_paths=PackedStringArray("background", "title_text", "manager_holder")]
+[node name="CanvasLayer" type="CanvasLayer" parent="." node_paths=PackedStringArray("background", "title_text", "manager_holder", "number_holder")]
 process_mode = 3
 script = ExtResource("4_6omd2")
 background = NodePath("BG")
 title_text = NodePath("TitleTextIntro/Label")
 manager_holder = NodePath("Manager")
 menu_path = "res://UI/Menu/menu.tscn"
+number_holder = NodePath("NumTex")
+_3tex = ExtResource("35_n4j5o")
+_2tex = ExtResource("36_ntspm")
+_1tex = ExtResource("37_xtrni")
 
 [node name="BG2" type="TextureRect" parent="CanvasLayer"]
 modulate = Color(1, 1, 1, 0.0705882)
@@ -145,10 +157,13 @@ script = ExtResource("8_xg2lv")
 bg = NodePath("../BG")
 score_stamps = Array[Texture2D]([ExtResource("9_qpplr"), ExtResource("10_jevcb"), ExtResource("11_kyysc"), ExtResource("12_iyhi7"), ExtResource("9_oueqd")])
 score_texts = Array[Texture2D]([ExtResource("10_268ae"), ExtResource("11_rwue1"), ExtResource("12_23a0b"), ExtResource("13_wyk4m"), ExtResource("14_qc0pv")])
+score_sounds = Array[AudioStream]([ExtResource("21_3r7ou"), ExtResource("22_3cd3q"), ExtResource("23_l2acm"), ExtResource("24_eu22v"), ExtResource("25_yc8iq")])
 stamp_roll_curve = SubResource("Curve_vivfy")
 stamp_holder = NodePath("Stamp")
 stamp_text_holder = NodePath("StampText")
 you_scored_holder = NodePath("YouScored")
+
+[node name="Player" type="AudioStreamPlayer" parent="CanvasLayer/ScoreBoard"]
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/ScoreBoard"]
 layout_mode = 0
@@ -256,6 +271,14 @@ theme_override_fonts/font = ExtResource("5_go5dp")
 theme_override_font_sizes/font_size = 72
 text = "This is title text"
 horizontal_alignment = 1
+
+[node name="NumTex" type="TextureRect" parent="CanvasLayer"]
+offset_left = 986.0
+offset_top = 155.0
+offset_right = 3050.0
+offset_bottom = 1612.0
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("35_n4j5o")
 
 [node name="Manager" type="TextureRect" parent="CanvasLayer"]
 offset_left = 662.0

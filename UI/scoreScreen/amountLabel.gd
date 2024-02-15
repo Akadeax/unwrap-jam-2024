@@ -58,11 +58,11 @@ func _ready():
 	pass # Replace with function body.
 
 func amnt_update(amnt : Array[int]):
-	text ="Object type     amnt      value\n\n"
+	text ="Object type     amnt      value\n"
 	for i in range(amnt.size()):
 		if amnt[i] != 0:
 			await get_tree().create_timer(0.3).timeout
-			text += " %s    " %name_dict[amnt[i]]
+			text += " %s    " %name_dict[i]
 			text += "%s         " %amnt[i]
-			var total_val : int= ScoreBoard.score_dict[name_to_type_dict[name_dict[amnt[i]]]]*amnt[i] 
+			var total_val : int= ScoreBoard.score_dict[name_to_type_dict[name_dict[i]]]*amnt[i]
 			text += "%s \n" %total_val
