@@ -12,8 +12,9 @@ func _process(delta):
 		for player in players:
 			player.position = position
 			player.visible = false
+			player.set_collision_layer_value(1,0);
 			if is_driving:
-				position += (Vector2(-100, 0) * delta).rotated(rotation)
+				position += (Vector2(-1000, 0) * delta).rotated(rotation)
 	
 func _on_body_entered(body):
 	if body.is_in_group("pickup"):
@@ -32,6 +33,11 @@ func _on_body_exited(body):
 
 func _on_door_body_entered(body):
 	if body is PlayerController:
+		game_end()
+	
+
+func game_end():
+	if (!is_ending):
 		is_ending = true
 		$DoorOpen.visible = false
 		$DoorClosed.visible = true
@@ -41,6 +47,8 @@ func _on_door_body_entered(body):
 		$VanClosed.visible = true
 		get_tree().get_first_node_in_group("cam").apply_shake(80, 80)
 		await get_tree().create_timer(1.0).timeout
-		
-		
+		is_driving = true
+		await get_tree().create_timer(2.0).timeout
+	
+	
 		EventBus.time_over.emit()

@@ -83,14 +83,14 @@ theme_override_font_sizes/font_size = 48
 text = "Time left"
 script = ExtResource("7_mv1ac")
 
-[node name="ScoreBoard" parent="CanvasLayer" instance=ExtResource("8_o5j7v")]
+[node name="ScoreBoard" parent="CanvasLayer" node_paths=PackedStringArray("bg") instance=ExtResource("8_o5j7v")]
 anchors_preset = -1
 anchor_left = 0.009
 anchor_right = 0.598
 anchor_bottom = 0.625
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(1.615, 1.615)
+bg = NodePath("../BG")
 
 [node name="TitleTextIntro" type="MarginContainer" parent="CanvasLayer"]
 anchors_preset = 15
