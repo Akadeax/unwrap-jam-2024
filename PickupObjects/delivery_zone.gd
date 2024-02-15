@@ -14,6 +14,7 @@ func _process(delta):
 			player.position = position
 			player.visible = false
 			player.is_ending = true;
+			$StaticBody2D.set_collision_layer_value(1,0)
 			if is_driving:
 				position += (Vector2(-1000, 0) * delta).rotated(rotation)
 	
