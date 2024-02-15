@@ -31,11 +31,16 @@ extends Node
 @export var doorway_rugs : Array[PackedScene]
 @export var big_rugs : Array[PackedScene]
 
-class objectInfo:
+class ObjectInfo:
 	var scene : PackedScene
 	var min_amnt : int
 	var max_amnt : int
 	var min_priority : int
+	func _init(sc : PackedScene, min : int, max : int, prio):
+		scene = sc
+		min_amnt = min
+		max_amnt = max
+		min_priority = prio
 class SpawnInfo:
 	var angle : float
 	var position : Vector2
@@ -142,7 +147,7 @@ func _ready():
 		square_room_draw(hallways[i])
 		fill_hallway(hallways[i])
 		place_door_rug(hallways[i])
-
+		
 func generate_house():
 	var check : bool = true
 	while check :
@@ -263,7 +268,7 @@ func place_door_rug(room : RoomRect):
 		rug.global_position = tilemap.map_to_local(room.grid_pos+room.entrance.relative_grid_pos)*8*2.5
 	if (room.entrance.dir.y != 0):
 		rug.global_rotation = PI/2
-	rug.global_position += Vector2(randf_range(-10,10),randf_range(-10,10))
+	rug.global_position += Vector2(randf_range(-5,5),randf_range(-5,5))
 
 func place_room_rug(room : RoomRect):
 	var rug = big_rugs.pick_random().instantiate()
@@ -394,22 +399,22 @@ func generate_hallway(prev_door : Door) -> RoomRect:
 func fill_room(room : RoomRect):
 	var min_items : int
 	var max_items : int 
-	var center_types : Array[PackedScene] = []
-	var wall_types : Array[PackedScene] = []
+	var center_types : Array[ObjectInfo] = []
+	var wall_types : Array[ObjectInfo] = []
 	var weights : Array[bool] = [true,false]
 	if room.type == RoomTypes.BATHROOM:
 		min_items = 4
 		max_items = 6
 		#append center furniture
-		center_types.append(box_1)
-		center_types.append(box_2)
-		center_types.append(lamp)
+		center_types.append(ObjectInfo.new(box_1,0,10,0))
+		center_types.append(ObjectInfo.new(box_2,0,10,0))
+		center_types.append(ObjectInfo.new(lamp,0,10,0))
 		#append wall furniture
-		wall_types.append(closet)
-		wall_types.append(tub)
-		wall_types.append(sink_1)
-		wall_types.append(sink_2)
-		wall_types.append(toilet)
+		wall_types.append(ObjectInfo.new(closet,0,10,0))
+		wall_types.append(ObjectInfo.new(tub,0,10,0))
+		wall_types.append(ObjectInfo.new(sink_1,0,10,0))
+		wall_types.append(ObjectInfo.new(sink_2,0,10,0))
+		wall_types.append(ObjectInfo.new(toilet,0,10,0))
 		weights.append(false)
 		weights.append(false)
 		
@@ -417,68 +422,68 @@ func fill_room(room : RoomRect):
 		min_items = 3
 		max_items = 8
 		#append center furniture
-		center_types.append(box_1)
-		center_types.append(box_2)
-		center_types.append(lamp)
-		center_types.append(big_couch)
-		center_types.append(couch)
+		center_types.append(ObjectInfo.new(box_1,0,10,0))
+		center_types.append(ObjectInfo.new(box_2,0,10,0))
+		center_types.append(ObjectInfo.new(lamp,0,10,0))
+		center_types.append(ObjectInfo.new(big_couch,0,10,0))
+		center_types.append(ObjectInfo.new(couch,0,10,0))
 		#append wall furniture
-		wall_types.append(bed)
-		wall_types.append(closet)
-		wall_types.append(open_dresser)
+		wall_types.append(ObjectInfo.new(bed,0,10,0))
+		wall_types.append(ObjectInfo.new(closet,0,10,0))
+		wall_types.append(ObjectInfo.new(open_dresser,0,10,0))
 		weights.append(false)
 		
 	if room.type == RoomTypes.KITCHEN:
 		min_items = 4
 		max_items = 7
 		#append center furniture
-		center_types.append(box_1)
-		center_types.append(box_2)
-		center_types.append(lamp)
-		center_types.append(big_table_1)
-		center_types.append(big_table_2)
-		center_types.append(table_chair_1)
-		center_types.append(table_chair_2)
+		center_types.append(ObjectInfo.new(box_1,0,10,0))
+		center_types.append(ObjectInfo.new(box_2,0,10,0))
+		center_types.append(ObjectInfo.new(lamp,0,10,0))
+		center_types.append(ObjectInfo.new(big_table_1,0,10,0))
+		center_types.append(ObjectInfo.new(big_table_2,0,10,0))
+		center_types.append(ObjectInfo.new(table_chair_1,0,10,0))
+		center_types.append(ObjectInfo.new(table_chair_2,0,10,0))
 		#append wall furniture
-		wall_types.append(stove)
-		wall_types.append(fridge)
-		wall_types.append(kitchen_sink)
+		wall_types.append(ObjectInfo.new(stove,0,10,0))
+		wall_types.append(ObjectInfo.new(fridge,0,10,0))
+		wall_types.append(ObjectInfo.new(kitchen_sink,0,10,0))
 		weights.append(false)
 	if room.type == RoomTypes.LIVINGROOM:
 		min_items = 3
 		max_items = 6
 		#append center furniture
-		center_types.append(box_1)
-		center_types.append(box_2)
-		center_types.append(lamp)
-		center_types.append(rolling_chair)
-		center_types.append(fish_coffee_table)
-		center_types.append(big_couch)
-		center_types.append(couch)
+		center_types.append(ObjectInfo.new(box_1,0,10,0))
+		center_types.append(ObjectInfo.new(box_2,0,10,0))
+		center_types.append(ObjectInfo.new(lamp,0,10,0))
+		center_types.append(ObjectInfo.new(rolling_chair,0,10,0))
+		center_types.append(ObjectInfo.new(fish_coffee_table,0,10,0))
+		center_types.append(ObjectInfo.new(big_couch,0,10,0))
+		center_types.append(ObjectInfo.new(couch,0,10,0))
 		#append wall furniture
-		wall_types.append(computer_desk)
-		wall_types.append(closet)
-		wall_types.append(tv)
+		wall_types.append(ObjectInfo.new(computer_desk,0,10,0))
+		wall_types.append(ObjectInfo.new(closet,0,10,0))
+		wall_types.append(ObjectInfo.new(tv,0,10,0))
 	fill(randi_range(min_items,max_items),center_types,wall_types,room,weights)
 
 func fill_hallway(room : RoomRect):
 	var min_items = 4
 	var max_items = 4
 	
-	var center_types : Array[PackedScene] 
-	var wall_types : Array[PackedScene] 
+	var center_types : Array[ObjectInfo] 
+	var wall_types : Array[ObjectInfo] 
 	
 	var weights : Array[bool] = [true,false]
 	
 	#append center rooms
-	center_types.append(box_1)
-	center_types.append(box_2)
-	center_types.append(lamp)
+	center_types.append(ObjectInfo.new(box_1,0,10,0))
+	center_types.append(ObjectInfo.new(box_2,0,10,0))
+	center_types.append(ObjectInfo.new(lamp,0,10,0))
 	#append wall rooms
-	wall_types.append(closet)
+	wall_types.append(ObjectInfo.new(closet,0,10,0))
 	fill(randi_range(min_items,max_items),center_types,wall_types,room,weights)
 	
-func fill(item_amount : int, center_types : Array[PackedScene],wall_types : Array[PackedScene],room : RoomRect, weight :Array[bool]):
+func fill(item_amount : int, center_types : Array[ObjectInfo],wall_types : Array[ObjectInfo],room : RoomRect, weight :Array[bool]):
 	if (center_types.size() == 0 && wall_types.size() == 0 ):
 		pass
 	for i in (item_amount):
@@ -487,7 +492,7 @@ func fill(item_amount : int, center_types : Array[PackedScene],wall_types : Arra
 				i -=1
 				continue
 			var spawn_info = get_available_center_location(room)
-			var child = center_types.pick_random().instantiate()
+			var child = center_types.pick_random().scene.instantiate()
 			add_child(child)
 			child.global_position = spawn_info.position
 			child.global_rotation = spawn_info.angle
@@ -496,7 +501,7 @@ func fill(item_amount : int, center_types : Array[PackedScene],wall_types : Arra
 				i -=1
 				continue
 			var spawn_info = get_available_wall_location(room)
-			var child = wall_types.pick_random().instantiate()
+			var child = wall_types.pick_random().scene.instantiate()
 			if (spawn_info.position == Vector2(100000000,100000000)):
 				i -=1
 				continue
