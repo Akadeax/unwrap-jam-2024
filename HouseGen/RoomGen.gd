@@ -32,6 +32,7 @@ extends Node
 
 @export var doorway_rugs : Array[PackedScene]
 @export var big_rugs : Array[PackedScene]
+@export var big_straight_rugs : Array[PackedScene]
 
 class ObjectInfo:
 	var scene : PackedScene
@@ -143,16 +144,16 @@ func _ready():
 		square_room_draw(rooms[i])
 		if (i != 0):
 			if (randi_range(0,1) == 1):
-				place_room_rug(rooms[i])
-			place_door_rug(rooms[i])
+				place_room_rug(rooms[i],big_rugs)
+			place_door_rug(rooms[i],doorway_rugs)
 			fill_room(rooms[i])
 		else :
-			place_room_rug(rooms[i])
+			place_room_rug(rooms[i],big_rugs)
 	for i in (hallways.size()):
 		square_room_draw(hallways[i])
 		fill_hallway(hallways[i])
-		place_door_rug(hallways[i])
-		
+		place_door_rug(hallways[i],doorway_rugs)
+		place_room_rug(hallways[i],big_straight_rugs)
 func generate_house():
 	var check : bool = true
 	while check :
@@ -260,8 +261,8 @@ func square_room_draw(room : RoomRect):
 			tilemap.set_cell(0,grid_pos_1,0,atlas1,0)
 			tilemap.set_cell(0,grid_pos_2,0,atlas2,0)
 	
-func place_door_rug(room : RoomRect):
-	var rug = doorway_rugs.pick_random().instantiate()
+func place_door_rug(room : RoomRect, carpets : Array[PackedScene]):
+	var rug = carpets.pick_random().instantiate()
 	add_child(rug)
 	if room.entrance.dir.y == -1 :
 		rug.global_position = tilemap.map_to_local(room.grid_pos+room.entrance.relative_grid_pos-Vector2i(0,1))*8*2.5
@@ -276,12 +277,14 @@ func place_door_rug(room : RoomRect):
 	rug.global_position += Vector2(randf_range(-5,5),randf_range(-5,5))
 	rug.z_index = -1
 
-func place_room_rug(room : RoomRect):
-	var rug = big_rugs.pick_random().instantiate()
+func place_room_rug(room : RoomRect, carpets : Array[PackedScene]):
+	var rug = carpets.pick_random().instantiate()
 	add_child(rug)
 	rug.global_position = tilemap.map_to_local(room.grid_pos + ((room.size - Vector2i(1,1))/2))*8*2.5
-	rug.global_position += Vector2(randf_range(-10,10),randf_range(-10,10))
+	rug.global_position += Vector2(randf_range(-2,2),randf_range(-2,2))
 	rug.z_index = -1
+	if (room.size.x > room.size.y) && room.type == RoomTypes.HALLWAY:
+		rug.global_rotation = PI/2
 	
 
 func generate_room( prev_door : Door) -> RoomRect:

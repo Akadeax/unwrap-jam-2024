@@ -192,3 +192,8 @@ func get_is_just_released(input : String) -> bool:
 		return Input.is_action_just_released(input) || Input.is_action_just_released(input + "2")
 	else:
 		return Input.is_action_just_released(input)
+		
+func drop_items():
+	if is_holding_object:
+		held_object.drop()
+		is_holding_object = false
