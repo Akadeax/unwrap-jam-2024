@@ -7,10 +7,11 @@ func _on_body_entered(body):
 	if body.is_in_group("pickup"):
 		if (!body.is_held):
 			body.queue_free()
+			deliver_player.play()
+			deliver_particles.emitting = true
 		else:
 			body.in_delivery = true
-		deliver_player.play()
-		deliver_particles.emitting = true
+
 
 func _on_body_exited(body):
 	if body.is_in_group("pickup"):

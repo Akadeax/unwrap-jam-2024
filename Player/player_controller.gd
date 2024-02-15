@@ -81,8 +81,9 @@ func _physics_process(delta):
 	elif get_is_just_released(back_input):
 		current_move_angle -= 180
 		moving_back = false
+		fishie_holder.stop()
 		fishie_holder.frame = 0
-		fishie_holder.pause()
+		beep_player.stop()
 		fin_holder.speed_scale = 1
 		back_light.hide()
 
