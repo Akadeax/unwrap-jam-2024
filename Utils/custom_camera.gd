@@ -34,8 +34,6 @@ func _process(delta: float) -> void:
 		var player_distance_factor : float = (player_distance / 5000)
 		zoom.x = base_zoom * zoom_modifier_curve.sample(player_distance_factor)
 		zoom.y = base_zoom * zoom_modifier_curve.sample(player_distance_factor)
-
-
 	var avg : Vector2 = Vector2.ZERO
 	for player in players:
 		avg += player.global_position
