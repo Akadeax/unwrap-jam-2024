@@ -33,11 +33,27 @@ position = Vector2(-2, -823)
 scale = Vector2(29.4124, 2.32)
 texture = SubResource("GradientTexture2D_56rth")
 
-[node name="PickupObject" parent="." instance=ExtResource("3_u8sj1")]
-position = Vector2(-1997, 791)
+[node name="AmbiencePlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_vyomr")
+autoplay = true
+script = SubResource("GDScript_2urc8")
 
-[node name="DeliveryZone" parent="." instance=ExtResource("4_eum7i")]
-position = Vector2(1731, 167)
+[node name="MusicPlayer1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_st5k5")
+autoplay = true
+script = SubResource("GDScript_4gypi")
 
-[node name="PickupObject2" parent="." instance=ExtResource("5_0akoi")]
-position = Vector2(-1291, 73)
+[node name="MusicPlayer2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_bylwc")
+autoplay = true
+script = SubResource("GDScript_ve6ld")
+
+[node name="MusicPlayer3" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_byote")
+autoplay = true
+script = SubResource("GDScript_dftlv")
+
+[node name="MusicPlayer4" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_jbbot")
+autoplay = true
+script = SubResource("GDScript_w4u1m")

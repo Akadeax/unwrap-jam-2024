@@ -9,7 +9,7 @@
 [ext_resource type="Script" path="res://UI/Timer.gd" id="6_jpqif"]
 [ext_resource type="PackedScene" uid="uid://b3pvnspyg1prf" path="res://UI/scoreScreen/scoreBoard.tscn" id="7_5llg6"]
 [ext_resource type="PackedScene" uid="uid://bw04633k6vv8p" path="res://PickupObjects/delivery_zone.tscn" id="9_vnbf0"]
-[ext_resource type="AudioStream" uid="uid://dkyuewt7amyft" path="res://sound/Streams/Environment/Ambience.wav" id="10_7hoah"]
+[ext_resource type="AudioStream" uid="uid://bnw7jgnhrs8p5" path="res://sound/Streams/Environment/Ambience.mp3" id="10_o64ml"]
 [ext_resource type="AudioStream" uid="uid://bwrmcma3g83en" path="res://sound/Streams/Music/FullGameLoop.wav" id="11_3vg7u"]
 [ext_resource type="Texture2D" uid="uid://dlhnulcimtmr4" path="res://UI/Sprites/Button - PS Cross 1.png" id="12_v7bep"]
 [ext_resource type="Texture2D" uid="uid://ctpl3f0t0dgkl" path="res://UI/Sprites/Button - PS Square 1.png" id="13_5waif"]
@@ -110,7 +110,7 @@ rotation = -1.5822
 
 [node name="Ambience" type="AudioStreamPlayer" parent="."]
 process_mode = 3
-stream = ExtResource("10_7hoah")
+stream = ExtResource("10_o64ml")
 autoplay = true
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
