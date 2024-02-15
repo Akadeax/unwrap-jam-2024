@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://yt5vihcqbymr"]
+[gd_scene load_steps=40 format=3 uid="uid://yt5vihcqbymr"]
 
 [ext_resource type="Script" path="res://HouseGen/RoomGen.gd" id="2_drh6b"]
 [ext_resource type="Texture2D" uid="uid://cqge4jikww8yh" path="res://Sprites/spriteSheets/HouseSpriteSheet.jpg" id="2_je1np"]
@@ -33,6 +33,8 @@
 [ext_resource type="PackedScene" uid="uid://c1silwvch821c" path="res://PickupObjects/box.tscn" id="22_2xjq7"]
 [ext_resource type="PackedScene" uid="uid://c6iiy3hbr3iog" path="res://PickupObjects/box_open.tscn" id="23_kkbhl"]
 [ext_resource type="PackedScene" uid="uid://bnsqh53lako0d" path="res://PickupObjects/lamp.tscn" id="24_wpcw7"]
+[ext_resource type="PackedScene" uid="uid://nle1ygbwfe8y" path="res://Carpets/carpet_straight_1.tscn" id="32_ubd47"]
+[ext_resource type="PackedScene" uid="uid://csgcwilvhlbul" path="res://Carpets/carpet_straight_2.tscn" id="33_isnxm"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qbyxh"]
 texture = ExtResource("2_je1np")
@@ -298,6 +300,7 @@ box_2 = ExtResource("23_kkbhl")
 lamp = ExtResource("24_wpcw7")
 doorway_rugs = Array[PackedScene]([ExtResource("10_o4u68"), ExtResource("11_jo3bj"), ExtResource("12_u07hl")])
 big_rugs = Array[PackedScene]([ExtResource("13_13umr"), ExtResource("14_pwwbq"), ExtResource("15_821yf")])
+big_straight_rugs = Array[PackedScene]([ExtResource("32_ubd47"), ExtResource("33_isnxm")])
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_bxh6h")
