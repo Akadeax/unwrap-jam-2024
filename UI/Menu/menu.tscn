@@ -1,24 +1,26 @@
-[gd_scene load_steps=9 format=3 uid="uid://c0x38gfb5pvlm"]
+[gd_scene load_steps=18 format=3 uid="uid://c0x38gfb5pvlm"]
 
 [ext_resource type="Script" path="res://UI/Menu/menu.gd" id="1_h3py3"]
 [ext_resource type="AudioStream" uid="uid://cbth3tcby8xc7" path="res://sound/UI_Music.wav" id="2_13xrf"]
 [ext_resource type="AudioStream" uid="uid://dhuj48vhse5vw" path="res://sound/StartGame_UI.wav" id="3_7h5o8"]
 [ext_resource type="PackedScene" uid="uid://bbfuqqxswh6x0" path="res://houseTest.tscn" id="4_0npm0"]
-[ext_resource type="Shader" path="res://Environment/water.gdshader" id="4_yauti"]
+[ext_resource type="PackedScene" path="res://houseTestCo-Op.tscn" id="5_c5gmf"]
 [ext_resource type="Shader" path="res://Environment/ripple.gdshader" id="5_ir20u"]
+[ext_resource type="Texture2D" uid="uid://380ypsg8tefb" path="res://UI/waterTile (1).png" id="6_liqew"]
+[ext_resource type="Texture2D" uid="uid://begbgb1l0giyt" path="res://UI/title_screen.png" id="6_q6vhv"]
+[ext_resource type="Shader" path="res://UI/scroll.gdshader" id="6_qkq8t"]
+[ext_resource type="Texture2D" uid="uid://c4vl1leyxmcsc" path="res://UI/Menu/solo.png" id="8_itpfe"]
+[ext_resource type="Texture2D" uid="uid://02l36pam2xst" path="res://UI/Menu/solo_hovered.png" id="9_yp56j"]
+[ext_resource type="Texture2D" uid="uid://fyjufuxwgiq5" path="res://UI/Menu/coop.png" id="10_gdhfo"]
+[ext_resource type="Texture2D" uid="uid://d10xsqyy6d1i7" path="res://UI/Menu/coop_hovered.png" id="11_b0jvb"]
+[ext_resource type="Texture2D" uid="uid://bh7o1u4hb8mkg" path="res://UI/Menu/quit.png" id="12_l2ryc"]
+[ext_resource type="Texture2D" uid="uid://bh2l4hk0ocoxc" path="res://UI/Menu/quit_hovered.png" id="12_qtmh3"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_hiouc"]
-shader = ExtResource("4_yauti")
-shader_parameter/OCTAVE = 6
-shader_parameter/mulscale = 5.0
-shader_parameter/height = 0.6
-shader_parameter/tide = 0.1
-shader_parameter/foamthickness = 0.1
-shader_parameter/timescale = 1.0
-shader_parameter/waterdeep = 0.3
-shader_parameter/WATER_COL = Color(0.04, 0.38, 0.88, 1)
-shader_parameter/WATER2_COL = Color(0.04, 0.35, 0.78, 1)
-shader_parameter/FOAM_COL = Color(0.8125, 0.9609, 0.9648, 1)
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8cmfe"]
+shader = ExtResource("6_qkq8t")
+shader_parameter/motion = Vector2(50, 0)
+shader_parameter/scale = 1.0
+shader_parameter/offset = Vector2(0, 0)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hlu6b"]
 shader = ExtResource("5_ir20u")
@@ -28,26 +30,18 @@ shader_parameter/height = 0.001
 shader_parameter/color = Color(0.0627451, 0.65098, 0.894118, 1)
 shader_parameter/mix_val = 0.25
 
-[node name="menu" type="Node2D"]
+[node name="menu" type="Node2D" node_paths=PackedStringArray("ripple_rect", "fade_rect", "music_player", "start_player")]
 script = ExtResource("1_h3py3")
 music = ExtResource("2_13xrf")
 game_start = ExtResource("3_7h5o8")
-game_scene = ExtResource("4_0npm0")
-ripple_rect = Object(ColorRect,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"clip_children":0,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":SubResource("ShaderMaterial_hlu6b"),"use_parent_material":false,"clip_contents":false,"custom_minimum_size":Vector2(0, 0),"layout_direction":0,"layout_mode":3,"anchors_preset":15,"anchor_left":0.0,"anchor_top":0.0,"anchor_right":1.0,"anchor_bottom":1.0,"offset_left":0.0,"offset_top":0.0,"offset_right":0.0,"offset_bottom":0.0,"grow_horizontal":2,"grow_vertical":2,"rotation":0.0,"scale":Vector2(1, 1),"pivot_offset":Vector2(0, 0),"size_flags_horizontal":1,"size_flags_vertical":1,"size_flags_stretch_ratio":1.0,"auto_translate":true,"localize_numeral_system":true,"tooltip_text":"","focus_neighbor_left":NodePath(""),"focus_neighbor_top":NodePath(""),"focus_neighbor_right":NodePath(""),"focus_neighbor_bottom":NodePath(""),"focus_next":NodePath(""),"focus_previous":NodePath(""),"focus_mode":0,"mouse_filter":2,"mouse_force_pass_scroll_events":true,"mouse_default_cursor_shape":0,"shortcut_context":null,"theme":null,"theme_type_variation":&"","color":Color(1, 1, 1, 1),"script":null)
-
-fade_rect = Object(ColorRect,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"clip_children":0,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"clip_contents":false,"custom_minimum_size":Vector2(0, 0),"layout_direction":0,"layout_mode":3,"anchors_preset":15,"anchor_left":0.0,"anchor_top":0.0,"anchor_right":1.0,"anchor_bottom":1.0,"offset_left":0.0,"offset_top":0.0,"offset_right":0.0,"offset_bottom":0.0,"grow_horizontal":2,"grow_vertical":2,"rotation":0.0,"scale":Vector2(1, 1),"pivot_offset":Vector2(0, 0),"size_flags_horizontal":1,"size_flags_vertical":1,"size_flags_stretch_ratio":1.0,"auto_translate":true,"localize_numeral_system":true,"tooltip_text":"","focus_neighbor_left":NodePath(""),"focus_neighbor_top":NodePath(""),"focus_neighbor_right":NodePath(""),"focus_neighbor_bottom":NodePath(""),"focus_next":NodePath(""),"focus_previous":NodePath(""),"focus_mode":0,"mouse_filter":2,"mouse_force_pass_scroll_events":true,"mouse_default_cursor_shape":0,"shortcut_context":null,"theme":null,"theme_type_variation":&"","color":Color(0, 0, 0, 0),"script":null)
-
+ripple_rect = NodePath("CanvasLayer/Ripple")
+fade_rect = NodePath("CanvasLayer/FadeRect")
+solo_scene = ExtResource("4_0npm0")
+coop_scene = ExtResource("5_c5gmf")
+music_player = NodePath("CanvasLayer/Music")
+start_player = NodePath("CanvasLayer/Start")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="Water" type="ColorRect" parent="CanvasLayer"]
-material = SubResource("ShaderMaterial_hiouc")
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
 
 [node name="Darken" type="ColorRect" parent="CanvasLayer"]
 anchors_preset = 15
@@ -58,43 +52,61 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 0.67451)
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
+[node name="BG" type="TextureRect" parent="CanvasLayer"]
+modulate = Color(1, 1, 1, 0.478431)
+material = SubResource("ShaderMaterial_8cmfe")
+custom_minimum_size = Vector2(62.44, 0)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(1.885, 1.885)
+texture = ExtResource("6_liqew")
+stretch_mode = 1
 
-[node name="TopMargin" type="MarginContainer" parent="CanvasLayer/VBoxContainer"]
-layout_mode = 2
-theme_override_constants/margin_top = 200
+[node name="TITLE" type="TextureRect" parent="CanvasLayer"]
+offset_left = 478.0
+offset_top = 25.0
+offset_right = 2398.0
+offset_bottom = 1945.0
+scale = Vector2(0.521557, 0.521557)
+texture = ExtResource("6_q6vhv")
+expand_mode = 4
+stretch_mode = 4
 
-[node name="Title" type="Label" parent="CanvasLayer/VBoxContainer"]
-layout_mode = 2
-text = "Poseidon's Moving Company™"
-horizontal_alignment = 1
-vertical_alignment = 1
+[node name="SOLO2" type="TextureButton" parent="CanvasLayer"]
+offset_left = 532.0
+offset_top = 721.0
+offset_right = 1443.0
+offset_bottom = 1086.0
+scale = Vector2(0.324582, 0.324582)
+texture_normal = ExtResource("8_itpfe")
+texture_pressed = ExtResource("9_yp56j")
+texture_hover = ExtResource("9_yp56j")
+texture_focused = ExtResource("9_yp56j")
 
-[node name="Play" type="MarginContainer" parent="CanvasLayer/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-theme_override_constants/margin_top = 20
+[node name="COOP3" type="TextureButton" parent="CanvasLayer"]
+offset_left = 1122.0
+offset_top = 686.0
+offset_right = 2063.0
+offset_bottom = 1111.0
+scale = Vector2(0.324582, 0.324582)
+texture_normal = ExtResource("10_gdhfo")
+texture_pressed = ExtResource("11_b0jvb")
+texture_hover = ExtResource("11_b0jvb")
+texture_focused = ExtResource("11_b0jvb")
 
-[node name="Button" type="Button" parent="CanvasLayer/VBoxContainer/Play"]
-custom_minimum_size = Vector2(120, 50)
-layout_mode = 2
-text = "Play Game"
-
-[node name="Quit" type="MarginContainer" parent="CanvasLayer/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-theme_override_constants/margin_top = 20
-
-[node name="Button" type="Button" parent="CanvasLayer/VBoxContainer/Quit"]
-custom_minimum_size = Vector2(120, 50)
-layout_mode = 2
-text = "Quit
-"
+[node name="QUIT" type="TextureButton" parent="CanvasLayer"]
+offset_left = 792.0
+offset_top = 809.0
+offset_right = 1839.0
+offset_bottom = 1568.0
+scale = Vector2(0.324582, 0.324582)
+texture_normal = ExtResource("12_l2ryc")
+texture_pressed = ExtResource("12_qtmh3")
+texture_hover = ExtResource("12_qtmh3")
+texture_focused = ExtResource("12_qtmh3")
 
 [node name="Ripple" type="ColorRect" parent="CanvasLayer"]
 material = SubResource("ShaderMaterial_hlu6b")
@@ -114,5 +126,12 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 0)
 
-[connection signal="pressed" from="CanvasLayer/VBoxContainer/Play/Button" to="." method="_on_play_pressed"]
-[connection signal="pressed" from="CanvasLayer/VBoxContainer/Quit/Button" to="." method="_on_quit_pressed"]
+[node name="Music" type="AudioStreamPlayer" parent="CanvasLayer"]
+stream = ExtResource("2_13xrf")
+
+[node name="Start" type="AudioStreamPlayer" parent="CanvasLayer"]
+stream = ExtResource("3_7h5o8")
+
+[connection signal="pressed" from="CanvasLayer/SOLO2" to="." method="_on_solo_pressed"]
+[connection signal="pressed" from="CanvasLayer/COOP3" to="." method="_on_coop_pressed"]
+[connection signal="pressed" from="CanvasLayer/QUIT" to="." method="_on_quit_pressed"]

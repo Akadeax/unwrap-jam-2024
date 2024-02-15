@@ -1,0 +1,19 @@
+[gd_resource type="AudioStreamRandomizer" load_steps=5 format=3 uid="uid://cph1xxhndsm6q"]
+
+[ext_resource type="AudioStream" uid="uid://bam0cr48bru2g" path="res://Sound/Streams/Interactables/Damage/Ceramic/Damage_Ceramic_01.wav" id="1_o0f02"]
+[ext_resource type="AudioStream" uid="uid://berdlr6sijej3" path="res://Sound/Streams/Interactables/Damage/Ceramic/Damage_Ceramic_02.wav" id="2_jhblg"]
+[ext_resource type="AudioStream" uid="uid://52iv2x5eukcn" path="res://Sound/Streams/Interactables/Damage/Ceramic/Damage_Ceramic_03.wav" id="3_a1wrk"]
+[ext_resource type="AudioStream" uid="uid://fo6hmxdiy3nw" path="res://Sound/Streams/Interactables/Damage/Ceramic/Damage_Ceramic_04.wav" id="4_mbnhe"]
+
+[resource]
+random_pitch = 1.3
+random_volume_offset_db = 3.0
+streams_count = 4
+stream_0/stream = ExtResource("1_o0f02")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("2_jhblg")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("3_a1wrk")
+stream_2/weight = 1.0
+stream_3/stream = ExtResource("4_mbnhe")
+stream_3/weight = 1.0

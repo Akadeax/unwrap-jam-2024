@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://bbfuqqxswh6x0"]
+[gd_scene load_steps=35 format=3 uid="uid://bbfuqqxswh6x0"]
 
 [ext_resource type="PackedScene" uid="uid://yt5vihcqbymr" path="res://HouseGen/HouseScene.tscn" id="1_ksmiq"]
 [ext_resource type="PackedScene" uid="uid://burd7rvt3gne5" path="res://Player/player.tscn" id="2_e6g4e"]
@@ -9,12 +9,16 @@
 [ext_resource type="Script" path="res://UI/Timer.gd" id="6_jpqif"]
 [ext_resource type="Script" path="res://UI/scoreScreen/scoreBoard.gd" id="8_xg2lv"]
 [ext_resource type="Texture2D" uid="uid://bni5ra7oguscv" path="res://UI/scoreScreen/Board/amazing_icon.png" id="9_oueqd"]
+[ext_resource type="Texture2D" uid="uid://c22xb4le4mhad" path="res://UI/scoreScreen/Board/terrible_stamp.png" id="9_qpplr"]
 [ext_resource type="PackedScene" uid="uid://bw04633k6vv8p" path="res://PickupObjects/delivery_zone.tscn" id="9_vnbf0"]
 [ext_resource type="Texture2D" uid="uid://dr5mbdqtn6rda" path="res://UI/scoreScreen/Board/terrible.png" id="10_268ae"]
+[ext_resource type="Texture2D" uid="uid://dbvb35qqpdpgo" path="res://UI/scoreScreen/Board/bad_stamp.png" id="10_jevcb"]
 [ext_resource type="AudioStream" uid="uid://bnw7jgnhrs8p5" path="res://sound/Streams/Environment/Ambience.mp3" id="10_o64ml"]
 [ext_resource type="AudioStream" uid="uid://bwrmcma3g83en" path="res://sound/Streams/Music/FullGameLoop.wav" id="11_3vg7u"]
+[ext_resource type="Texture2D" uid="uid://b14e4c8c27bpi" path="res://UI/scoreScreen/Board/alright_stamp.png" id="11_kyysc"]
 [ext_resource type="Texture2D" uid="uid://ck0jq7xng00a8" path="res://UI/scoreScreen/Board/bad.png" id="11_rwue1"]
 [ext_resource type="Texture2D" uid="uid://wrrefss5jknn" path="res://UI/scoreScreen/Board/alright.png" id="12_23a0b"]
+[ext_resource type="Texture2D" uid="uid://4j7gvhto2hy0" path="res://UI/scoreScreen/Board/good_stamp.png" id="12_iyhi7"]
 [ext_resource type="Texture2D" uid="uid://dlhnulcimtmr4" path="res://UI/Sprites/Button - PS Cross 1.png" id="12_v7bep"]
 [ext_resource type="Texture2D" uid="uid://ctpl3f0t0dgkl" path="res://UI/Sprites/Button - PS Square 1.png" id="13_5waif"]
 [ext_resource type="Texture2D" uid="uid://bmsee076868fs" path="res://UI/scoreScreen/Board/good.png" id="13_wyk4m"]
@@ -26,6 +30,7 @@
 [ext_resource type="Script" path="res://UI/scoreScreen/amountLabel.gd" id="17_3pdx4"]
 [ext_resource type="Script" path="res://UI/scoreScreen/damagesLabel.gd" id="18_52dhs"]
 [ext_resource type="Texture2D" uid="uid://doin5ob32sps1" path="res://UI/scoreScreen/Board/you_scored.png" id="19_fjn16"]
+[ext_resource type="AudioStream" uid="uid://brihxtc0ov2x4" path="res://sound/Drumroll.wav" id="24_7feh1"]
 
 [sub_resource type="Curve" id="Curve_383s0"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.637363), 0.0, 0.0, 0, 0]
@@ -105,7 +110,7 @@ grow_vertical = 2
 scale = Vector2(1.615, 1.615)
 script = ExtResource("8_xg2lv")
 bg = NodePath("../BG")
-score_stamps = Array[Texture2D]([ExtResource("9_oueqd"), ExtResource("9_oueqd"), ExtResource("9_oueqd"), ExtResource("9_oueqd"), ExtResource("9_oueqd")])
+score_stamps = Array[Texture2D]([ExtResource("9_qpplr"), ExtResource("10_jevcb"), ExtResource("11_kyysc"), ExtResource("12_iyhi7"), ExtResource("9_oueqd")])
 score_texts = Array[Texture2D]([ExtResource("10_268ae"), ExtResource("11_rwue1"), ExtResource("12_23a0b"), ExtResource("13_wyk4m"), ExtResource("14_qc0pv")])
 stamp_roll_curve = SubResource("Curve_vivfy")
 stamp_holder = NodePath("Stamp")
@@ -161,12 +166,13 @@ script = ExtResource("18_52dhs")
 
 [node name="Stamp" type="TextureRect" parent="CanvasLayer/ScoreBoard"]
 layout_mode = 0
-offset_left = 484.037
-offset_top = 273.065
-offset_right = 1758.04
-offset_bottom = 1610.07
-scale = Vector2(0.17609, 0.176706)
-texture = ExtResource("9_oueqd")
+offset_left = 475.988
+offset_top = 297.214
+offset_right = 2539.99
+offset_bottom = 1754.21
+scale = Vector2(0.138447, 0.138931)
+texture = ExtResource("9_qpplr")
+stretch_mode = 4
 
 [node name="StampText" type="TextureRect" parent="CanvasLayer/ScoreBoard"]
 layout_mode = 0
@@ -185,6 +191,9 @@ offset_right = 1388.45
 offset_bottom = 537.96
 scale = Vector2(0.229264, 0.229264)
 texture = ExtResource("19_fjn16")
+
+[node name="Drumroll" type="AudioStreamPlayer" parent="CanvasLayer/ScoreBoard"]
+stream = ExtResource("24_7feh1")
 
 [node name="TitleTextIntro" type="MarginContainer" parent="CanvasLayer"]
 anchors_preset = 15
