@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://bw04633k6vv8p"]
+[gd_scene load_steps=18 format=3 uid="uid://bw04633k6vv8p"]
 
 [ext_resource type="Script" path="res://PickupObjects/delivery_zone.gd" id="1_t1xew"]
 [ext_resource type="Texture2D" uid="uid://duchchgvyimmq" path="res://Sprites/truckOpen.png" id="2_1f5ej"]
@@ -9,15 +9,6 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0qwou"]
 size = Vector2(600, 400)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_2hsnp"]
-size = Vector2(800, 20)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_50bi1"]
-size = Vector2(200, 350)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_stqa2"]
-size = Vector2(20, 200)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a4kjd"]
 size = Vector2(200, 200)
@@ -84,30 +75,12 @@ deliver_particles = NodePath("GPUParticles2D")
 position = Vector2(106, 15)
 shape = SubResource("RectangleShape2D_0qwou")
 
-[node name="RigidBody2D" type="RigidBody2D" parent="."]
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2(106, 15)
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="RigidBody2D"]
-position = Vector2(-106, -233)
-shape = SubResource("RectangleShape2D_2hsnp")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
-position = Vector2(-580, -14)
-shape = SubResource("RectangleShape2D_50bi1")
-
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="RigidBody2D"]
-position = Vector2(384, -237)
-rotation = 0.851721
-shape = SubResource("RectangleShape2D_stqa2")
-
-[node name="CollisionShape2D4" type="CollisionShape2D" parent="RigidBody2D"]
-position = Vector2(-59, 235)
-shape = SubResource("RectangleShape2D_2hsnp")
-
-[node name="CollisionShape2D5" type="CollisionShape2D" parent="RigidBody2D"]
-position = Vector2(391, 255)
-rotation = 2.30907
-shape = SubResource("RectangleShape2D_stqa2")
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+position = Vector2(-106, -15)
+polygon = PackedVector2Array(0.97092, -215.007, 423.062, -197.027, 588.634, -286.821, -310.14, -237.518, -375.9, -187.203, -587.888, -184.188, -596.112, 186.855, -424.019, 206.032, -223.059, 197.07, -232.743, 263.117, 415.211, 252.016, 587.659, 345.191, 418.106, 230.001, -0.875194, 235.007)
 
 [node name="Door" type="Area2D" parent="."]
 
