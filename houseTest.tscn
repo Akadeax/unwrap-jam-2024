@@ -26,7 +26,7 @@ shader_parameter/wave_count = 20.0
 shader_parameter/speed = 3.0
 shader_parameter/height = 0.001
 shader_parameter/color = Color(0.254902, 0.478431, 0.576471, 1)
-shader_parameter/mix_val = 0.33
+shader_parameter/mix_val = 0.0
 
 [node name="HouseTest2" type="Node2D"]
 
@@ -80,7 +80,6 @@ text = "Time left"
 script = ExtResource("6_jpqif")
 
 [node name="ScoreBoard" parent="CanvasLayer" instance=ExtResource("7_5llg6")]
-visible = false
 anchors_preset = -1
 anchor_left = 0.009
 anchor_right = 0.598
@@ -120,11 +119,11 @@ stream = ExtResource("11_3vg7u")
 autoplay = true
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
-color = Color(0.682353, 0.701961, 0.694118, 1)
+color = Color(0.87451, 0.886275, 0.882353, 1)
 blend_mode = 1
 
 [node name="DirectionalLight2D2" type="DirectionalLight2D" parent="."]
-color = Color(0.262745, 0.772549, 0.917647, 1)
+color = Color(0.619608, 0.898039, 0.988235, 1)
 energy = 0.75
 
 [node name="Node2D" type="Node2D" parent="."]
