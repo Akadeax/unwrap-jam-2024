@@ -108,29 +108,24 @@ texture = SubResource("GradientTexture2D_56rth")
 [node name="AmbiencePlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_vyomr")
 autoplay = true
-bus = &"Ambience"
 script = SubResource("GDScript_2urc8")
 
 [node name="MusicPlayer1" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_st5k5")
 autoplay = true
-bus = &"Music"
 script = SubResource("GDScript_4gypi")
 
 [node name="MusicPlayer2" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_bylwc")
 autoplay = true
-bus = &"Music"
 script = SubResource("GDScript_ve6ld")
 
 [node name="MusicPlayer3" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_byote")
 autoplay = true
-bus = &"Music"
 script = SubResource("GDScript_dftlv")
 
 [node name="MusicPlayer4" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_jbbot")
 autoplay = true
-bus = &"Music"
 script = SubResource("GDScript_w4u1m")
