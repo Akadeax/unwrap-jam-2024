@@ -274,7 +274,7 @@ func place_door_rug(room : RoomRect, carpets : Array[PackedScene]):
 		rug.global_position = tilemap.map_to_local(room.grid_pos+room.entrance.relative_grid_pos)*8*2.5
 	if (room.entrance.dir.y != 0):
 		rug.global_rotation = PI/2
-	rug.global_position += Vector2(randf_range(-5,5),randf_range(-5,5))
+		rug.global_position.x += 44
 	rug.z_index = -1
 
 func place_room_rug(room : RoomRect, carpets : Array[PackedScene]):

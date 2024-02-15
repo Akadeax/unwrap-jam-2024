@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://bt16m1dwehpwx"]
+
+[ext_resource type="Texture2D" uid="uid://g5o2a1n642l" path="res://Sprites/objects/betweenTiles.png" id="1_o1phf"]
+
+[node name="Testsquare" type="Node2D"]
+z_index = 5
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(21, 24)
+scale = Vector2(0.42, 0.42)
+texture = ExtResource("1_o1phf")
