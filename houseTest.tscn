@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://bbfuqqxswh6x0"]
+[gd_scene load_steps=46 format=3 uid="uid://bbfuqqxswh6x0"]
 
 [ext_resource type="PackedScene" uid="uid://yt5vihcqbymr" path="res://HouseGen/HouseScene.tscn" id="1_ksmiq"]
 [ext_resource type="PackedScene" uid="uid://burd7rvt3gne5" path="res://Player/player.tscn" id="2_e6g4e"]
@@ -32,6 +32,8 @@
 [ext_resource type="Texture2D" uid="uid://doin5ob32sps1" path="res://UI/scoreScreen/Board/you_scored.png" id="19_fjn16"]
 [ext_resource type="Texture2D" uid="uid://d2bh8n6kxskvo" path="res://UI/scoreBoard.png" id="21_7q7rw"]
 [ext_resource type="AudioStream" uid="uid://brihxtc0ov2x4" path="res://sound/Drumroll.wav" id="24_7feh1"]
+[ext_resource type="Texture2D" uid="uid://synshpwc1nrm" path="res://UI/Menu/menu.png" id="27_6tb4q"]
+[ext_resource type="Texture2D" uid="uid://bsq3x5mlbajkg" path="res://UI/Menu/menu_hovered.png" id="28_1yqmp"]
 [ext_resource type="Script" path="res://sound_listener.gd" id="34_1iyvl"]
 [ext_resource type="AudioStream" uid="uid://d0twm8q5e0wd2" path="res://sound/Streams/Interactables/Damage/RandomWoodDamage.tres" id="35_jqvij"]
 [ext_resource type="AudioStream" uid="uid://q77ntrinjeu4" path="res://sound/Streams/Interactables/Destruction/RandomWoodDamage.tres" id="36_7qu8t"]
@@ -83,6 +85,7 @@ process_mode = 3
 script = ExtResource("4_6omd2")
 background = NodePath("BG")
 title_text = NodePath("TitleTextIntro/Label")
+menu_path = "res://UI/Menu/menu.tscn"
 
 [node name="BG2" type="TextureRect" parent="CanvasLayer"]
 modulate = Color(1, 1, 1, 0.0705882)
@@ -223,12 +226,24 @@ texture = ExtResource("19_fjn16")
 [node name="Drumroll" type="AudioStreamPlayer" parent="CanvasLayer/ScoreBoard"]
 stream = ExtResource("24_7feh1")
 
+[node name="Menu" type="TextureButton" parent="CanvasLayer/ScoreBoard"]
+offset_left = 1026.45
+offset_top = 0.619195
+offset_right = 2054.45
+offset_bottom = 769.619
+scale = Vector2(0.15, 0.15)
+texture_normal = ExtResource("27_6tb4q")
+texture_pressed = ExtResource("28_1yqmp")
+texture_hover = ExtResource("28_1yqmp")
+texture_focused = ExtResource("28_1yqmp")
+
 [node name="TitleTextIntro" type="MarginContainer" parent="CanvasLayer"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 theme_override_constants/margin_top = 200
 
 [node name="Label" type="Label" parent="CanvasLayer/TitleTextIntro"]
@@ -337,3 +352,5 @@ volume_db = -80.0
 [node name="I4" type="AudioStreamPlayer" parent="SoundListener"]
 stream = ExtResource("39_r3e7i")
 volume_db = -80.0
+
+[connection signal="pressed" from="CanvasLayer/ScoreBoard/Menu" to="CanvasLayer" method="_on_menu_pressed"]

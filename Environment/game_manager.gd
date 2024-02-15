@@ -4,6 +4,7 @@ class_name GameManager
 @export var background : ColorRect
 @export var title_text : Label
 @export var manager_holder : TextureRect
+@export_file var menu_path : String
 
 func _ready():
 	get_tree().paused = true
@@ -76,3 +77,9 @@ func set_text(stri : String):
 func unpause():
 	get_tree().paused = false
 	EventBus.increase_intensity.emit()
+	
+
+
+
+func _on_menu_pressed():
+	get_tree().change_scene_to_file(menu_path)

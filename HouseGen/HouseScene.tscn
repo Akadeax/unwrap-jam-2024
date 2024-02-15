@@ -33,8 +33,8 @@
 [ext_resource type="PackedScene" uid="uid://c1silwvch821c" path="res://PickupObjects/box.tscn" id="22_2xjq7"]
 [ext_resource type="PackedScene" uid="uid://c6iiy3hbr3iog" path="res://PickupObjects/box_open.tscn" id="23_kkbhl"]
 [ext_resource type="PackedScene" uid="uid://bnsqh53lako0d" path="res://PickupObjects/lamp.tscn" id="24_wpcw7"]
-[ext_resource type="PackedScene" uid="uid://nle1ygbwfe8y" path="res://Carpets/carpet_straight_1.tscn" id="32_ubd47"]
-[ext_resource type="PackedScene" uid="uid://csgcwilvhlbul" path="res://Carpets/carpet_straight_2.tscn" id="33_isnxm"]
+[ext_resource type="PackedScene" path="res://Carpets/carpet_straight_1.tscn" id="32_ubd47"]
+[ext_resource type="PackedScene" path="res://Carpets/carpet_straight_2.tscn" id="33_isnxm"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qbyxh"]
 texture = ExtResource("2_je1np")
