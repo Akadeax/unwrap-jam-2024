@@ -14,6 +14,7 @@ config/name="UnwrapJam2024"
 run/main_scene="res://UI/Menu/menu.tscn"
 config/features=PackedStringArray("4.2", "Mobile")
 config/icon="res://Sprites/icon.svg"
+config/windows_native_icon="res://Sprites/icon.ico"
 
 [autoload]
 

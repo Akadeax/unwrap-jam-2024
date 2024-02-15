@@ -226,14 +226,14 @@ grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(1.615, 1.615)
 script = ExtResource("10_77qlj")
-bg = NodePath("")
+bg = NodePath("../BG")
 score_stamps = Array[Texture2D]([ExtResource("11_og7wr"), ExtResource("12_cbtwi"), ExtResource("13_850a4"), ExtResource("14_fh6wb"), ExtResource("15_f8a5g")])
 score_texts = Array[Texture2D]([ExtResource("16_ych5s"), ExtResource("17_uuw5w"), ExtResource("18_0htrg"), ExtResource("19_anahx"), ExtResource("20_j72v5")])
 score_sounds = Array[AudioStream]([ExtResource("25_aasy8"), ExtResource("26_g0oye"), ExtResource("27_587no"), ExtResource("28_jxlrt"), ExtResource("29_vuf56")])
 stamp_roll_curve = SubResource("Curve_e45qh")
-stamp_holder = NodePath("")
-stamp_text_holder = NodePath("")
-you_scored_holder = NodePath("")
+stamp_holder = NodePath("Stamp")
+stamp_text_holder = NodePath("StampText")
+you_scored_holder = NodePath("YouScored")
 
 [node name="Player" type="AudioStreamPlayer" parent="CanvasLayer/ScoreBoard"]
 
