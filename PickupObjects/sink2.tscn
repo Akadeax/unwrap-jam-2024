@@ -24,11 +24,11 @@ type = 9
 wall_offset_correction = 102.468
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(1, 103)
+position = Vector2(1, 110)
 shape = SubResource("RectangleShape2D_uqtng")
 
 [node name="Area2D" type="Area2D" parent="." groups=["pickup"]]
-position = Vector2(1, 121)
+position = Vector2(1, 128)
 collision_layer = 2
 collision_mask = 3
 
@@ -37,13 +37,13 @@ position = Vector2(0, -18)
 shape = SubResource("RectangleShape2D_uqtng")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(1, 121)
+position = Vector2(1, 128)
 scale = Vector2(2, 2)
 texture = ExtResource("3_ddjr4")
 hframes = 3
 
 [node name="BonkParticles" parent="." instance=ExtResource("4_25ch0")]
-position = Vector2(1, 121)
+position = Vector2(1, 128)
 
 [connection signal="tree_exiting" from="." to="." method="_on_tree_exiting"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

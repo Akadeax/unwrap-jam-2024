@@ -41,6 +41,32 @@ var lost_score : int = 0
 @export var stamp_text_holder : TextureRect
 @export var you_scored_holder : TextureRect
 
+var type_to_idx_dict = {
+	PickupObject.Type.CHAIR				:0 	 ,
+	PickupObject.Type.CHAIR2			:1 	 ,
+	PickupObject.Type.ROLLING_CHAIR		:2 	 ,
+	PickupObject.Type.SMALL_COUCH		:3 	 ,
+	PickupObject.Type.BOX				:4 	 ,
+	PickupObject.Type.BOX2				:5 	 ,
+	PickupObject.Type.FRIDGE			:6 	 ,
+	PickupObject.Type.STOVE				:7 	 ,
+	PickupObject.Type.SINK				:8 	 ,
+	PickupObject.Type.SINK2				:9 	 ,
+	PickupObject.Type.KITCHEN_SINK		:10	 ,
+	PickupObject.Type.TOILET			:11	 ,
+	PickupObject.Type.TABLE				:12	 ,
+	PickupObject.Type.TABLE2			:13	 ,
+	PickupObject.Type.FISH_COFFEE_TABLE	:14	 ,
+	PickupObject.Type.COMPUTER_DESK		:15	 ,
+	PickupObject.Type.TV_DESK			:16	 ,
+	PickupObject.Type.DRAWER			:17	 ,
+	PickupObject.Type.OPEN_DRESSER		:18	 ,
+	PickupObject.Type.LAMP				:19	 ,
+	PickupObject.Type.TUB				:20	 ,
+	PickupObject.Type.SOFA				:21	 ,
+	PickupObject.Type.BED				:22	 ,
+}
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	EventBus.objectDroppedOff.connect(on_object_dropped_off)
@@ -163,7 +189,7 @@ func on_object_dropped_off(type : PickupObject.Type, damage_percentage : float):
 	var gained_score : int = int(score_dict[type] * damage_percentage)
 	score += gained_score
 	lost_score +=  score_dict[type] - gained_score
-	amount_of_objects[int(type)] +=1
+	amount_of_objects[type_to_idx_dict[type]] +=1
 	EventBus.scoreUpdate.emit(score)
 
 
