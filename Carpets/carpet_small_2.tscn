@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://blry3270c0y0p"]
+
+[ext_resource type="Texture2D" uid="uid://cyamaksw2nv0i" path="res://Sprites/objects/rug6.png" id="1_8thwb"]
+
+[node name="Testsquare" type="Node2D"]
+z_index = 5
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_8thwb")
