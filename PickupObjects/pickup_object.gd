@@ -67,6 +67,8 @@ func _process(delta):
 			queue_free()
 
 func pickup( new_shark ) -> float:
+	if (is_held and new_shark != shark):
+		shark.drop_items()
 	shark = new_shark;
 	is_held = true;
 	relative_rot = angle_difference(shark.rotation, global_rotation)
