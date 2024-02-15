@@ -74,12 +74,6 @@ func _ready():
 
 	amount_of_objects.resize(score_dict.values().size())
 	amount_of_objects.fill(0)
-	# EventBus.objectDroppedOff.emit(PickupObject.Type.CHAIR,0.5)
-	# EventBus.objectDroppedOff.emit(PickupObject.Type.CHAIR,1)
-	# EventBus.objectDroppedOff.emit(PickupObject.Type.CHAIR,1)
-	# EventBus.objectDroppedOff.emit(PickupObject.Type.CHAIR,1)
-	# EventBus.objectDroppedOff.emit(PickupObject.Type.TABLE,1)
-	# EventBus.objectDestroyed.emit(PickupObject.Type.SOFA)
 
 	hide()
 	EventBus.time_over.connect(_on_time_over)

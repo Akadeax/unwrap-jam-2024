@@ -10,8 +10,8 @@ func _process(delta):
 	if is_ending:
 		var players = get_tree().get_nodes_in_group("player")
 		for player in players:
-			player.position = position
 			player.drop_items()
+			player.position = position
 			player.visible = false
 			player.set_collision_layer_value(1,0);
 			if is_driving:
