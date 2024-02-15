@@ -1,57 +1,57 @@
-[gd_scene load_steps=44 format=3 uid="uid://bbfuqqxswh6x0"]
+[gd_scene load_steps=44 format=3 uid="uid://dcpfcbl8egoqx"]
 
-[ext_resource type="PackedScene" uid="uid://yt5vihcqbymr" path="res://HouseGen/HouseScene.tscn" id="1_ksmiq"]
-[ext_resource type="PackedScene" uid="uid://burd7rvt3gne5" path="res://Player/player.tscn" id="2_e6g4e"]
-[ext_resource type="Script" path="res://Utils/custom_camera.gd" id="3_7dhxg"]
-[ext_resource type="Script" path="res://Environment/game_manager.gd" id="4_6omd2"]
-[ext_resource type="Shader" path="res://UI/scroll.gdshader" id="5_g602o"]
-[ext_resource type="FontFile" uid="uid://cx55imgibsjte" path="res://Sprites/fonts/SpaceMono-Regular.ttf" id="5_go5dp"]
-[ext_resource type="Shader" path="res://Environment/ripple.gdshader" id="5_ohp0i"]
-[ext_resource type="Texture2D" uid="uid://380ypsg8tefb" path="res://UI/waterTile (1).png" id="6_80ln4"]
-[ext_resource type="Script" path="res://UI/Timer.gd" id="6_jpqif"]
-[ext_resource type="Script" path="res://UI/scoreScreen/scoreBoard.gd" id="8_xg2lv"]
-[ext_resource type="Texture2D" uid="uid://bni5ra7oguscv" path="res://UI/scoreScreen/Board/amazing_icon.png" id="9_oueqd"]
-[ext_resource type="Texture2D" uid="uid://c22xb4le4mhad" path="res://UI/scoreScreen/Board/terrible_stamp.png" id="9_qpplr"]
-[ext_resource type="PackedScene" uid="uid://bw04633k6vv8p" path="res://PickupObjects/delivery_zone.tscn" id="9_vnbf0"]
-[ext_resource type="Texture2D" uid="uid://dr5mbdqtn6rda" path="res://UI/scoreScreen/Board/terrible.png" id="10_268ae"]
-[ext_resource type="Texture2D" uid="uid://dbvb35qqpdpgo" path="res://UI/scoreScreen/Board/bad_stamp.png" id="10_jevcb"]
-[ext_resource type="AudioStream" uid="uid://bnw7jgnhrs8p5" path="res://sound/Streams/Environment/Ambience.mp3" id="10_o64ml"]
-[ext_resource type="Texture2D" uid="uid://b14e4c8c27bpi" path="res://UI/scoreScreen/Board/alright_stamp.png" id="11_kyysc"]
-[ext_resource type="Texture2D" uid="uid://ck0jq7xng00a8" path="res://UI/scoreScreen/Board/bad.png" id="11_rwue1"]
-[ext_resource type="Texture2D" uid="uid://wrrefss5jknn" path="res://UI/scoreScreen/Board/alright.png" id="12_23a0b"]
-[ext_resource type="Texture2D" uid="uid://4j7gvhto2hy0" path="res://UI/scoreScreen/Board/good_stamp.png" id="12_iyhi7"]
-[ext_resource type="Texture2D" uid="uid://dlhnulcimtmr4" path="res://UI/Sprites/Button - PS Cross 1.png" id="12_v7bep"]
-[ext_resource type="Texture2D" uid="uid://ctpl3f0t0dgkl" path="res://UI/Sprites/Button - PS Square 1.png" id="13_5waif"]
-[ext_resource type="Texture2D" uid="uid://bmsee076868fs" path="res://UI/scoreScreen/Board/good.png" id="13_wyk4m"]
-[ext_resource type="Texture2D" uid="uid://c7w4ehmcsjhyb" path="res://UI/Sprites/Button - PS Circle 1.png" id="14_ncwh1"]
-[ext_resource type="Texture2D" uid="uid://sagfuly2176o" path="res://UI/scoreScreen/Board/amazing.png" id="14_qc0pv"]
-[ext_resource type="Texture2D" uid="uid://bv1b5xhhtaamo" path="res://UI/Sprites/PS5_Dpad.png" id="15_861aq"]
-[ext_resource type="Script" path="res://UI/scoreScreen/totalScoreLabel.gd" id="16_ft6b8"]
-[ext_resource type="Script" path="res://UI/scoreScreen/amountLabel.gd" id="17_3pdx4"]
-[ext_resource type="Script" path="res://UI/scoreScreen/damagesLabel.gd" id="18_52dhs"]
-[ext_resource type="Texture2D" uid="uid://doin5ob32sps1" path="res://UI/scoreScreen/Board/you_scored.png" id="19_fjn16"]
-[ext_resource type="Texture2D" uid="uid://d2bh8n6kxskvo" path="res://UI/scoreBoard.png" id="21_7q7rw"]
-[ext_resource type="AudioStream" uid="uid://brihxtc0ov2x4" path="res://sound/Drumroll.wav" id="24_7feh1"]
-[ext_resource type="Script" path="res://sound_listener.gd" id="34_1iyvl"]
-[ext_resource type="AudioStream" uid="uid://d0twm8q5e0wd2" path="res://sound/Streams/Interactables/Damage/RandomWoodDamage.tres" id="35_jqvij"]
-[ext_resource type="AudioStream" uid="uid://q77ntrinjeu4" path="res://sound/Streams/Interactables/Destruction/RandomWoodDamage.tres" id="36_7qu8t"]
-[ext_resource type="AudioStream" uid="uid://cm58krigp71mq" path="res://sound/Streams/Music/Music_Intensity1.wav" id="36_pxlfi"]
-[ext_resource type="AudioStream" uid="uid://c5vg1oph36qu2" path="res://sound/Streams/Music/Music_Intensity2.wav" id="37_mrexa"]
-[ext_resource type="AudioStream" uid="uid://mqaipulpp6kr" path="res://sound/Streams/Music/Music_Intensity3.wav" id="38_ylhwf"]
-[ext_resource type="AudioStream" uid="uid://j1onew3lugvj" path="res://sound/Streams/Music/Music_Intensity4.wav" id="39_r3e7i"]
+[ext_resource type="PackedScene" uid="uid://yt5vihcqbymr" path="res://HouseGen/HouseScene.tscn" id="1_2ae6w"]
+[ext_resource type="Script" path="res://Utils/custom_camera.gd" id="2_vs4hw"]
+[ext_resource type="PackedScene" uid="uid://burd7rvt3gne5" path="res://Player/player.tscn" id="3_nvdua"]
+[ext_resource type="Script" path="res://Environment/game_manager.gd" id="4_dpv65"]
+[ext_resource type="Shader" path="res://UI/scroll.gdshader" id="5_ieu7h"]
+[ext_resource type="Texture2D" uid="uid://380ypsg8tefb" path="res://UI/waterTile (1).png" id="6_5fui5"]
+[ext_resource type="Shader" path="res://Environment/ripple.gdshader" id="7_0sytv"]
+[ext_resource type="FontFile" uid="uid://cx55imgibsjte" path="res://Sprites/fonts/SpaceMono-Regular.ttf" id="8_7iwck"]
+[ext_resource type="Script" path="res://UI/Timer.gd" id="9_daur0"]
+[ext_resource type="Script" path="res://UI/scoreScreen/scoreBoard.gd" id="10_77qlj"]
+[ext_resource type="Texture2D" uid="uid://c22xb4le4mhad" path="res://UI/scoreScreen/Board/terrible_stamp.png" id="11_og7wr"]
+[ext_resource type="Texture2D" uid="uid://dbvb35qqpdpgo" path="res://UI/scoreScreen/Board/bad_stamp.png" id="12_cbtwi"]
+[ext_resource type="Texture2D" uid="uid://b14e4c8c27bpi" path="res://UI/scoreScreen/Board/alright_stamp.png" id="13_850a4"]
+[ext_resource type="Texture2D" uid="uid://4j7gvhto2hy0" path="res://UI/scoreScreen/Board/good_stamp.png" id="14_fh6wb"]
+[ext_resource type="Texture2D" uid="uid://bni5ra7oguscv" path="res://UI/scoreScreen/Board/amazing_icon.png" id="15_f8a5g"]
+[ext_resource type="Texture2D" uid="uid://dr5mbdqtn6rda" path="res://UI/scoreScreen/Board/terrible.png" id="16_ych5s"]
+[ext_resource type="Texture2D" uid="uid://ck0jq7xng00a8" path="res://UI/scoreScreen/Board/bad.png" id="17_uuw5w"]
+[ext_resource type="Texture2D" uid="uid://wrrefss5jknn" path="res://UI/scoreScreen/Board/alright.png" id="18_0htrg"]
+[ext_resource type="Texture2D" uid="uid://bmsee076868fs" path="res://UI/scoreScreen/Board/good.png" id="19_anahx"]
+[ext_resource type="Texture2D" uid="uid://sagfuly2176o" path="res://UI/scoreScreen/Board/amazing.png" id="20_j72v5"]
+[ext_resource type="Texture2D" uid="uid://d2bh8n6kxskvo" path="res://UI/scoreBoard.png" id="21_jk56y"]
+[ext_resource type="Script" path="res://UI/scoreScreen/totalScoreLabel.gd" id="22_qwu01"]
+[ext_resource type="Script" path="res://UI/scoreScreen/amountLabel.gd" id="23_3qk3e"]
+[ext_resource type="Script" path="res://UI/scoreScreen/damagesLabel.gd" id="24_aevyp"]
+[ext_resource type="Texture2D" uid="uid://doin5ob32sps1" path="res://UI/scoreScreen/Board/you_scored.png" id="25_e0es6"]
+[ext_resource type="AudioStream" uid="uid://brihxtc0ov2x4" path="res://sound/Drumroll.wav" id="26_rrugs"]
+[ext_resource type="PackedScene" uid="uid://bw04633k6vv8p" path="res://PickupObjects/delivery_zone.tscn" id="27_fy4f0"]
+[ext_resource type="AudioStream" uid="uid://bnw7jgnhrs8p5" path="res://sound/Streams/Environment/Ambience.mp3" id="28_uo6ce"]
+[ext_resource type="Texture2D" uid="uid://dlhnulcimtmr4" path="res://UI/Sprites/Button - PS Cross 1.png" id="29_yemhg"]
+[ext_resource type="Texture2D" uid="uid://ctpl3f0t0dgkl" path="res://UI/Sprites/Button - PS Square 1.png" id="30_4ji1d"]
+[ext_resource type="Texture2D" uid="uid://c7w4ehmcsjhyb" path="res://UI/Sprites/Button - PS Circle 1.png" id="31_optig"]
+[ext_resource type="Texture2D" uid="uid://bv1b5xhhtaamo" path="res://UI/Sprites/PS5_Dpad.png" id="32_hek63"]
+[ext_resource type="Script" path="res://sound_listener.gd" id="33_u83di"]
+[ext_resource type="AudioStream" uid="uid://d0twm8q5e0wd2" path="res://sound/Streams/Interactables/Damage/RandomWoodDamage.tres" id="34_t4nai"]
+[ext_resource type="AudioStream" uid="uid://q77ntrinjeu4" path="res://sound/Streams/Interactables/Destruction/RandomWoodDamage.tres" id="35_x10y5"]
+[ext_resource type="AudioStream" uid="uid://cm58krigp71mq" path="res://sound/Streams/Music/Music_Intensity1.wav" id="36_kdsnf"]
+[ext_resource type="AudioStream" uid="uid://c5vg1oph36qu2" path="res://sound/Streams/Music/Music_Intensity2.wav" id="37_cdens"]
+[ext_resource type="AudioStream" uid="uid://mqaipulpp6kr" path="res://sound/Streams/Music/Music_Intensity3.wav" id="38_ksptw"]
+[ext_resource type="AudioStream" uid="uid://j1onew3lugvj" path="res://sound/Streams/Music/Music_Intensity4.wav" id="39_fiskv"]
 
 [sub_resource type="Curve" id="Curve_383s0"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.637363), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vcoq5"]
-shader = ExtResource("5_g602o")
+shader = ExtResource("5_ieu7h")
 shader_parameter/motion = Vector2(30, 35)
 shader_parameter/scale = 1.0
 shader_parameter/offset = Vector2(0, 0)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7y1yn"]
-shader = ExtResource("5_ohp0i")
+shader = ExtResource("7_0sytv")
 shader_parameter/wave_count = 20.0
 shader_parameter/speed = 3.0
 shader_parameter/height = 0.001
@@ -64,23 +64,33 @@ point_count = 2
 
 [node name="HouseTest2" type="Node2D"]
 
-[node name="HouseScene" parent="." instance=ExtResource("1_ksmiq")]
+[node name="HouseScene" parent="." instance=ExtResource("1_2ae6w")]
 scale = Vector2(2.5, 2.5)
 
 [node name="Camera2D" type="Camera2D" parent="." groups=["cam"]]
 position = Vector2(894, 3356)
 zoom = Vector2(0.19, 0.19)
 position_smoothing_speed = 500.0
-script = ExtResource("3_7dhxg")
+script = ExtResource("2_vs4hw")
 zoom_modifier_curve = SubResource("Curve_383s0")
 
-[node name="player" parent="." instance=ExtResource("2_e6g4e")]
-position = Vector2(886, 3350)
-allow_controller = true
+[node name="player" parent="." instance=ExtResource("3_nvdua")]
+position = Vector2(610, 3350)
+
+[node name="player2" parent="." instance=ExtResource("3_nvdua")]
+modulate = Color(1, 0.270588, 0.564706, 1)
+position = Vector2(1147, 3350)
+left_input = "left2"
+right_input = "right2"
+back_input = "back2"
+forward_input = "forward2"
+pickup_input = "pickup2"
+drop_input = "drop2"
+yeet_input = "yeet2"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." node_paths=PackedStringArray("background", "title_text")]
 process_mode = 3
-script = ExtResource("4_6omd2")
+script = ExtResource("4_dpv65")
 background = NodePath("BG")
 title_text = NodePath("TitleTextIntro/Label")
 
@@ -94,7 +104,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(1.885, 1.885)
-texture = ExtResource("6_80ln4")
+texture = ExtResource("6_5fui5")
 stretch_mode = 1
 
 [node name="Shader" type="ColorRect" parent="CanvasLayer"]
@@ -122,10 +132,10 @@ theme_override_constants/margin_top = 35
 [node name="TIME" type="Label" parent="CanvasLayer/MarginContainer"]
 process_mode = 3
 layout_mode = 2
-theme_override_fonts/font = ExtResource("5_go5dp")
+theme_override_fonts/font = ExtResource("8_7iwck")
 theme_override_font_sizes/font_size = 48
 text = "Time left"
-script = ExtResource("6_jpqif")
+script = ExtResource("9_daur0")
 level_time_secs = 30
 
 [node name="ScoreBoard" type="Control" parent="CanvasLayer" node_paths=PackedStringArray("bg", "stamp_holder", "stamp_text_holder", "you_scored_holder")]
@@ -136,10 +146,10 @@ anchor_bottom = 0.625
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(1.615, 1.615)
-script = ExtResource("8_xg2lv")
+script = ExtResource("10_77qlj")
 bg = NodePath("../BG")
-score_stamps = Array[Texture2D]([ExtResource("9_qpplr"), ExtResource("10_jevcb"), ExtResource("11_kyysc"), ExtResource("12_iyhi7"), ExtResource("9_oueqd")])
-score_texts = Array[Texture2D]([ExtResource("10_268ae"), ExtResource("11_rwue1"), ExtResource("12_23a0b"), ExtResource("13_wyk4m"), ExtResource("14_qc0pv")])
+score_stamps = Array[Texture2D]([ExtResource("11_og7wr"), ExtResource("12_cbtwi"), ExtResource("13_850a4"), ExtResource("14_fh6wb"), ExtResource("15_f8a5g")])
+score_texts = Array[Texture2D]([ExtResource("16_ych5s"), ExtResource("17_uuw5w"), ExtResource("18_0htrg"), ExtResource("19_anahx"), ExtResource("20_j72v5")])
 stamp_roll_curve = SubResource("Curve_vivfy")
 stamp_holder = NodePath("Stamp")
 stamp_text_holder = NodePath("StampText")
@@ -152,7 +162,7 @@ offset_top = 72.4458
 offset_right = 2121.24
 offset_bottom = 1152.45
 scale = Vector2(0.6, 0.6)
-texture = ExtResource("21_7q7rw")
+texture = ExtResource("21_jk56y")
 
 [node name="Title" type="Label" parent="CanvasLayer/ScoreBoard"]
 layout_mode = 0
@@ -168,9 +178,9 @@ offset_left = 751.238
 offset_top = 579.446
 offset_right = 859.238
 offset_bottom = 603.446
-theme_override_fonts/font = ExtResource("5_go5dp")
+theme_override_fonts/font = ExtResource("8_7iwck")
 text = "      Total"
-script = ExtResource("16_ft6b8")
+script = ExtResource("22_qwu01")
 
 [node name="amountLabel" type="Label" parent="CanvasLayer/ScoreBoard"]
 layout_mode = 0
@@ -178,9 +188,9 @@ offset_left = 752.238
 offset_top = 223.446
 offset_right = 1105.24
 offset_bottom = 247.446
-theme_override_fonts/font = ExtResource("5_go5dp")
+theme_override_fonts/font = ExtResource("8_7iwck")
 text = "Object type     amnt      value"
-script = ExtResource("17_3pdx4")
+script = ExtResource("23_3qk3e")
 
 [node name="damagesLabel" type="Label" parent="CanvasLayer/ScoreBoard"]
 layout_mode = 0
@@ -188,9 +198,9 @@ offset_left = 751.238
 offset_top = 537.446
 offset_right = 1006.24
 offset_bottom = 561.446
-theme_override_fonts/font = ExtResource("5_go5dp")
+theme_override_fonts/font = ExtResource("8_7iwck")
 text = "      Damages            "
-script = ExtResource("18_52dhs")
+script = ExtResource("24_aevyp")
 
 [node name="Stamp" type="TextureRect" parent="CanvasLayer/ScoreBoard"]
 layout_mode = 0
@@ -199,7 +209,7 @@ offset_top = 297.214
 offset_right = 2539.99
 offset_bottom = 1754.21
 scale = Vector2(0.138447, 0.138931)
-texture = ExtResource("9_qpplr")
+texture = ExtResource("11_og7wr")
 stretch_mode = 4
 
 [node name="StampText" type="TextureRect" parent="CanvasLayer/ScoreBoard"]
@@ -209,7 +219,7 @@ offset_top = 463.777
 offset_right = 2221.58
 offset_bottom = 840.777
 scale = Vector2(0.196857, 0.196857)
-texture = ExtResource("14_qc0pv")
+texture = ExtResource("20_j72v5")
 
 [node name="YouScored" type="TextureRect" parent="CanvasLayer/ScoreBoard"]
 layout_mode = 0
@@ -218,10 +228,10 @@ offset_top = 369.659
 offset_right = 1390.13
 offset_bottom = 676.659
 scale = Vector2(0.229264, 0.229264)
-texture = ExtResource("19_fjn16")
+texture = ExtResource("25_e0es6")
 
 [node name="Drumroll" type="AudioStreamPlayer" parent="CanvasLayer/ScoreBoard"]
-stream = ExtResource("24_7feh1")
+stream = ExtResource("26_rrugs")
 
 [node name="TitleTextIntro" type="MarginContainer" parent="CanvasLayer"]
 anchors_preset = 15
@@ -234,22 +244,18 @@ theme_override_constants/margin_top = 200
 [node name="Label" type="Label" parent="CanvasLayer/TitleTextIntro"]
 layout_mode = 2
 size_flags_vertical = 0
-theme_override_fonts/font = ExtResource("5_go5dp")
+theme_override_fonts/font = ExtResource("8_7iwck")
 theme_override_font_sizes/font_size = 72
 text = "This is title text"
 horizontal_alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="DeliveryZone" parent="." instance=ExtResource("9_vnbf0")]
+[node name="DeliveryZone" parent="." instance=ExtResource("27_fy4f0")]
 position = Vector2(894, 4412)
 rotation = -1.5822
 
 [node name="Ambience" type="AudioStreamPlayer" parent="."]
 process_mode = 3
-stream = ExtResource("10_o64ml")
+stream = ExtResource("28_uo6ce")
 autoplay = true
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
@@ -277,7 +283,7 @@ offset_left = 1335.0
 offset_top = 4749.0
 offset_right = 1907.0
 offset_bottom = 4856.0
-theme_override_fonts/font = ExtResource("5_go5dp")
+theme_override_fonts/font = ExtResource("8_7iwck")
 theme_override_font_sizes/font_size = 72
 text = "<- Leave Early"
 
@@ -286,7 +292,7 @@ offset_left = 1367.0
 offset_top = 4152.0
 offset_right = 2643.0
 offset_bottom = 4589.0
-theme_override_fonts/font = ExtResource("5_go5dp")
+theme_override_fonts/font = ExtResource("8_7iwck")
 theme_override_font_sizes/font_size = 72
 text = "Move: WASD or 
 Pick object up: left click or
@@ -297,43 +303,43 @@ Throw object: right click  or
 [node name="Button-PsCross1" type="Sprite2D" parent="Node2D"]
 position = Vector2(2733, 4317)
 scale = Vector2(0.245092, 0.245092)
-texture = ExtResource("12_v7bep")
+texture = ExtResource("29_yemhg")
 
 [node name="Button-PsCross2" type="Sprite2D" parent="Node2D"]
 position = Vector2(2733, 4427)
 scale = Vector2(0.245092, 0.245092)
-texture = ExtResource("13_5waif")
+texture = ExtResource("30_4ji1d")
 
 [node name="Button-PsCross3" type="Sprite2D" parent="Node2D"]
 position = Vector2(2733, 4541)
 scale = Vector2(0.245092, 0.245092)
-texture = ExtResource("14_ncwh1")
+texture = ExtResource("31_optig")
 
 [node name="Ps5Dpad" type="Sprite2D" parent="Node2D"]
 position = Vector2(2019, 4211)
 scale = Vector2(1.28, 1.28)
-texture = ExtResource("15_861aq")
+texture = ExtResource("32_hek63")
 
 [node name="SoundListener" type="Node" parent="."]
-script = ExtResource("34_1iyvl")
+script = ExtResource("33_u83di")
 
 [node name="Damage" type="AudioStreamPlayer" parent="SoundListener"]
-stream = ExtResource("35_jqvij")
+stream = ExtResource("34_t4nai")
 
 [node name="Break" type="AudioStreamPlayer" parent="SoundListener"]
-stream = ExtResource("36_7qu8t")
+stream = ExtResource("35_x10y5")
 
 [node name="I1" type="AudioStreamPlayer" parent="SoundListener"]
-stream = ExtResource("36_pxlfi")
+stream = ExtResource("36_kdsnf")
 
 [node name="I2" type="AudioStreamPlayer" parent="SoundListener"]
-stream = ExtResource("37_mrexa")
+stream = ExtResource("37_cdens")
 volume_db = -80.0
 
 [node name="I3" type="AudioStreamPlayer" parent="SoundListener"]
-stream = ExtResource("38_ylhwf")
+stream = ExtResource("38_ksptw")
 volume_db = -80.0
 
 [node name="I4" type="AudioStreamPlayer" parent="SoundListener"]
-stream = ExtResource("39_r3e7i")
+stream = ExtResource("39_fiskv")
 volume_db = -80.0

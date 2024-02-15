@@ -6,7 +6,6 @@
 [ext_resource type="AudioStream" uid="uid://difo2ik6gq78e" path="res://sound/Streams/Shark/Grabs/Grab_4.wav" id="4_psm2w"]
 
 [resource]
-random_pitch = 3.51
 random_volume_offset_db = 1.44
 streams_count = 4
 stream_0/stream = ExtResource("1_1br0q")

@@ -1,9 +1,9 @@
 [gd_resource type="AudioStreamRandomizer" load_steps=5 format=3 uid="uid://coyqw3a3wf1t2"]
 
-[ext_resource type="AudioStream" uid="uid://k40ecvet44mg" path="res://sound/Streams/Interactables/Placements/Object_Placement_01.wav" id="1_egs05"]
-[ext_resource type="AudioStream" uid="uid://cvrend5uodg4n" path="res://sound/Streams/Interactables/Placements/Object_Placement_02.wav" id="2_03ko2"]
-[ext_resource type="AudioStream" uid="uid://i3tsreswonrt" path="res://sound/Streams/Interactables/Placements/Object_Placement_03.wav" id="3_kinue"]
-[ext_resource type="AudioStream" uid="uid://ddg53ec4o56uv" path="res://sound/Streams/Interactables/Placements/Object_Placement_04.wav" id="4_ymosb"]
+[ext_resource type="AudioStream" uid="uid://k40ecvet44mg" path="res://sound/Streams/Shark/Placements/Object_Placement_01.wav" id="1_egs05"]
+[ext_resource type="AudioStream" uid="uid://cvrend5uodg4n" path="res://sound/Streams/Shark/Placements/Object_Placement_02.wav" id="2_03ko2"]
+[ext_resource type="AudioStream" uid="uid://i3tsreswonrt" path="res://sound/Streams/Shark/Placements/Object_Placement_03.wav" id="3_kinue"]
+[ext_resource type="AudioStream" uid="uid://ddg53ec4o56uv" path="res://sound/Streams/Shark/Placements/Object_Placement_04.wav" id="4_ymosb"]
 
 [resource]
 streams_count = 4

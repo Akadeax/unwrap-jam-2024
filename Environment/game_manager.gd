@@ -3,6 +3,7 @@ class_name GameManager
 
 @export var background : ColorRect
 @export var title_text : Label
+@export var manager_holder : TextureRect
 
 func _ready():
 	get_tree().paused = true
@@ -13,6 +14,8 @@ func _ready():
 	const text_delay : float = 3
 
 	var tween := get_tree().create_tween().set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
+
+	tween.tween_property(manager_holder, "modulate:a", 1, 0.3)
 
 	tween.tween_callback(set_text.bind("Poseidon's waiting!"))
 
@@ -61,6 +64,8 @@ func _ready():
 
 	var cam = get_tree().get_first_node_in_group("cam")
 	tween.tween_property(cam, "global_position", Vector2(100, 100), 1)
+
+	tween.tween_property(manager_holder, "modulate:a", 0, 0.3)
 
 	tween.tween_callback(unpause)
 

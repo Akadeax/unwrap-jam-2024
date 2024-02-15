@@ -4,8 +4,8 @@
 [ext_resource type="AudioStream" uid="uid://cbth3tcby8xc7" path="res://sound/UI_Music.wav" id="2_13xrf"]
 [ext_resource type="AudioStream" uid="uid://dhuj48vhse5vw" path="res://sound/StartGame_UI.wav" id="3_7h5o8"]
 [ext_resource type="PackedScene" uid="uid://bbfuqqxswh6x0" path="res://houseTest.tscn" id="4_0npm0"]
-[ext_resource type="PackedScene" path="res://houseTestCo-Op.tscn" id="5_c5gmf"]
 [ext_resource type="Shader" path="res://Environment/ripple.gdshader" id="5_ir20u"]
+[ext_resource type="PackedScene" uid="uid://dcpfcbl8egoqx" path="res://houseTestCoop.tscn" id="5_svrwj"]
 [ext_resource type="Texture2D" uid="uid://380ypsg8tefb" path="res://UI/waterTile (1).png" id="6_liqew"]
 [ext_resource type="Texture2D" uid="uid://begbgb1l0giyt" path="res://UI/title_screen.png" id="6_q6vhv"]
 [ext_resource type="Shader" path="res://UI/scroll.gdshader" id="6_qkq8t"]
@@ -37,7 +37,7 @@ game_start = ExtResource("3_7h5o8")
 ripple_rect = NodePath("CanvasLayer/Ripple")
 fade_rect = NodePath("CanvasLayer/FadeRect")
 solo_scene = ExtResource("4_0npm0")
-coop_scene = ExtResource("5_c5gmf")
+coop_scene = ExtResource("5_svrwj")
 music_player = NodePath("CanvasLayer/Music")
 start_player = NodePath("CanvasLayer/Start")
 

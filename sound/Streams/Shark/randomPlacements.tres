@@ -6,7 +6,6 @@
 [ext_resource type="AudioStream" uid="uid://ddg53ec4o56uv" path="res://sound/Streams/Shark/Placements/Object_Placement_04.wav" id="4_ymosb"]
 
 [resource]
-random_pitch = 2.62
 streams_count = 4
 stream_0/stream = ExtResource("1_egs05")
 stream_0/weight = 1.0
