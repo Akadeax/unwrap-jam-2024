@@ -26,6 +26,16 @@ extends Node
 @export var box_2 : PackedScene #anywhere / center
 @export var lamp : PackedScene #anywhere /center
 
+#NEW OBJECTS
+
+@export var doorway_rugs : Array[PackedScene]
+@export var big_rugs : Array[PackedScene]
+
+class objectInfo:
+	var scene : PackedScene
+	var min_amnt : int
+	var max_amnt : int
+	var min_priority : int
 class SpawnInfo:
 	var angle : float
 	var position : Vector2
@@ -59,7 +69,11 @@ class RoomRect:
 		size = passed_size
 		doors = passed_doors
 		entrance = passed_entrance
-		type = RoomTypes.values().pick_random()
+		var check = true
+		while check:
+			type = RoomTypes.values().pick_random()
+			check = type == RoomTypes.HALLWAY
+			
 	func duplicate() -> RoomRect:
 		return RoomRect.new(grid_pos,size,doors.duplicate(),entrance)
 	func is_overlapping(other_room : RoomRect) ->bool:
@@ -70,7 +84,7 @@ class RoomRect:
 		return my_rect.intersects(other_rect,true)		
 enum RoomTypes{HALLWAY,KITCHEN,BEDROOM,BATHROOM,LIVINGROOM} 
 const tilemap_dict = {
-	RoomTypes.HALLWAY : 0,
+	RoomTypes.HALLWAY : 1,
 	RoomTypes.KITCHEN : 0,
 	RoomTypes.BEDROOM : 0,
 	RoomTypes.BATHROOM : 0,
@@ -118,10 +132,16 @@ func _ready():
 	for i in (rooms.size()):
 		square_room_draw(rooms[i])
 		if (i != 0):
+			if (randi_range(0,1) == 1):
+				place_room_rug(rooms[i])
+			place_door_rug(rooms[i])
 			fill_room(rooms[i])
+		else :
+			place_room_rug(rooms[i])
 	for i in (hallways.size()):
 		square_room_draw(hallways[i])
 		fill_hallway(hallways[i])
+		place_door_rug(hallways[i])
 
 func generate_house():
 	var check : bool = true
@@ -194,10 +214,10 @@ func square_room_draw(room : RoomRect):
 				tile_name = "CORNER_TOP_RIGHT"
 			var atlas = Vector2i(tile_dict[tile_name])+(tilemap_dict[room.type]*Vector2i(4,0))
 			if tile_name == "OPEN_FLOOR":
-				atlas = Vector2i(randi_range(0,3),tile_dict[tile_name].y)+(tilemap_dict[room.type]*Vector2i(4,0))
+				var x_offset = tilemap_dict[room.type]*4
+				atlas = Vector2i(randi_range(0 + x_offset ,3 + x_offset) ,tile_dict[tile_name].y)
 			var grid_pos = (Vector2i(xIdx,yIdx)+room.grid_pos)*8
 			tilemap.set_cell(0,grid_pos,0,atlas,0)
-			
 	for i in range(doors.size()):
 		var tile1_name : String 
 		var tile2_name : String
@@ -229,6 +249,27 @@ func square_room_draw(room : RoomRect):
 			var grid_pos_2 = grid_pos_1 +Vector2i(8,0)
 			tilemap.set_cell(0,grid_pos_1,0,atlas1,0)
 			tilemap.set_cell(0,grid_pos_2,0,atlas2,0)
+	
+func place_door_rug(room : RoomRect):
+	var rug = doorway_rugs.pick_random().instantiate()
+	add_child(rug)
+	if room.entrance.dir.y == -1 :
+		rug.global_position = tilemap.map_to_local(room.grid_pos+room.entrance.relative_grid_pos-Vector2i(0,1))*8*2.5
+	elif room.entrance.dir.x == -1:
+		rug.global_position = tilemap.map_to_local(room.grid_pos+room.entrance.relative_grid_pos-Vector2i(1,0))*8*2.5
+	elif room.entrance.dir.y == 1 :
+		rug.global_position = tilemap.map_to_local(room.grid_pos+room.entrance.relative_grid_pos)*8*2.5
+	elif room.entrance.dir.x == 1:
+		rug.global_position = tilemap.map_to_local(room.grid_pos+room.entrance.relative_grid_pos)*8*2.5
+	if (room.entrance.dir.y != 0):
+		rug.global_rotation = PI/2
+	rug.global_position += Vector2(randf_range(-10,10),randf_range(-10,10))
+
+func place_room_rug(room : RoomRect):
+	var rug = big_rugs.pick_random().instantiate()
+	add_child(rug)
+	rug.global_position = tilemap.map_to_local(room.grid_pos + ((room.size - Vector2i(1,1))/2))*8*2.5
+	rug.global_position += Vector2(randf_range(-10,10),randf_range(-10,10))
 
 func generate_room( prev_door : Door) -> RoomRect:
 	var wall_has_door : Array[bool] = [false,false,false,false]
@@ -261,7 +302,7 @@ func generate_room( prev_door : Door) -> RoomRect:
 	entry_door.dir = prev_door.dir 
 	entry_door.relative_grid_pos = prev_door.global_grid_pos + pos_correction - pos
 	entry_door.global_grid_pos = pos + entry_door.relative_grid_pos
-
+	
 	var room : RoomRect = RoomRect.new(pos,size,[],entry_door)
 	room.wall_has_door = wall_has_door
 	return room
