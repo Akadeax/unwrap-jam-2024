@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://da6p5hkijxuu4"]
+
+[ext_resource type="Texture2D" uid="uid://dvqbgfsav0ttq" path="res://Sprites/objects/rug4.png" id="1_8kigx"]
+
+[node name="Testsquare" type="Node2D"]
+z_index = 5
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(1.2, 1.2)
+texture = ExtResource("1_8kigx")
