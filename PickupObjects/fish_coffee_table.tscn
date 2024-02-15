@@ -27,6 +27,7 @@ relative_pos = Vector2(0, -300)
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
 rotation = 1.5708
+scale = Vector2(0.9, 0.9)
 shape = SubResource("CapsuleShape2D_bd2oh")
 
 [node name="Area2D" type="Area2D" parent="." groups=["pickup"]]
@@ -35,6 +36,7 @@ collision_mask = 3
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
 rotation = 1.5708
+scale = Vector2(0.9, 0.9)
 shape = SubResource("CapsuleShape2D_bd2oh")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

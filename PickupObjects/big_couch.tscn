@@ -26,6 +26,7 @@ wall_offset_correction = 100.0
 max_immunity_time = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(0.8, 0.8)
 shape = SubResource("RectangleShape2D_uqtng")
 
 [node name="Area2D" type="Area2D" parent="." groups=["pickup"]]
@@ -33,6 +34,7 @@ collision_layer = 2
 collision_mask = 3
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
+scale = Vector2(0.8, 0.8)
 shape = SubResource("RectangleShape2D_uqtng")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

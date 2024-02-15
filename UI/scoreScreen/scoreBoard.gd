@@ -21,7 +21,7 @@ const score_dict = {
 	PickupObject.Type.TV_DESK : 30,
 	PickupObject.Type.DRAWER : 50,
 	PickupObject.Type.OPEN_DRESSER : 50,
-	PickupObject.Type.LAMP : 50,
+	PickupObject.Type.LAMP : 25,
 	PickupObject.Type.TUB : 90,
 	PickupObject.Type.SOFA : 100,
 	PickupObject.Type.BED : 100,

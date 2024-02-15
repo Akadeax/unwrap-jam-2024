@@ -20,9 +20,11 @@ linear_damp = 1.0
 script = ExtResource("1_rn7p5")
 fragility = 88.0
 destroyed_particles_scene = ExtResource("2_t41b5")
+type = 19
 relative_pos = Vector2(0, -300)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(0.9, 0.9)
 shape = SubResource("CircleShape2D_fbg61")
 
 [node name="Area2D" type="Area2D" parent="." groups=["pickup"]]
@@ -30,6 +32,7 @@ collision_layer = 2
 collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+scale = Vector2(0.9, 0.9)
 shape = SubResource("CircleShape2D_fbg61")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
