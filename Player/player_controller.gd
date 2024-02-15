@@ -160,7 +160,7 @@ func _process(__):
 	else:
 		$Tongue.visible = true
 		$Teeth.visible = false
-		if get_is_pressed(pickup_input) and not objects.is_empty():
+		if get_is_pressed(pickup_input) and not objects.is_empty() and not (get_is_pressed(yeet_input) or get_is_pressed(drop_input)):
 			grab_player.play()
 			objects.sort_custom(distance_sort)
 			held_weight = objects[0].pickup(self)
