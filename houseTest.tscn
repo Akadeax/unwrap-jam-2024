@@ -93,7 +93,7 @@ theme_override_fonts/font = ExtResource("5_go5dp")
 theme_override_font_sizes/font_size = 48
 text = "Time left"
 script = ExtResource("6_jpqif")
-level_time_secs = 2
+level_time_secs = 60
 
 [node name="ScoreBoard" type="Control" parent="CanvasLayer" node_paths=PackedStringArray("bg", "stamp_holder", "stamp_text_holder", "you_scored_holder")]
 layout_mode = 3
