@@ -8,15 +8,15 @@ signal deliver(health_procent, base_score)
 
 @export var destroyed_particles_scene : PackedScene
 
-enum Type{ 
+enum Type{
 CHAIR, CHAIR2, ROLLING_CHAIR,
-SMALL_COUCH, 
-BOX, BOX2, 
+SMALL_COUCH,
+BOX, BOX2,
 FRIDGE, STOVE,
 SINK, SINK2, KITCHEN_SINK,
 TOILET,
-TABLE, TABLE2, FISH_COFFEE_TABLE, 
-COMPUTER_DESK, TV_DESK, 
+TABLE, TABLE2, FISH_COFFEE_TABLE,
+COMPUTER_DESK, TV_DESK,
 DRAWER, OPEN_DRESSER,
 LAMP,
 TUB,
@@ -103,9 +103,11 @@ func damage_object():
 		part.global_position = global_position
 		queue_free()
 		get_tree().get_first_node_in_group("cam").apply_shake(50, 50)
+		EventBus.play_object_break.emit()
 	else:
 		$BonkParticles.emitting = true
 		get_tree().get_first_node_in_group("cam").apply_shake(20, 30)
+		EventBus.play_object_damage.emit()
 
 func _on_tree_exiting():
 	if health > 0:

@@ -48,12 +48,7 @@ func _ready():
 
 	amount_of_objects.resize(score_dict.values().size())
 	amount_of_objects.fill(0)
-	# EventBus.objectDroppedOff.emit(PickupObject.Type.CHAIR,0.5)
-	# EventBus.objectDroppedOff.emit(PickupObject.Type.CHAIR,1)
-	# EventBus.objectDroppedOff.emit(PickupObject.Type.CHAIR,1)
-	# EventBus.objectDroppedOff.emit(PickupObject.Type.CHAIR,1)
-	# EventBus.objectDroppedOff.emit(PickupObject.Type.TABLE,1)
-	# EventBus.objectDestroyed.emit(PickupObject.Type.SOFA)
+
 
 	hide()
 	EventBus.time_over.connect(_on_time_over)
@@ -63,12 +58,10 @@ var do_time : bool = false
 var time : float = 0
 func _process(delta):
 	if do_time:
-		time += delta / 3
+		time += delta / 4.5
 
 
 func _on_time_over():
-	score = 100
-
 	get_tree().paused = true
 	bg.color.a = 0.3
 
@@ -113,7 +106,7 @@ func _on_time_over():
 	await get_tree().create_timer(3).timeout
 
 
-	# stamp
+	# stampyou score
 	var stamp_x_pos := stamp_holder.global_position.x
 	var stamp_y_pos := stamp_holder.global_position.y
 	stamp_holder.global_position.x -= 200
@@ -126,10 +119,10 @@ func _on_time_over():
 
 
 	do_time = true
-
+	$Drumroll.play()
 	while time < 1:
 		stamp_holder.texture = score_stamps.pick_random()
-		await get_tree().create_timer(stamp_roll_curve.sample(time)).timeout
+		await get_tree().create_timer(stamp_roll_curve.sample(time / 5)).timeout
 
 
 	stamp_text_holder.scale = stamp_text_scale
@@ -138,8 +131,16 @@ func _on_time_over():
 	stamp_text_holder.texture = score_texts[score_index]
 
 
-	var stamp_text_tween := get_tree().create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN_OUT).set_parallel(true).set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
+	var stamp_text_tween := get_tree().create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN_OUT).set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
 	stamp_text_tween.tween_property(stamp_text_holder, "scale", stamp_text_scale, 0.5)
+	const VAL := 0.05
+	stamp_text_tween.tween_property(stamp_text_holder, "scale", stamp_text_scale + Vector2(VAL, VAL), 0.2)
+	stamp_text_tween.tween_property(stamp_text_holder, "scale", stamp_text_scale - Vector2(VAL, VAL), 0.2)
+	stamp_text_tween.tween_property(stamp_text_holder, "scale", stamp_text_scale + Vector2(VAL, VAL), 0.2)
+	stamp_text_tween.tween_property(stamp_text_holder, "scale", stamp_text_scale - Vector2(VAL, VAL), 0.2)
+	stamp_text_tween.tween_property(stamp_text_holder, "scale", stamp_text_scale + Vector2(VAL, VAL), 0.2)
+	stamp_text_tween.tween_property(stamp_text_holder, "scale", stamp_text_scale - Vector2(VAL, VAL), 0.2)
+	stamp_text_tween.tween_property(stamp_text_holder, "scale", stamp_text_scale, 0.2)
 
 	await get_tree().create_timer(3).timeout
 

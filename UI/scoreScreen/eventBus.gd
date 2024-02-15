@@ -14,3 +14,10 @@ signal damagesUpdate(total_damage_cost : int)
 
 
 signal time_over()
+
+
+
+
+signal play_object_damage()
+signal play_object_break()
+signal increase_intensity()
