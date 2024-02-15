@@ -67,7 +67,7 @@ class Door:
 		dir = passed_dir
 class RoomRect:
 	var grid_pos : Vector2i #both of these are on grid not cords
-	var size : Vector2i 
+	var size : Vector2i
 	var entrance : Door
 	var doors : Array[Door] # need to be on a wall
 	var type : RoomTypes
@@ -82,16 +82,16 @@ class RoomRect:
 		while check:
 			type = RoomTypes.values().pick_random()
 			check = type == RoomTypes.HALLWAY
-			
+
 	func duplicate() -> RoomRect:
 		return RoomRect.new(grid_pos,size,doors.duplicate(),entrance)
 	func is_overlapping(other_room : RoomRect) ->bool:
 		var house_one_actual_size = (size.abs())*(size/size)
-		var house_two_actual_size = (other_room.size.abs())*(other_room.size/other_room.size) 
+		var house_two_actual_size = (other_room.size.abs())*(other_room.size/other_room.size)
 		var my_rect = Rect2(grid_pos, house_one_actual_size)
 		var other_rect = Rect2(other_room.grid_pos, house_two_actual_size)
-		return my_rect.intersects(other_rect,true)		
-enum RoomTypes{HALLWAY,KITCHEN,BEDROOM,BATHROOM,LIVINGROOM} 
+		return my_rect.intersects(other_rect,true)
+enum RoomTypes{HALLWAY,KITCHEN,BEDROOM,BATHROOM,LIVINGROOM}
 const tilemap_dict = {
 	RoomTypes.HALLWAY : 0,
 	RoomTypes.KITCHEN : 1,
@@ -131,7 +131,7 @@ var hallways: Array[RoomRect]
 func _ready():
 	tilemap.z_index = -2
 	sand_tilemap.z_index = -3
-			
+
 	for x_idx in 250:
 		var x = x_idx - 125
 		for y_idx in 250:
@@ -180,7 +180,7 @@ func generate_house():
 		var room : RoomRect = RoomRect.new(room_pos,room_size,hallway_doors,entrance)
 		room.wall_has_door = has_door
 		rooms.append(room)
-		
+
 		for i in range(hallway_doors.size()):
 			var new_hallway = generate_hallway(room.doors[i])
 			hallways.append(new_hallway)
@@ -199,10 +199,10 @@ func generate_house():
 					if my_rect.intersects(other_rect,true) :
 						check = check || true
 					else :
-						check = check || false 
+						check = check || false
 
 func square_room_draw(room : RoomRect):
-	var doors : Array[Door] = room.doors.duplicate() 
+	var doors : Array[Door] = room.doors.duplicate()
 	doors.append(room.entrance)
 	for xIdx in range(room.size.x):
 		for yIdx in range(room.size.y):
@@ -230,7 +230,7 @@ func square_room_draw(room : RoomRect):
 			var grid_pos = (Vector2i(xIdx,yIdx)+room.grid_pos)*8
 			tilemap.set_cell(0,grid_pos,0,atlas,0)
 	for i in range(doors.size()):
-		var tile1_name : String 
+		var tile1_name : String
 		var tile2_name : String
 		if (doors[i].dir.x):
 			if doors[i].relative_grid_pos.x == 0:
@@ -241,7 +241,7 @@ func square_room_draw(room : RoomRect):
 				tile2_name = "INSIDE_HORIZONTAL_CORNER_BOTTOM_RIGHT"
 			var atlas1 = tile_dict[tile1_name]+(tilemap_dict[room.type]*Vector2i(4,0))
 			var atlas2 = tile_dict[tile2_name]+(tilemap_dict[room.type]*Vector2i(4,0))
-			
+
 			var grid_pos_1 = (doors[i].relative_grid_pos+room.grid_pos)*8
 			var grid_pos_2 = grid_pos_1+Vector2i(0,8)
 			tilemap.set_cell(0,grid_pos_1,0,atlas1,0)
@@ -255,12 +255,12 @@ func square_room_draw(room : RoomRect):
 				tile2_name = "INSIDE_VERTICAL_CORNER_BOTTOM_RIGHT"
 			var atlas1 = tile_dict[tile1_name]+(tilemap_dict[room.type]*Vector2i(4,0))
 			var atlas2 = tile_dict[tile2_name]+(tilemap_dict[room.type]*Vector2i(4,0))
-			
+
 			var grid_pos_1 =(doors[i].relative_grid_pos+room.grid_pos)*8
 			var grid_pos_2 = grid_pos_1 +Vector2i(8,0)
 			tilemap.set_cell(0,grid_pos_1,0,atlas1,0)
 			tilemap.set_cell(0,grid_pos_2,0,atlas2,0)
-	
+
 func place_door_rug(room : RoomRect, carpets : Array[PackedScene]):
 	var rug = carpets.pick_random().instantiate()
 	add_child(rug)
@@ -285,7 +285,7 @@ func place_room_rug(room : RoomRect, carpets : Array[PackedScene]):
 	rug.z_index = -1
 	if (room.size.x > room.size.y) && room.type == RoomTypes.HALLWAY:
 		rug.global_rotation = PI/2
-	
+
 
 func generate_room( prev_door : Door) -> RoomRect:
 	var wall_has_door : Array[bool] = [false,false,false,false]
@@ -294,10 +294,10 @@ func generate_room( prev_door : Door) -> RoomRect:
 	var size : Vector2i = Vector2i(	randi_range(min_size,max_size),randi_range(min_size,max_size))
 	var pos : Vector2i
 	var pos_correction : Vector2i
-	var entry_door : Door = Door.new(Vector2i(0,0),Vector2i(0,0),Vector2i(0,0)) 
+	var entry_door : Door = Door.new(Vector2i(0,0),Vector2i(0,0),Vector2i(0,0))
 	if prev_door.dir.x == -1:
 		wall_has_door[2] = true
-		pos.x = prev_door.global_grid_pos.x + 1 
+		pos.x = prev_door.global_grid_pos.x + 1
 		pos_correction = Vector2i(1,0)
 		pos.y = prev_door.global_grid_pos.y - 1
 	elif prev_door.dir.x == 1:
@@ -315,10 +315,10 @@ func generate_room( prev_door : Door) -> RoomRect:
 		pos.y = prev_door.global_grid_pos.y - size.y
 		pos_correction = Vector2i(0,-1)
 		pos.x = prev_door.global_grid_pos.x - 1
-	entry_door.dir = prev_door.dir 
+	entry_door.dir = prev_door.dir
 	entry_door.relative_grid_pos = prev_door.global_grid_pos + pos_correction - pos
 	entry_door.global_grid_pos = pos + entry_door.relative_grid_pos
-	
+
 	var room : RoomRect = RoomRect.new(pos,size,[],entry_door)
 	room.wall_has_door = wall_has_door
 	return room
@@ -337,7 +337,7 @@ func generate_hallway(prev_door : Door) -> RoomRect:
 	if prev_door.dir.x == -1:
 		wall_has_door[0] = true
 		size.y = 4
-		pos.x = prev_door.global_grid_pos.x - size.x 
+		pos.x = prev_door.global_grid_pos.x - size.x
 		pos_correction = Vector2i(-1,0)
 		pos.y = prev_door.global_grid_pos.y - 1
 	elif prev_door.dir.x == 1:
@@ -363,7 +363,7 @@ func generate_hallway(prev_door : Door) -> RoomRect:
 	entry_door.global_grid_pos = pos + entry_door.relative_grid_pos
 	#make the doors in the hallway
 	var door_amnt : int = [2,2,2,3].pick_random()
-	var doors : Array[Door] 
+	var doors : Array[Door]
 	for i in (door_amnt):
 		var door_dir = randi_range(0,3)
 		if wall_has_door[door_dir_to_wallIdx[door_dir]]:
@@ -377,28 +377,28 @@ func generate_hallway(prev_door : Door) -> RoomRect:
 			door_pos.x = size.x-1
 			if size.y == 4:
 				door_pos.y = 1
-			else: 
+			else:
 				door_pos.y = randi_range(1,size.y-4)
 		elif door_dir == 1:
 			dir = Vector2i(1,0)
 			door_pos.x = 0
 			if size.y == 4:
 				door_pos.y = 1
-			else: 
+			else:
 				door_pos.y = randi_range(1,size.y-4)
 		elif door_dir == 2:
 			dir = Vector2i(0,-1)
 			door_pos.y = size.y-1
 			if size.x == 4:
 				door_pos.x = 1
-			else: 
+			else:
 				door_pos.x = randi_range(1,size.x-4)
 		elif door_dir == 3:
 			dir = Vector2i(0,1)
 			door_pos.y = 0
 			if size.x == 4:
 				door_pos.x = 1
-			else: 
+			else:
 				door_pos.x = randi_range(1,size.x-4)
 		var new_door : Door = Door.new(door_pos,dir,pos)
 		doors.append(new_door)
@@ -409,7 +409,7 @@ func generate_hallway(prev_door : Door) -> RoomRect:
 
 func fill_room(room : RoomRect):
 	var min_items : int
-	var max_items : int 
+	var max_items : int
 	var center_types : Array[ObjectInfo] = []
 	var wall_types : Array[ObjectInfo] = []
 	var weights : Array[bool] = [true,false]
@@ -428,7 +428,7 @@ func fill_room(room : RoomRect):
 		wall_types.append(ObjectInfo.new(toilet,0,1,0))
 		weights.append(false)
 		weights.append(false)
-		
+
 	if room.type == RoomTypes.BEDROOM:
 		min_items = 5
 		max_items = 8
@@ -443,7 +443,7 @@ func fill_room(room : RoomRect):
 		wall_types.append(ObjectInfo.new(closet,0,1,0))
 		wall_types.append(ObjectInfo.new(open_dresser,0,1,0))
 		weights.append(false)
-		
+
 	if room.type == RoomTypes.KITCHEN:
 		min_items = 5
 		max_items = 8
@@ -480,12 +480,12 @@ func fill_room(room : RoomRect):
 func fill_hallway(room : RoomRect):
 	var min_items = 0
 	var max_items = 2
-	
-	var center_types : Array[ObjectInfo] 
-	var wall_types : Array[ObjectInfo] 
-	
+
+	var center_types : Array[ObjectInfo]
+	var wall_types : Array[ObjectInfo]
+
 	var weights : Array[bool] = [true,false]
-	
+
 	#append center rooms
 	center_types.append(ObjectInfo.new(box_1,0,10,0))
 	center_types.append(ObjectInfo.new(box_2,0,10,0))
@@ -493,7 +493,7 @@ func fill_hallway(room : RoomRect):
 	#append wall rooms
 	wall_types.append(ObjectInfo.new(closet,0,1,0))
 	fill(randi_range(min_items,max_items),center_types,wall_types,room,weights)
-	
+
 func fill(item_amount : int, center_types : Array[ObjectInfo],wall_types : Array[ObjectInfo],room : RoomRect, weight :Array[bool]):
 	if (center_types.size() == 0 && wall_types.size() == 0 ):
 		pass
@@ -509,7 +509,7 @@ func fill(item_amount : int, center_types : Array[ObjectInfo],wall_types : Array
 				center_types.remove_at(center_types.find(type))
 				print ("stopped")
 				print(center_types)
-				print("check")	
+				print("check")
 				i -=1
 				continue
 			var child = type.scene.instantiate()
@@ -518,7 +518,7 @@ func fill(item_amount : int, center_types : Array[ObjectInfo],wall_types : Array
 			add_child(child)
 			child.global_position = spawn_info.position
 			child.global_rotation = spawn_info.angle
-		else : 
+		else :
 			if (wall_types.size() == 0):
 				i -=1
 				continue
@@ -557,8 +557,8 @@ func get_available_wall_location(room : RoomRect) -> SpawnInfo:
 			tilemap.map_to_local((Vector2(room.grid_pos) + Vector2(room.size) + Vector2(-room.size.x+0.5,-room.size.y-.18))*8*2.5),
 			tilemap.map_to_local(Vector2(Vector2(room.grid_pos) +Vector2(room.size.x-1.5,-0.18))*8*2.5)
 			),
-	] 
-	
+	]
+
 	#debugrender for spawn rects
 	#for i in range(spawn_rects.size()):
 		#var child1 = testCross.instantiate()
@@ -567,14 +567,14 @@ func get_available_wall_location(room : RoomRect) -> SpawnInfo:
 		#var child2 = testCross.instantiate()
 		#add_child(child2)
 		#child2.global_position = spawn_rects[i].top_left
-	
-	
+
+
 	for i in range(room.wall_has_door.size()):
 		if !room.wall_has_door[i] :
 			possible_walls +=1
 	if (possible_walls == 0):
 		return SpawnInfo.new(0,Vector2(100000000,100000000))
-	var check : bool = false 
+	var check : bool = false
 	var picked_wall : int = 0
 	while !check:
 		picked_wall = randi_range(0,3)
@@ -591,9 +591,9 @@ func get_available_wall_location(room : RoomRect) -> SpawnInfo:
 		angle = PI + PI/2
 	elif (picked_wall == 3):
 		angle = 0
-	
+
 	return SpawnInfo.new(angle,chosen_pos)
-	
+
 func get_available_center_location(room:RoomRect) -> SpawnInfo:
 	var top_left : Vector2 = (Vector2(room.grid_pos)+Vector2(1,1))*8*2.5
 	var bottom_right : Vector2 = (room.grid_pos +(room.size-Vector2i(2,2)))*8*2.5

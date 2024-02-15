@@ -32,7 +32,7 @@ var lost_score : int = 0
 
 @export var bg : ColorRect
 
-@export var score_thresholds : Array[int] = [0, 30, 60, 100, 150]
+@export var score_thresholds : Array[int] = [-100, 0, 33, 66, 100]
 @export var score_stamps : Array[Texture2D]
 @export var score_texts : Array[Texture2D]
 @export var score_sounds : Array[AudioStream]
@@ -188,7 +188,7 @@ func on_object_dropped_off(type : PickupObject.Type, damage_percentage : float):
 
 
 func on_object_destroyed(type : PickupObject.Type):
-	var lost : int = int(score_dict[type] * 0.5)
+	var lost : int = int(score_dict[type] * 0.1)
 	score -= lost
 	lost_score += lost
 	EventBus.scoreUpdate.emit(score)

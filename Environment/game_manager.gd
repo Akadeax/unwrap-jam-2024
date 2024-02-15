@@ -15,6 +15,7 @@ class_name GameManager
 @export var tex_bg : TextureRect
 
 
+
 func _ready():
 	get_tree().paused = true
 

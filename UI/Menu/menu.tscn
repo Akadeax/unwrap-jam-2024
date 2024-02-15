@@ -5,7 +5,7 @@
 [ext_resource type="AudioStream" uid="uid://dhuj48vhse5vw" path="res://sound/StartGame_UI.wav" id="3_7h5o8"]
 [ext_resource type="PackedScene" uid="uid://bbfuqqxswh6x0" path="res://houseTest.tscn" id="4_0npm0"]
 [ext_resource type="Shader" path="res://Environment/ripple.gdshader" id="5_ir20u"]
-[ext_resource type="PackedScene" path="res://houseTestCoop.tscn" id="5_svrwj"]
+[ext_resource type="PackedScene" uid="uid://dcpfcbl8egoqx" path="res://houseTestCoop.tscn" id="5_svrwj"]
 [ext_resource type="Texture2D" uid="uid://380ypsg8tefb" path="res://UI/waterTile (1).png" id="6_liqew"]
 [ext_resource type="Texture2D" uid="uid://begbgb1l0giyt" path="res://UI/title_screen.png" id="6_q6vhv"]
 [ext_resource type="Shader" path="res://UI/scroll.gdshader" id="6_qkq8t"]
