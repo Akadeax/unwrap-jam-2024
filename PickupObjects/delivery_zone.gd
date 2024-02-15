@@ -1,6 +1,7 @@
 extends Area2D
 
 @export var deliver_player : AudioStreamPlayer
+@export var deliver_particles : GPUParticles2D
 
 func _on_body_entered(body):
 	if body.is_in_group("pickup"):
@@ -9,6 +10,7 @@ func _on_body_entered(body):
 		else:
 			body.in_delivery = true
 		deliver_player.play()
+		deliver_particles.emitting = true
 
 func _on_body_exited(body):
 	if body.is_in_group("pickup"):

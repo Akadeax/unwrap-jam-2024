@@ -17,7 +17,6 @@ config/icon="res://Sprites/icon.svg"
 
 [autoload]
 
-SoundManager="*res://addons/sound_manager/sound_manager.gd"
 EventBus="*res://UI/scoreScreen/eventBus.gd"
 
 [display]

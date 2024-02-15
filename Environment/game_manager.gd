@@ -10,7 +10,7 @@ func _ready():
 	background.color.a = 0.4
 	title_text.self_modulate.a = 0
 
-	const text_delay : float = 2
+	const text_delay : float = 3
 
 	var tween := get_tree().create_tween().set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
 
