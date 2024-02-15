@@ -26,7 +26,7 @@ const score_dict = {
 	PickupObject.Type.SOFA : 100,
 	PickupObject.Type.BED : 100,
 }
-var amount_of_objects : Array[int] = []
+var amount_of_objects : Array[int] = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
 var score : int = 0
 var lost_score : int = 0
 
@@ -35,6 +35,8 @@ var lost_score : int = 0
 @export var score_thresholds : Array[int] = [0, 30, 60, 100, 150]
 @export var score_stamps : Array[Texture2D]
 @export var score_texts : Array[Texture2D]
+@export var score_sounds : Array[AudioStream]
+
 @export var stamp_roll_curve : Curve
 
 @export var stamp_holder : TextureRect
@@ -72,9 +74,6 @@ func _ready():
 	EventBus.objectDroppedOff.connect(on_object_dropped_off)
 	EventBus.objectDestroyed.connect(on_object_destroyed)
 
-	amount_of_objects.resize(score_dict.values().size())
-	amount_of_objects.fill(0)
-
 	hide()
 	EventBus.time_over.connect(_on_time_over)
 
@@ -89,7 +88,6 @@ func _process(delta):
 func _on_time_over():
 	get_tree().paused = true
 	bg.color.a = 0.6
-
 
 	var old_scale : Vector2 = scale
 	modulate.a = 0
@@ -149,6 +147,8 @@ func _on_time_over():
 		stamp_holder.texture = score_stamps.pick_random()
 		await get_tree().create_timer(stamp_roll_curve.sample(time / 5)).timeout
 
+	$Player.stream = score_sounds[score_index]
+	$Player.play()
 
 	stamp_text_holder.scale = stamp_text_scale
 
