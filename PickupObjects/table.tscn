@@ -5,12 +5,14 @@
 [ext_resource type="Texture2D" uid="uid://da2uxl7m3ikfk" path="res://Sprites/table1.png" id="2_mut8q"]
 [ext_resource type="PackedScene" uid="uid://bohcapsbcsl7o" path="res://VFX/bonk_particles.tscn" id="3_bgfam"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_8jvv0"]
-radius = 179.95
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l15px"]
+size = Vector2(268.875, 183.385)
 
 [node name="PickupObject" type="RigidBody2D" groups=["pickup"]]
+z_index = 1
 collision_layer = 3
 collision_mask = 3
+mass = 40.0
 gravity_scale = 0.0
 can_sleep = false
 continuous_cd = 2
@@ -21,17 +23,19 @@ destroyed_particles_scene = ExtResource("2_f65tf")
 type = 12
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_8jvv0")
+position = Vector2(8, 0)
+shape = SubResource("RectangleShape2D_l15px")
 
 [node name="Area2D" type="Area2D" parent="." groups=["pickup"]]
 collision_layer = 2
 collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource("CircleShape2D_8jvv0")
+position = Vector2(8, 0)
+shape = SubResource("RectangleShape2D_l15px")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.6, 0.6)
+scale = Vector2(1.2, 1.2)
 texture = ExtResource("2_mut8q")
 hframes = 3
 

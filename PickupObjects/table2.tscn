@@ -2,25 +2,25 @@
 
 [ext_resource type="Script" path="res://PickupObjects/pickup_object.gd" id="1_4xnp7"]
 [ext_resource type="PackedScene" uid="uid://c35jijc0e1sau" path="res://VFX/destroy_particles.tscn" id="2_e6vfk"]
-[ext_resource type="Texture2D" uid="uid://da2uxl7m3ikfk" path="res://Sprites/table1.png" id="2_tiblo"]
+[ext_resource type="Texture2D" uid="uid://bfbe676i6misv" path="res://Sprites/table2.png" id="3_ydp87"]
 [ext_resource type="PackedScene" uid="uid://bohcapsbcsl7o" path="res://VFX/bonk_particles.tscn" id="4_471ax"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8jvv0"]
 radius = 179.95
 
 [node name="PickupObject" type="RigidBody2D" groups=["pickup"]]
+z_index = 1
+position = Vector2(-2, 0)
 collision_layer = 3
 collision_mask = 3
+mass = 50.0
 gravity_scale = 0.0
 can_sleep = false
 continuous_cd = 2
 linear_damp = 1.0
 script = ExtResource("1_4xnp7")
-fragility = 25.0
-max_health = 100.0
-destruction_frames = 1.0
+fragility = 34.0
 destroyed_particles_scene = ExtResource("2_e6vfk")
-max_immunity_time = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_8jvv0")
@@ -33,8 +33,9 @@ collision_mask = 3
 shape = SubResource("CircleShape2D_8jvv0")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.6, 0.6)
-texture = ExtResource("2_tiblo")
+scale = Vector2(1.6, 1.6)
+texture = ExtResource("3_ydp87")
+hframes = 3
 
 [node name="BonkParticles" parent="." instance=ExtResource("4_471ax")]
 

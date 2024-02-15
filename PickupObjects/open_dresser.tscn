@@ -2,44 +2,47 @@
 
 [ext_resource type="Script" path="res://PickupObjects/pickup_object.gd" id="1_jpnu8"]
 [ext_resource type="PackedScene" uid="uid://c35jijc0e1sau" path="res://VFX/destroy_particles.tscn" id="2_ymjdv"]
-[ext_resource type="Texture2D" uid="uid://b5tjlay2sj8tc" path="res://Sprites/box.png" id="3_lixly"]
+[ext_resource type="Texture2D" uid="uid://c64sy8pakwhy1" path="res://Sprites/dresser.png" id="3_n6bij"]
 [ext_resource type="PackedScene" uid="uid://bohcapsbcsl7o" path="res://VFX/bonk_particles.tscn" id="4_4ldh1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uqtng"]
-size = Vector2(500, 500)
+size = Vector2(414.925, 212.925)
 
 [node name="PickupObject" type="RigidBody2D" groups=["pickup"]]
+z_index = 1
 collision_layer = 3
 collision_mask = 3
+mass = 100.0
 gravity_scale = 0.0
 can_sleep = false
 continuous_cd = 2
 linear_damp = 1.0
 script = ExtResource("1_jpnu8")
 fragility = 25.0
-destruction_frames = 2.0
 destroyed_particles_scene = ExtResource("2_ymjdv")
-max_immunity_time = 1.0
+wall_offset_correction = 97.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 261)
+position = Vector2(1, 109)
 shape = SubResource("RectangleShape2D_uqtng")
 
 [node name="Area2D" type="Area2D" parent="." groups=["pickup"]]
-position = Vector2(0, 261)
+position = Vector2(-4, 97)
 collision_layer = 2
 collision_mask = 3
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(5, 12)
 shape = SubResource("RectangleShape2D_uqtng")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, 261)
-texture = ExtResource("3_lixly")
-hframes = 2
+position = Vector2(-4, 97)
+scale = Vector2(2, 2)
+texture = ExtResource("3_n6bij")
+hframes = 3
 
 [node name="BonkParticles" parent="." instance=ExtResource("4_4ldh1")]
-position = Vector2(0, 261)
+position = Vector2(-4, 97)
 
 [connection signal="tree_exiting" from="." to="." method="_on_tree_exiting"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

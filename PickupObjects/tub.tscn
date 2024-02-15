@@ -2,13 +2,15 @@
 
 [ext_resource type="Script" path="res://PickupObjects/pickup_object.gd" id="1_ajvwd"]
 [ext_resource type="PackedScene" uid="uid://c35jijc0e1sau" path="res://VFX/destroy_particles.tscn" id="2_6tq5g"]
-[ext_resource type="Texture2D" uid="uid://b5tjlay2sj8tc" path="res://Sprites/box.png" id="3_rs27s"]
+[ext_resource type="Texture2D" uid="uid://dviy2ttvfvkev" path="res://Sprites/bathpng.png" id="3_fhxke"]
 [ext_resource type="PackedScene" uid="uid://bohcapsbcsl7o" path="res://VFX/bonk_particles.tscn" id="4_tugc5"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_uqtng"]
-size = Vector2(500, 500)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_u13m8"]
+radius = 93.98
+height = 455.24
 
 [node name="PickupObject" type="RigidBody2D" groups=["pickup"]]
+z_index = 1
 collision_layer = 3
 collision_mask = 3
 mass = 100.0
@@ -19,26 +21,29 @@ linear_damp = 1.0
 script = ExtResource("1_ajvwd")
 fragility = 10.0
 destroyed_particles_scene = ExtResource("2_6tq5g")
+wall_offset_correction = 235.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-1, 260)
-shape = SubResource("RectangleShape2D_uqtng")
+position = Vector2(-1, 235)
+shape = SubResource("CapsuleShape2D_u13m8")
 
 [node name="Area2D" type="Area2D" parent="." groups=["pickup"]]
-position = Vector2(-1, 260)
+position = Vector2(-1, 235)
 collision_layer = 2
 collision_mask = 3
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource("RectangleShape2D_uqtng")
+shape = SubResource("CapsuleShape2D_u13m8")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(-1, 260)
-texture = ExtResource("3_rs27s")
-hframes = 2
+position = Vector2(-1, 235)
+rotation = 1.5708
+scale = Vector2(2, 2)
+texture = ExtResource("3_fhxke")
+hframes = 3
 
 [node name="BonkParticles" parent="." instance=ExtResource("4_tugc5")]
-position = Vector2(-1, 260)
+position = Vector2(-1, 235)
 
 [connection signal="tree_exiting" from="." to="." method="_on_tree_exiting"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
