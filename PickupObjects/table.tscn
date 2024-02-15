@@ -1,12 +1,15 @@
-[gd_scene load_steps=6 format=3 uid="uid://dtbe5dwu7c6d2"]
+[gd_scene load_steps=7 format=3 uid="uid://dtbe5dwu7c6d2"]
 
 [ext_resource type="Script" path="res://PickupObjects/pickup_object.gd" id="1_kv8jo"]
 [ext_resource type="PackedScene" uid="uid://c35jijc0e1sau" path="res://VFX/destroy_particles.tscn" id="2_f65tf"]
 [ext_resource type="Texture2D" uid="uid://da2uxl7m3ikfk" path="res://Sprites/table1.png" id="2_mut8q"]
 [ext_resource type="PackedScene" uid="uid://bohcapsbcsl7o" path="res://VFX/bonk_particles.tscn" id="3_bgfam"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_8jvv0"]
-radius = 179.95
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tcnnv"]
+size = Vector2(438, 281)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8vwpf"]
+size = Vector2(445, 287)
 
 [node name="PickupObject" type="RigidBody2D" groups=["pickup"]]
 collision_layer = 3
@@ -21,17 +24,19 @@ destroyed_particles_scene = ExtResource("2_f65tf")
 type = 12
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_8jvv0")
+position = Vector2(16, 7.5)
+shape = SubResource("RectangleShape2D_tcnnv")
 
 [node name="Area2D" type="Area2D" parent="." groups=["pickup"]]
 collision_layer = 2
 collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource("CircleShape2D_8jvv0")
+position = Vector2(18.5, 4.5)
+shape = SubResource("RectangleShape2D_8vwpf")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.6, 0.6)
+scale = Vector2(2, 2)
 texture = ExtResource("2_mut8q")
 hframes = 3
 

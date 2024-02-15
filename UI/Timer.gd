@@ -13,7 +13,9 @@ func _process(delta : float):
 			current_time -= delta
 		else:
 			current_time = 0
-			EventBus.time_over.emit()
+			var van = get_tree().get_first_node_in_group("delivery")
+			van.game_end()
+			#EventBus.time_over.emit()
 
 	text = "Time Left: %s" % as_text()
 

@@ -1,0 +1,43 @@
+[gd_scene load_steps=9 format=3 uid="uid://42xkjfhepdt4"]
+
+[ext_resource type="Script" path="res://Utils/custom_camera.gd" id="1_k0xmf"]
+[ext_resource type="PackedScene" uid="uid://burd7rvt3gne5" path="res://Player/player.tscn" id="2_6q1ic"]
+[ext_resource type="PackedScene" uid="uid://vc5sgeq8koh1" path="res://PickupObjects/pickup_object.tscn" id="3_u8sj1"]
+[ext_resource type="PackedScene" uid="uid://bw04633k6vv8p" path="res://PickupObjects/delivery_zone.tscn" id="4_eum7i"]
+[ext_resource type="PackedScene" uid="uid://b3wrvk8o3i6ho" path="res://PickupObjects/bed.tscn" id="5_0akoi"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fblan"]
+size = Vector2(1748, 143)
+
+[sub_resource type="Gradient" id="Gradient_ijq7v"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_56rth"]
+gradient = SubResource("Gradient_ijq7v")
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.22, 0.22)
+script = ExtResource("1_k0xmf")
+
+[node name="player" parent="." instance=ExtResource("2_6q1ic")]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-1, -818)
+shape = SubResource("RectangleShape2D_fblan")
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
+position = Vector2(-2, -823)
+scale = Vector2(29.4124, 2.32)
+texture = SubResource("GradientTexture2D_56rth")
+
+[node name="PickupObject" parent="." instance=ExtResource("3_u8sj1")]
+position = Vector2(-1997, 791)
+
+[node name="DeliveryZone" parent="." instance=ExtResource("4_eum7i")]
+position = Vector2(1731, 167)
+
+[node name="PickupObject2" parent="." instance=ExtResource("5_0akoi")]
+position = Vector2(-1291, 73)

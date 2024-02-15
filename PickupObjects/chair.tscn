@@ -1,14 +1,15 @@
 [gd_scene load_steps=6 format=3 uid="uid://ckywlhdbuc6cj"]
 
 [ext_resource type="Script" path="res://PickupObjects/pickup_object.gd" id="1_erm3m"]
-[ext_resource type="Texture2D" uid="uid://fvkd031ternh" path="res://Sprites/chair_pog.png" id="2_3cwev"]
 [ext_resource type="PackedScene" uid="uid://c35jijc0e1sau" path="res://VFX/destroy_particles.tscn" id="2_578oc"]
+[ext_resource type="Texture2D" uid="uid://ovxijyslil03" path="res://Sprites/chair1.png" id="3_0vv4s"]
 [ext_resource type="PackedScene" uid="uid://bohcapsbcsl7o" path="res://VFX/bonk_particles.tscn" id="4_atcku"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_vm14j"]
-radius = 86.06
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hji3q"]
+size = Vector2(117.48, 135.43)
 
 [node name="PickupObject2" type="RigidBody2D" groups=["pickup"]]
+z_index = 1
 collision_layer = 3
 collision_mask = 3
 mass = 10.0
@@ -23,20 +24,20 @@ relative_pos = Vector2(0, -300)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 z_index = 1
-shape = SubResource("CircleShape2D_vm14j")
+shape = SubResource("RectangleShape2D_hji3q")
 
 [node name="Area2D" type="Area2D" parent="." groups=["pickup"]]
 collision_layer = 2
 collision_mask = 3
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
 z_index = 1
-shape = SubResource("CircleShape2D_vm14j")
+shape = SubResource("RectangleShape2D_hji3q")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = 1
-position = Vector2(12, -19)
-texture = ExtResource("2_3cwev")
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("3_0vv4s")
 hframes = 3
 
 [node name="BonkParticles" parent="." instance=ExtResource("4_atcku")]
