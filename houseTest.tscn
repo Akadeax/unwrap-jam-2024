@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://bbfuqqxswh6x0"]
+[gd_scene load_steps=45 format=3 uid="uid://bbfuqqxswh6x0"]
 
 [ext_resource type="PackedScene" uid="uid://yt5vihcqbymr" path="res://HouseGen/HouseScene.tscn" id="1_ksmiq"]
 [ext_resource type="PackedScene" uid="uid://burd7rvt3gne5" path="res://Player/player.tscn" id="2_e6g4e"]
@@ -32,6 +32,7 @@
 [ext_resource type="Texture2D" uid="uid://doin5ob32sps1" path="res://UI/scoreScreen/Board/you_scored.png" id="19_fjn16"]
 [ext_resource type="Texture2D" uid="uid://d2bh8n6kxskvo" path="res://UI/scoreBoard.png" id="21_7q7rw"]
 [ext_resource type="AudioStream" uid="uid://brihxtc0ov2x4" path="res://sound/Drumroll.wav" id="24_7feh1"]
+[ext_resource type="Texture2D" uid="uid://ba25wrsswq5gs" path="res://UI/ä.png" id="27_u055n"]
 [ext_resource type="Script" path="res://sound_listener.gd" id="34_1iyvl"]
 [ext_resource type="AudioStream" uid="uid://d0twm8q5e0wd2" path="res://sound/Streams/Interactables/Damage/RandomWoodDamage.tres" id="35_jqvij"]
 [ext_resource type="AudioStream" uid="uid://q77ntrinjeu4" path="res://sound/Streams/Interactables/Destruction/RandomWoodDamage.tres" id="36_7qu8t"]
@@ -78,11 +79,12 @@ zoom_modifier_curve = SubResource("Curve_383s0")
 position = Vector2(886, 3350)
 allow_controller = true
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." node_paths=PackedStringArray("background", "title_text")]
+[node name="CanvasLayer" type="CanvasLayer" parent="." node_paths=PackedStringArray("background", "title_text", "manager_holder")]
 process_mode = 3
 script = ExtResource("4_6omd2")
 background = NodePath("BG")
 title_text = NodePath("TitleTextIntro/Label")
+manager_holder = NodePath("Manager")
 
 [node name="BG2" type="TextureRect" parent="CanvasLayer"]
 modulate = Color(1, 1, 1, 0.0705882)
@@ -126,7 +128,7 @@ theme_override_fonts/font = ExtResource("5_go5dp")
 theme_override_font_sizes/font_size = 48
 text = "Time left"
 script = ExtResource("6_jpqif")
-level_time_secs = 30
+level_time_secs = 2
 
 [node name="ScoreBoard" type="Control" parent="CanvasLayer" node_paths=PackedStringArray("bg", "stamp_holder", "stamp_text_holder", "you_scored_holder")]
 layout_mode = 3
@@ -239,9 +241,13 @@ theme_override_font_sizes/font_size = 72
 text = "This is title text"
 horizontal_alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="Manager" type="TextureRect" parent="CanvasLayer"]
+offset_left = 718.0
+offset_top = 316.0
+offset_right = 2782.0
+offset_bottom = 1773.0
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("27_u055n")
 
 [node name="DeliveryZone" parent="." instance=ExtResource("9_vnbf0")]
 position = Vector2(894, 4412)
