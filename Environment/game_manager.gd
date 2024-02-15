@@ -9,7 +9,7 @@ class_name GameManager
 func _ready():
 	get_tree().paused = true
 
-	background.color.a = 0.4
+	background.color.a = 0.6
 	title_text.self_modulate.a = 0
 
 	const text_delay : float = 3
@@ -55,6 +55,8 @@ func _ready():
 	tween.tween_interval(0.8)
 	tween.tween_property(title_text, "self_modulate:a", 0, 0.1)
 
+	tween.tween_property(manager_holder, "modulate:a", 0, 0.2)
+
 	tween.tween_callback(set_text.bind("In 1..."))
 
 	tween.tween_property(title_text, "self_modulate:a", 1, 0.1)
@@ -66,7 +68,6 @@ func _ready():
 	var cam = get_tree().get_first_node_in_group("cam")
 	tween.tween_property(cam, "global_position", Vector2(100, 100), 1)
 
-	tween.tween_property(manager_holder, "modulate:a", 0, 0.3)
 
 	tween.tween_callback(unpause)
 
