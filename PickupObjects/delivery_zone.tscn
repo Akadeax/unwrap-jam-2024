@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bw04633k6vv8p"]
+[gd_scene load_steps=20 format=3 uid="uid://bw04633k6vv8p"]
 
 [ext_resource type="Script" path="res://PickupObjects/delivery_zone.gd" id="1_t1xew"]
 [ext_resource type="Texture2D" uid="uid://duchchgvyimmq" path="res://Sprites/truckOpen.png" id="2_1f5ej"]
@@ -6,6 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://ctboelt3ncsgm" path="res://Sprites/truckBACKClosed.png" id="4_22vkq"]
 [ext_resource type="AudioStream" uid="uid://coyqw3a3wf1t2" path="res://sound/Streams/Shark/randomPlacements.tres" id="4_pv5qp"]
 [ext_resource type="Texture2D" uid="uid://b71mmwponnmvc" path="res://Sprites/star.png" id="5_10lu7"]
+[ext_resource type="Texture2D" uid="uid://bjvcrpvw78qgu" path="res://Sprites/truck_roof.png" id="7_4x5j6"]
+[ext_resource type="Script" path="res://vanRoogf.gd" id="8_qnf06"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0qwou"]
 size = Vector2(600, 400)
@@ -131,6 +133,11 @@ color = Color(0.639216, 0.431373, 0, 1)
 energy = 3.74
 texture = SubResource("GradientTexture2D_5mwde")
 texture_scale = 5.62
+
+[node name="VanRoof" type="Sprite2D" parent="."]
+z_index = 10
+texture = ExtResource("7_4x5j6")
+script = ExtResource("8_qnf06")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]

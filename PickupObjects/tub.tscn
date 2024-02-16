@@ -21,6 +21,7 @@ linear_damp = 1.0
 script = ExtResource("1_ajvwd")
 fragility = 10.0
 destroyed_particles_scene = ExtResource("2_6tq5g")
+relative_pos = Vector2(0, -320)
 wall_offset_correction = 235.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
